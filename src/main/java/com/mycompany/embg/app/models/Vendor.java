@@ -10,6 +10,7 @@ package com.mycompany.embg.app.models;
  */
 public class Vendor extends User {
     private String alamat;
+    private InventarisDapur inventaris;
     
     public Vendor(
     String id,

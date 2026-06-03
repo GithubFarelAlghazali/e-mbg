@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.embg.app.models;
-
+import java.util.*;
 /**
  *
  * @author User
@@ -11,6 +11,8 @@ package com.mycompany.embg.app.models;
 public class Sekolah extends User {
     private String npsn;
     private String alamat;
+    private int jumlahSiswa;
+    private ArrayList<SiswaKebutuhanKhusus> siswaKhusus;
     
     public Sekolah(
     String id,
@@ -18,10 +20,27 @@ public class Sekolah extends User {
     String email,
     String password,
     String npsn,
-    String alamat){
+    String alamat,
+    int jumlahSiswa){
         super(id, username, email, password);
         this.npsn = npsn;
         this.alamat = alamat;
+        this.jumlahSiswa = jumlahSiswa;
     }
     
+    public void setJumlahSiswa(int jumlah){
+        this.jumlahSiswa = jumlah;
+    }
+    
+    public void tambahSiswaKebutuhanKhusus(SiswaKebutuhanKhusus siswa){
+       this.siswaKhusus.add(siswa);
+    }
+    
+    public int getJumlahSiswa(){
+        return this.jumlahSiswa;
+    }
+    
+    public boolean konfirmasiPenerimaan(){
+        return true;
+    }
 }
