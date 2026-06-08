@@ -4,11 +4,23 @@
  */
 package com.mycompany.embg.app.config;
 
-/**
- *
- * @author User
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+ 
+// @author User
  */
 public class DbConfig {
-    public static final String SUPABASE_URL = "https://gpychukfwcmuwhryvsxl.supabase.co/rest/v1/";
-    public static final String SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdweWNodWtmd2NtdXdocnl2c3hsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMTQ0NDQsImV4cCI6MjA5NTg5MDQ0NH0.apri8POg1_6rGQ7RUVrQHNmklqXhrz9JlfSRaZhzK4w";
+    private static final String URL = "jdbc:postgresql://db.gpychukfwcmuwhryvsxl.supabase.co:5432/postgres?user=postgres&password=e-mbgSUPA26";
+    private static final String USER = "postgres";
+    private static final String PASSWORD = "";
+    
+    private static Connection connection = null;
+    
+    public static Connection getConnection() throws SQLException{
+        if(connection == null || connection.isClosed()){
+            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        }
+        return connection;
+    }
 }
