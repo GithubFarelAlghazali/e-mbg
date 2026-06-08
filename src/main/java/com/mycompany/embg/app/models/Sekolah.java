@@ -22,7 +22,7 @@ public class Sekolah extends User {
     String npsn,
     String alamat,
     int jumlahSiswa){
-        super(id, username, email, password);
+        super(id, username, email, password, "sekolah");
         this.npsn = npsn;
         this.alamat = alamat;
         this.jumlahSiswa = jumlahSiswa;

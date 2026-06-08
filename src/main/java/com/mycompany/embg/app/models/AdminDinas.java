@@ -19,9 +19,17 @@ public class AdminDinas extends User {
     String password,
     String nip,
     String wilayah){
-        super(id, username, email,password);
+        super(id, username, email,password, "admin");
         this.nip = nip;
         this.wilayah = wilayah;
+    }
+    
+    public String getNip(){
+        return this.nip;
+    }
+    
+    public String getWilayah(){
+        return this.wilayah;
     }
     
     public boolean verifikasiVendor(){
