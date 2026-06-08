@@ -18,7 +18,7 @@ public class Vendor extends User {
     String email,
     String password,
     String alamat){
-        super(id, username, email, password);
+        super(id, username, email, password, "vendor");
         this.alamat = alamat;
     }
     
