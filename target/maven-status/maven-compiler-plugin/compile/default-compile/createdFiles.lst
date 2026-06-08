@@ -8,6 +8,7 @@ com\mycompany\embg\app\models\Vendor.class
 com\mycompany\embg\app\controllers\auth\SelectRoleController.class
 com\mycompany\embg\app\models\Produksi.class
 com\mycompany\embg\app\models\AdminDinas.class
+com\mycompany\embg\app\controllers\admin\RegisterAdminController.class
 com\mycompany\embg\app\models\NilaiGizi.class
 com\mycompany\embg\app\models\TemplateModel.class
 com\mycompany\embg\app\models\User.class
