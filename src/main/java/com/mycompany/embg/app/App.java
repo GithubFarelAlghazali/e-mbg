@@ -10,7 +10,7 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/mycompany/embg/app/fxml/auth/LoginPage.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Hello JavaFX");
+        stage.setTitle("E-MBG | Manajemen MBG");
         stage.setScene(scene);
         stage.show();
     }

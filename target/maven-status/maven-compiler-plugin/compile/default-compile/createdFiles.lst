@@ -5,6 +5,7 @@ com\mycompany\embg\app\models\JadwalPengiriman.class
 com\mycompany\embg\app\services\TemplateService.class
 com\mycompany\embg\app\models\Produk.class
 com\mycompany\embg\app\models\Vendor.class
+com\mycompany\embg\app\controllers\auth\SelectRoleController.class
 com\mycompany\embg\app\models\Produksi.class
 com\mycompany\embg\app\models\AdminDinas.class
 com\mycompany\embg\app\models\NilaiGizi.class
