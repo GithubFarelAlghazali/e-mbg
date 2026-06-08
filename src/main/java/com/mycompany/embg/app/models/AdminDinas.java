@@ -24,6 +24,14 @@ public class AdminDinas extends User {
         this.wilayah = wilayah;
     }
     
+    public String getNip(){
+        return this.nip;
+    }
+    
+    public String getWilayah(){
+        return this.wilayah;
+    }
+    
     public boolean verifikasiVendor(){
         return true;
     }
