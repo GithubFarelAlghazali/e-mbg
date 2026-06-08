@@ -38,9 +38,7 @@ public class SelectRoleController implements Initializable {
         Parent root = loader.load();
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
-
+        stage.getScene().setRoot(root);
     }
     
 }
