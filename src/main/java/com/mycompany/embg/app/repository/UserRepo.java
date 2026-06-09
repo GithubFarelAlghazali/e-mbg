@@ -31,4 +31,52 @@ public class UserRepo {
         stmt.setString(6, admin.getWilayah());
         stmt.executeUpdate();
     }
+    
+    // Validasi
+    
+    public boolean isEmailExist(String email) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM users WHERE email = ?";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, email);
+        ResultSet rs = stmt.executeQuery();
+        if(rs.next()){
+            return rs.getInt(1) > 0;
+        }
+        return false;
+    }
+    
+    public boolean isUsernameExist(String username) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM users WHERE username = ?";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, username);
+        ResultSet rs = stmt.executeQuery();
+        if(rs.next()){
+            return rs.getInt(1) > 0;
+        }
+        return false;
+    }
+    
+    // Login
+    
+    public User findByEmail(String email) throws SQLException{
+        String sql = "SELECT * FROM users WHERE email = ?";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, email);
+        ResultSet rs = stmt.executeQuery();
+        
+        if(rs.next()){
+            return new User(
+                  rs.getString("id"),
+                  rs.getString("username"),
+                  rs.getString("email"),
+                  rs.getString("password"),
+                  rs.getString("role")
+            );
+        }
+        return null;
+    }
+    
+    public boolean checkPassword(String inputPassword, String hashedPassword){
+        return BCrypt.checkpw(inputPassword, hashedPassword);
+    }
 }

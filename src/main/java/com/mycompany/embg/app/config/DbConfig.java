@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class DbConfig {
     private static final String URL = "jdbc:postgresql://db.gpychukfwcmuwhryvsxl.supabase.co:5432/postgres?user=postgres&password=e-mbgSUPA26";
     private static final String USER = "postgres";
-    private static final String PASSWORD = "your_password"; // dari Supabase
+    private static final String PASSWORD = "e-mbgSUPA26"; // dari Supabase
 
     private static Connection connection = null;
 
