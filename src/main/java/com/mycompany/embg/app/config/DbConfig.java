@@ -8,10 +8,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DbConfig {
-    private static final String URL = "jdbc:postgresql://db.gpychukfwcmuwhryvsxl.supabase.co:5432/postgres?user=postgres&password=e-mbgSUPA26";
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "e-mbgSUPA26"; // dari Supabase
-
+    private static final String URL = "jdbc:postgresql://aws-1-ap-northeast-2.pooler.supabase.com:5432/postgres?sslmode=require";
+    private static final String USER = "postgres.gpychukfwcmuwhryvsxl";
+    private static final String PASSWORD = "e-mbgSUPA26"; 
     private static Connection connection = null;
 
     public static Connection getConnection() throws SQLException {
