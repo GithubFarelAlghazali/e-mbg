@@ -30,7 +30,7 @@
                <font>
                   <Font name="Poppins Regular" size="12.0" />
                </font></Label>
-            <TextField promptText="Email terdaftar">
+            <TextField fx:id="emailField" promptText="Email terdaftar">
                <font>
                   <Font name="Poppins Regular" size="12.0" />
                </font></TextField>
@@ -38,11 +38,11 @@
                <font>
                   <Font name="Poppins Regular" size="12.0" />
                </font></Label>
-            <PasswordField promptText="Password">
+            <PasswordField fx:id="passwordField" promptText="Password">
                <font>
                   <Font name="Poppins Regular" size="12.0" />
                </font></PasswordField>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="257.0" style="-fx-background-color: #4E6766;" text="Masuk" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#handleLogin" prefHeight="25.0" prefWidth="257.0" style="-fx-background-color: #4E6766;" text="Masuk" textFill="WHITE">
                <padding>
                   <Insets bottom="8.0" top="8.0" />
                </padding>
