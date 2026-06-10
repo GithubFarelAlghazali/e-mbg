@@ -62,4 +62,15 @@ public class SelectRoleController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.getScene().setRoot(root);
     }
+    
+    @FXML
+    private void handleClickVendor(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/com/mycompany/embg/app/fxml/vendor/RegisterVendor.fxml")
+        );
+        Parent root = loader.load();
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.getScene().setRoot(root);
+    }
 }

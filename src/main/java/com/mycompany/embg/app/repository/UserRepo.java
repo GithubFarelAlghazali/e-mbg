@@ -45,6 +45,18 @@ public class UserRepo {
         stmt.executeUpdate();
     }
     
+        public void registerVendor(Vendor vendor) throws SQLException {
+        String SQL = "INSERT INTO users (username, email, password, role, alamat) "
+                + "VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement stmt = conn.prepareStatement(SQL);
+        stmt.setString(1, vendor.getUsername());
+        stmt.setString(2, vendor.getEmail());
+        stmt.setString(3, vendor.getPassword());
+        stmt.setString(4, vendor.getRole());
+        stmt.setString(5, vendor.getAlamat());
+        stmt.executeUpdate();
+    }
+    
     // Validasi
     
     public boolean isEmailExist(String email) throws SQLException {
