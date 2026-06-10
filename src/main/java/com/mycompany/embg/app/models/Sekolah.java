@@ -20,12 +20,19 @@ public class Sekolah extends User {
     String email,
     String password,
     String npsn,
-    String alamat,
-    int jumlahSiswa){
+    String alamat){
         super(id, username, email, password, "sekolah");
         this.npsn = npsn;
         this.alamat = alamat;
-        this.jumlahSiswa = jumlahSiswa;
+//        this.jumlahSiswa = jumlahSiswa;
+    }
+    
+    public String getNpsn(){
+        return this.npsn;
+    }
+    
+    public String getAlamat(){
+        return this.alamat;
     }
     
     public void setJumlahSiswa(int jumlah){

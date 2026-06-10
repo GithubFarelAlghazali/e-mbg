@@ -32,6 +32,31 @@ public class UserRepo {
         stmt.executeUpdate();
     }
     
+    public void registerSekolah(Sekolah sekolah) throws SQLException {
+        String SQL = "INSERT INTO users (username, email, password, role, npsn, alamat) "
+                + "VALUES (?, ?, ?, ?, ?, ?)";
+        PreparedStatement stmt = conn.prepareStatement(SQL);
+        stmt.setString(1, sekolah.getUsername());
+        stmt.setString(2, sekolah.getEmail());
+        stmt.setString(3, sekolah.getPassword());
+        stmt.setString(4, sekolah.getRole());
+        stmt.setString(5, sekolah.getNpsn());
+        stmt.setString(6, sekolah.getAlamat());
+        stmt.executeUpdate();
+    }
+    
+        public void registerVendor(Vendor vendor) throws SQLException {
+        String SQL = "INSERT INTO users (username, email, password, role, alamat) "
+                + "VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement stmt = conn.prepareStatement(SQL);
+        stmt.setString(1, vendor.getUsername());
+        stmt.setString(2, vendor.getEmail());
+        stmt.setString(3, vendor.getPassword());
+        stmt.setString(4, vendor.getRole());
+        stmt.setString(5, vendor.getAlamat());
+        stmt.executeUpdate();
+    }
+    
     // Validasi
     
     public boolean isEmailExist(String email) throws SQLException {

@@ -2,12 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package com.mycompany.embg.app.controllers.admin;
+package com.mycompany.embg.app.controllers.vendor;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
-import com.mycompany.embg.app.models.AdminDinas;
+import com.mycompany.embg.app.models.Vendor;
 import com.mycompany.embg.app.repository.UserRepo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,39 +22,38 @@ import java.io.IOException;
 import java.sql.SQLException;
 import javafx.scene.control.Alert.AlertType;
 import com.mycompany.embg.app.services.Alert;
+
 /**
  * FXML Controller class
  *
  * @author User
  */
-public class RegisterAdminController implements Initializable {
+public class RegisterVendorController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
     
+    
     @FXML private TextField usernameField;
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
-    @FXML private TextField nipField;
-    @FXML private TextField wilayahField;
-    
-    
+    @FXML private TextField alamatField;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
     
+    
     @FXML
     private void handleRegister(ActionEvent event){
         String username = usernameField.getText().trim();
         String email = emailField.getText().trim();
         String password = passwordField.getText().trim();
-        String nip = nipField.getText().trim();
-        String wilayah = wilayahField.getText().trim();
+        String alamat = alamatField.getText().trim();
         
-        if(username.isEmpty() || email.isEmpty() || password.isEmpty() || nip.isEmpty() || wilayah.isEmpty()){
+        if(username.isEmpty() || email.isEmpty() || password.isEmpty() || alamat.isEmpty()){
             Alert.showAlert(AlertType.WARNING, "Semua input harus diisi lengkap!");
             return;
         }
@@ -71,8 +71,8 @@ public class RegisterAdminController implements Initializable {
                 return;
             }
             
-            AdminDinas admin = new AdminDinas(null, username, email, password, nip, wilayah);
-            repo.registerAdmin(admin);
+            Vendor vendor = new Vendor(null, username, email, password, alamat);
+            repo.registerVendor(vendor);
             
             Alert.showAlert(AlertType.INFORMATION, "Registrasi berhasil! Silakan login dengan akun anda");
 
@@ -88,8 +88,7 @@ public class RegisterAdminController implements Initializable {
         } catch (IOException e){
             Alert.showAlert(AlertType.ERROR, "Gagal membuka halaman login: " + e.getMessage());
         }
+
     }
-    
-   
     
 }

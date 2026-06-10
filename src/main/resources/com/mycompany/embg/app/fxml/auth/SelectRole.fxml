@@ -35,7 +35,7 @@
                               <Font name="Poppins Regular" size="11.0" />
                            </font>
                         </Text>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #4E6766;" text="Masuk" textFill="#eeeeee">
+                        <Button mnemonicParsing="false" onAction="#handleClickVendor" style="-fx-background-color: #4E6766;" text="Masuk" textFill="#eeeeee">
                            <font>
                               <Font name="Poppins Regular" size="11.0" />
                            </font>
@@ -85,7 +85,7 @@
                               <Font name="Poppins Regular" size="11.0" />
                            </font>
                         </Text>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #4E6766;" text="Masuk" textFill="#eeeeee">
+                        <Button mnemonicParsing="false" onAction="#handleClickSekolah" style="-fx-background-color: #4E6766;" text="Masuk" textFill="#eeeeee">
                            <font>
                               <Font name="Poppins Regular" size="11.0" />
                            </font>

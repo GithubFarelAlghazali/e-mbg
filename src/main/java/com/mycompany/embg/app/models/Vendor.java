@@ -22,6 +22,10 @@ public class Vendor extends User {
         this.alamat = alamat;
     }
     
+    public String getAlamat(){
+        return this.alamat;
+    }
+    
     public void tambahMenu(){
         
     }
