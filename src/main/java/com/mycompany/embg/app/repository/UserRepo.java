@@ -25,7 +25,7 @@ public class UserRepo {
         PreparedStatement stmt = conn.prepareStatement(SQL);
         stmt.setString(1, admin.getUsername());
         stmt.setString(2, admin.getEmail());
-        stmt.setString(3, admin.getPassword());
+        stmt.setString(3, BCrypt.hashpw(admin.getPassword(), BCrypt.gensalt()) );
         stmt.setString(4, admin.getRole());
         stmt.setString(5, admin.getNip());
         stmt.setString(6, admin.getWilayah());
@@ -38,7 +38,7 @@ public class UserRepo {
         PreparedStatement stmt = conn.prepareStatement(SQL);
         stmt.setString(1, sekolah.getUsername());
         stmt.setString(2, sekolah.getEmail());
-        stmt.setString(3, sekolah.getPassword());
+        stmt.setString(3, BCrypt.hashpw(sekolah.getPassword(), BCrypt.gensalt()));
         stmt.setString(4, sekolah.getRole());
         stmt.setString(5, sekolah.getNpsn());
         stmt.setString(6, sekolah.getAlamat());
@@ -51,7 +51,7 @@ public class UserRepo {
         PreparedStatement stmt = conn.prepareStatement(SQL);
         stmt.setString(1, vendor.getUsername());
         stmt.setString(2, vendor.getEmail());
-        stmt.setString(3, vendor.getPassword());
+        stmt.setString(3, BCrypt.hashpw(vendor.getPassword(), BCrypt.gensalt()));
         stmt.setString(4, vendor.getRole());
         stmt.setString(5, vendor.getAlamat());
         stmt.executeUpdate();
