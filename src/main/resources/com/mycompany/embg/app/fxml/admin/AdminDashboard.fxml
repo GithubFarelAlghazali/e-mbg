@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.mycompany.embg.app.controllers.admin.AdminDashboardController"
+            prefWidth="1200" prefHeight="760"
+            style="-fx-background-color: #F8FAFC;">
+
+    <left>
+        <VBox prefWidth="230" spacing="12" style="-fx-background-color: #EFF6FF;">
+            <padding>
+                <Insets top="24" right="18" bottom="24" left="18"/>
+            </padding>
+
+            <Label text="MBG System" style="-fx-font-size:18px; -fx-font-weight:bold; -fx-text-fill:#0284C7;"/>
+            <Label text="Management Portal" style="-fx-text-fill:#64748B;"/>
+            <Separator/>
+
+            <Button text="Dashboard" onAction="#showDashboard" maxWidth="Infinity"/>
+            <Button text="Vendors" onAction="#showVendors" maxWidth="Infinity"/>
+            <Button text="Schools" onAction="#showSchools" maxWidth="Infinity"/>
+            <Button text="Shipments" onAction="#showShipments" maxWidth="Infinity"/>
+            <Button text="Inventory" onAction="#showInventory" maxWidth="Infinity"/>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <Button text="+ New Report" maxWidth="Infinity"
+                    style="-fx-background-color:#7DD3FC; -fx-text-fill:#075985; -fx-font-weight:bold;"/>
+
+            <Button text="Logout" maxWidth="Infinity"/>
+        </VBox>
+    </left>
+
+    <top>
+        <HBox spacing="16" style="-fx-background-color:white; -fx-border-color:#DCEAF7;">
+            <padding>
+                <Insets top="12" right="24" bottom="12" left="24"/>
+            </padding>
+
+            <TextField promptText="Search..." prefWidth="320"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="🔔"/>
+            <Label text="⚙"/>
+            <Label text="A"
+                   style="-fx-background-color:#7DD3FC; -fx-background-radius:50%; -fx-padding:8; -fx-font-weight:bold;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <StackPane fx:id="contentArea"/>
+    </center>
+
+</BorderPane>

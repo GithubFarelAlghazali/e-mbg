@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.mycompany.embg.app.controllers.admin.ShipmentController"
+      style="-fx-background-color:#F8FAFC;">
+
+    <padding>
+        <Insets top="28" right="28" bottom="28" left="28"/>
+    </padding>
+
+    <Label text="Distribution Monitoring" style="-fx-font-size:26px; -fx-font-weight:bold;"/>
+    <Label text="Track daily meal deliveries from vendors to schools in real-time." style="-fx-text-fill:#64748B;"/>
+
+    <HBox spacing="12" style="-fx-background-color:#EFF6FF; -fx-padding:16; -fx-background-radius:12; -fx-border-color:#BFDBFE; -fx-border-radius:12;">
+        <TextField text="10/27/2023" prefWidth="180"/>
+        <ComboBox fx:id="vendorCombo" prefWidth="220"/>
+        <ComboBox fx:id="schoolCombo" prefWidth="220"/>
+        <Button text="Filter" style="-fx-background-color:#7DD3FC; -fx-text-fill:#075985; -fx-font-weight:bold;"/>
+    </HBox>
+
+    <TableView fx:id="shipmentTable" prefHeight="390"/>
+</VBox>
