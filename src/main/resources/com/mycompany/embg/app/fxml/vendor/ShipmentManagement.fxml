@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1024.0" style="-fx-background-color: #1E152A;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mbgsystem.ShipmentManagementController">
+   
+   <left>
+      <VBox prefWidth="220.0" style="-fx-background-color: #2DACF0;" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
+         </padding>
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-background-color: #2DACF0;">
+               <children>
+                  <StackPane prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+                     <children>
+                        <Text text="M"><font><Font name="System Bold" size="18.0" /></font></Text>
+                     </children>
+                  </StackPane>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="MBG System" textFill="#1E152A"><font><Font name="System Bold" size="14.0" /></font></Label>
+                        <Label text="Management Portal"><font><Font size="10.0" /></font></Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            
+            <VBox spacing="8.0" style="-fx-background-color: #2DACF0;" VBox.vgrow="ALWAYS">
+               <VBox.margin><Insets top="30.0" /></VBox.margin>
+               <children>
+                  <Button alignment="BASELINE_LEFT" maxHeight="40.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleBukaDashboard" style="-fx-background-color: transparent;" text="Dashboard" textFill="#1E152A"><font><Font name="System Bold" size="13.0" /></font></Button>
+                  <Button alignment="BASELINE_LEFT" maxHeight="40.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleBukaVendors" style="-fx-background-color: transparent;" text="Menu" textFill="#1E152A"><font><Font name="System Bold" size="13.0" /></font></Button>
+                  <Button alignment="BASELINE_LEFT" maxHeight="40.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleBukaInventory" style="-fx-background-color: #4E6766; -fx-background-radius: 8;" text="Pengiriman" textFill="WHITE"><font><Font name="System Bold" size="13.0" /></font></Button>
+                  <Button alignment="BASELINE_LEFT" maxHeight="40.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleBukaInventory" style="-fx-background-color: transparent;" text="Inventaris" textFill="#1E152A"><font><Font name="System Bold" size="13.0" /></font></Button>
+               </children>
+            </VBox>
+            
+            <VBox spacing="15.0">
+               <children>
+                  <Button fx:id="btnNewReport" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 8;" text="+ New Report"><font><Font name="System Bold" size="13.0" /></font><padding><Insets bottom="10.0" top="10.0" /></padding></Button>
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Logout" textFill="#1E152A"><font><Font name="System Bold" size="13.0" /></font></Button>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </left>
+   
+   <center>
+      <VBox style="-fx-background-color: white; -fx-background-radius: 16 0 0 0;" BorderPane.alignment="CENTER">
+         <padding><Insets bottom="20.0" left="25.0" right="25.0" top="20.0" /></padding>
+         <children>
+            
+            <HBox alignment="CENTER_LEFT" prefHeight="40.0" spacing="15.0">
+               <children>
+                  <TextField fx:id="txtSearchGlobal" prefHeight="35.0" prefWidth="250.0" promptText="🔍 Search deliveries..." style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-text-fill: black; -fx-prompt-text-fill: black; -fx-border-radius: 20;" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="⚙️" />
+               </children>
+            </HBox>
+            
+            <HBox alignment="CENTER_LEFT" style="-fx-padding: 15 0 15 0;">
+               <children>
+                  <VBox>
+                     <children>
+                        <Label text="Vendor Distribusi"><font><Font name="System Bold" size="22.0" /></font></Label>
+                        <Label text="Manage daily deliveries to assigned schools."><font><Font size="12.0" /></font></Label>
+                     </children>
+                  </VBox>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" style="-fx-background-color: #2DACF0; -fx-background-radius: 8;" text="📅 June 19, 2026" textFill="WHITE">
+                     <font><Font name="System Bold" size="12.0" /></font>
+                     <padding><Insets bottom="8.0" left="15.0" right="15.0" top="8.0" /></padding>
+                  </Button>
+               </children>
+            </HBox>
+            
+            <ScrollPane fitToWidth="true" style="-fx-background-color: white; -fx-background-insets: 0; -fx-padding: 0;" VBox.vgrow="ALWAYS">
+               <content>
+                  <FlowPane hgap="20.0" style="-fx-background-color: white;" vgap="20.0">
+                     <children>
+                        
+                        <VBox prefHeight="231.0" prefWidth="233.0" spacing="10.0" style="-fx-background-color: #2DACF0; -fx-background-radius: 12; -fx-padding: 15;">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                 <children>
+                                    <Label style="-fx-font-size: 16px;" text="🎓" />
+                                    <VBox HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label text="SD Negeri 01 Menteng" textFill="#1E152A" wrapText="true"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                          <Label text="Zone A • 2.4 km" textFill="#4E6766"><font><Font size="10.0" /></font></Label>
+                                       </children>
+                                    </VBox>
+                                    <Label text="⋮" textFill="#4E6766"><font><Font name="System Bold" size="14.0" /></font></Label>
+                                 </children>
+                              </HBox>
+                              <Separator opacity="0.3" />
+                              <GridPane hgap="10.0" vgap="4.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="Jumlah Porsi" textFill="#4E6766"><font><Font size="10.0" /></font></Label>
+                                    <Label text="ETA" textFill="#4E6766" GridPane.columnIndex="1"><font><Font size="10.0" /></font></Label>
+                                    <Label text="150" textFill="#1E152A" GridPane.rowIndex="1"><font><Font name="System Bold" size="16.0" /></font></Label>
+                                    <Label text="🕒 10:30 AM" textFill="#1E152A" GridPane.columnIndex="1" GridPane.rowIndex="1"><font><Font name="System Bold" size="12.0" /></font></Label>
+                                 </children>
+                              </GridPane>
+                              <VBox spacing="2.0">
+                                 <children>
+                                    <Label text="Menu Hari Ini" textFill="#4E6766"><font><Font size="10.0" /></font></Label>
+                                    <Label text="Nasi Putih, Ayam Kecap, Tumis Buncis, Susu UHT" textFill="#1E152A" wrapText="true"><font><Font size="11.0" /></font></Label>
+                                 </children>
+                              </VBox>
+                              <VBox spacing="4.0">
+                                 <children>
+                                    <Label text="Update Status" textFill="#4E6766"><font><Font size="10.0" /></font></Label>
+                                    <ComboBox fx:id="comboStatus1" maxWidth="1.7976931348623157E308" style="-fx-background-color: white; -fx-background-radius: 6;" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+
+                        <VBox prefHeight="231.0" prefWidth="233.0" spacing="10.0" style="-fx-background-color: #2DACF0; -fx-background-radius: 12; -fx-padding: 15;">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                 <children>
+                                    <Label style="-fx-font-size: 16px;" text="🎓" />
+                                    <VBox HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label text="SMP Bina Bangsa" textFill="#1E152A" wrapText="true"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                          <Label text="Zone B • 5.1 km" textFill="#4E6766"><font><Font size="10.0" /></font></Label>
+                                       </children>
+                                    </VBox>
+                                    <Label text="⋮" textFill="#4E6766"><font><Font name="System Bold" size="14.0" /></font></Label>
+                                 </children>
+                              </HBox>
+                              <Separator opacity="0.3" />
+                              <GridPane hgap="10.0" vgap="4.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="Jumlah Porsi" textFill="#4E6766"><font><Font size="10.0" /></font></Label>
+                                    <Label text="ETA" textFill="#4E6766" GridPane.columnIndex="1"><font><Font size="10.0" /></font></Label>
+                                    <Label text="220" textFill="#1E152A" GridPane.rowIndex="1"><font><Font name="System Bold" size="16.0" /></font></Label>
+                                    <Label text="🔻 11:15 AM" textFill="#1E152A" GridPane.columnIndex="1" GridPane.rowIndex="1"><font><Font name="System Bold" size="12.0" /></font></Label>
+                                 </children>
+                              </GridPane>
+                              <VBox spacing="2.0">
+                                 <children>
+                                    <Label text="Menu Hari Ini" textFill="#4E6766"><font><Font size="10.0" /></font></Label>
+                                    <Label text="Nasi Putih, Ikan Bakar, Sayur Asem, Buah Jeruk" textFill="#1E152A" wrapText="true"><font><Font size="11.0" /></font></Label>
+                                 </children>
+                              </VBox>
+                              <VBox spacing="4.0">
+                                 <children>
+                                    <Label text="Update Status" textFill="#4E6766"><font><Font size="10.0" /></font></Label>
+                                    <ComboBox fx:id="comboStatus2" maxWidth="1.7976931348623157E308" style="-fx-background-color: white; -fx-background-radius: 6;" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+
+                        <VBox prefHeight="231.0" prefWidth="233.0" spacing="10.0" style="-fx-background-color: #2DACF0; -fx-background-radius: 12; -fx-padding: 15;">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                 <children>
+                                    <Label style="-fx-font-size: 16px;" text="🎓" />
+                                    <VBox HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label text="SMA 4 Jakarta Selatan" textFill="#1E152A" wrapText="true"><font><Font name="System Bold" size="13.0" /></font></Label>
+                                          <Label text="Zone A • 1.2 km" textFill="#4E6766"><font><Font size="10.0" /></font></Label>
+                                       </children>
+                                    </VBox>
+                                    <Label text="⋮" textFill="#4E6766"><font><Font name="System Bold" size="14.0" /></font></Label>
+                                 </children>
+                              </HBox>
+                              <Separator opacity="0.3" />
+                              <GridPane hgap="10.0" vgap="4.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="Jumlah Porsi" textFill="#4E6766"><font><Font size="10.0" /></font></Label>
+                                    <Label text="Delivered At" textFill="#4E6766" GridPane.columnIndex="1"><font><Font size="10.0" /></font></Label>
+                                    <Label text="350" textFill="#1E152A" GridPane.rowIndex="1"><font><Font name="System Bold" size="16.0" /></font></Label>
+                                    <Label text="✅ 09:45 AM" textFill="#1E152A" GridPane.columnIndex="1" GridPane.rowIndex="1"><font><Font name="System Bold" size="12.0" /></font></Label>
+                                 </children>
+                              </GridPane>
+                              <VBox spacing="2.0">
+                                 <children>
+                                    <Label text="Menu Hari Ini" textFill="#4E6766"><font><Font size="10.0" /></font></Label>
+                                    <Label text="Nasi Putih, Daging Lada Hitam, Capcay, Susu UHT" textFill="#1E152A" wrapText="true"><font><Font size="11.0" /></font></Label>
+                                 </children>
+                              </VBox>
+                              <VBox spacing="4.0">
+                                 <children>
+                                    <Label text="Update Status" textFill="#4E6766"><font><Font size="10.0" /></font></Label>
+                                    <ComboBox fx:id="comboStatus3" maxWidth="1.7976931348623157E308" style="-fx-background-color: white; -fx-background-radius: 6;" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+
+                        <VBox alignment="CENTER" onMouseClicked="#handleAssignNewRoute" prefHeight="231.0" prefWidth="233.0" spacing="10.0" style="-fx-border-style: dashed; -fx-border-color: #2DACF0; -fx-border-width: 2; -fx-border-radius: 12; -fx-background-color: white; -fx-cursor: hand;">
+                           <children>
+                              <StackPane maxWidth="35.0" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #2DACF0; -fx-background-radius: 20;">
+                                 <children>
+                                    <Text fill="WHITE" text="+"><font><Font name="System Bold" size="18.0" /></font></Text>
+                                 </children>
+                              </StackPane>
+                              <Label text="Assign New Route"><font><Font name="System Bold" size="14.0" /></font></Label>
+                              <Label text="Add another school delivery to today's distribution plan." textAlignment="CENTER" wrapText="true">
+                                 <font><Font size="11.0" /></font>
+                                 <VBox.margin><Insets left="15.0" right="15.0" /></VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+
+                     </children>
+                  </FlowPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

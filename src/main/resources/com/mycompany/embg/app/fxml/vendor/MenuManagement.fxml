@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1024.0" style="-fx-background-color: #1E152A;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mbgsystem.MenuManagementController">
+   
+   <left>
+      <VBox prefWidth="220.0" style="-fx-background-color: #2DACF0;" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
+         </padding>
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <children>
+                  <StackPane prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="M">
+                           <font><Font name="System Bold" size="18.0" /></font>
+                        </Text>
+                     </children>
+                  </StackPane>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="MBG System" textFill="#1E152A"><font><Font name="System Bold" size="14.0" /></font></Label>
+                        <Label text="Management Portal"><font><Font size="10.0" /></font></Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            
+            <VBox spacing="8.0" VBox.vgrow="ALWAYS">
+               <VBox.margin><Insets top="30.0" /></VBox.margin>
+               <children>
+                  <Button alignment="BASELINE_LEFT" maxHeight="40.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleBukaDashboard" style="-fx-background-color: transparent;" text="Dashboard" textFill="#1E152A"><font><Font name="System Bold" size="13.0" /></font></Button>
+                  <Button alignment="BASELINE_LEFT" maxHeight="40.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #4E6766; -fx-background-radius: 8;" text="Menu" textFill="WHITE"><font><Font name="System Bold" size="13.0" /></font></Button>
+                  <Button alignment="BASELINE_LEFT" maxHeight="40.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleBukaShipments" style="-fx-background-color: transparent;" text="Pengiriman" textFill="#1E152A"><font><Font name="System Bold" size="13.0" /></font></Button>
+                  <Button alignment="BASELINE_LEFT" maxHeight="40.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleBukaInventory" style="-fx-background-color: transparent;" text="Inventaris" textFill="#1E152A"><font><Font name="System Bold" size="13.0" /></font></Button>
+               </children>
+            </VBox>
+            
+            <VBox spacing="15.0">
+               <children>
+                  <Button fx:id="btnNewReport" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 8;" text="+ New Report"><font><Font name="System Bold" size="13.0" /></font><padding><Insets bottom="10.0" top="10.0" /></padding></Button>
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Logout"><font><Font name="System Bold" size="13.0" /></font></Button>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </left>
+   
+   <center>
+      <VBox style="-fx-background-color: white; -fx-background-radius: 16 0 0 0;" BorderPane.alignment="CENTER">
+         <padding><Insets bottom="20.0" left="25.0" right="25.0" top="20.0" /></padding>
+         <children>
+            
+            <HBox alignment="BOTTOM_LEFT" style="-fx-padding: 10 0 15 0;">
+               <children>
+                  <VBox spacing="4.0">
+                     <children>
+                        <Label text="MENU PORTAL  &gt;  PT. MBG TELKOM " textFill="#ffdd56">
+                           <font><Font name="System Bold" size="10.0" /></font>
+                        </Label>
+                        <Label text="Manajemen Menu Harian">
+                           <font><Font name="System Bold" size="22.0" /></font>
+                        </Label>
+                        <Label text="Kelola jadwal makan bergizi gratis untuk siswa." textFill="WHITE">
+                           <font><Font size="12.0" /></font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button fx:id="btnTambahMenu" mnemonicParsing="false" onAction="#handleTambahMenu" style="-fx-background-color: #2DACF0; -fx-background-radius: 8;" text="+ Tambah Menu" textFill="WHITE">
+                     <font><Font name="System Bold" size="13.0" /></font>
+                     <padding><Insets bottom="10.0" left="15.0" right="15.0" top="10.0" /></padding>
+                  </Button>
+               </children>
+            </HBox>
+            
+            <VBox style="-fx-background-color: #2DACF0; -fx-background-radius: 12; -fx-padding: 20;" VBox.vgrow="ALWAYS">
+               <children>
+                  
+                  <HBox alignment="CENTER_LEFT" spacing="12.0" style="-fx-padding: 0 0 15 0;">
+                     <children>
+                        <TextField fx:id="txtSearchMenu" prefHeight="35.0" prefWidth="300.0" promptText="🔍 Cari menu..." style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: black; -fx-border-radius: 8;" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="btnFilter" mnemonicParsing="false" style="-fx-background-color: #FFFFFF; -fx-border-color: #4E6766; -fx-border-radius: 8; -fx-background-radius: 8;" text="⚙️ Filter" textFill="#1E152A">
+                           <font><Font name="System Bold" size="12.0" /></font>
+                           <padding><Insets bottom="8.0" left="15.0" right="15.0" top="8.0" /></padding>
+                        </Button>
+                     </children>
+                  </HBox>
+                  
+                  <TableView fx:id="tblMenu" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
+                    <columns>
+                      <TableColumn fx:id="colTanggal" prefWidth="150.0" text="TANGGAL" />
+                      <TableColumn fx:id="colNamaMenu" prefWidth="320.0" text="NAMA MENU" />
+                        <TableColumn fx:id="colKalori" prefWidth="130.0" text="KALORI" />
+                        <TableColumn fx:id="colActions" prefWidth="120.0" text="ACTIONS" />
+                    </columns>
+                  </TableView>
+                  
+                  <HBox alignment="CENTER_LEFT" style="-fx-padding: 15 0 0 0;">
+                     <children>
+                        <Label text="Menampilkan 1-3 dari 30 menu">
+                           <font><Font size="12.0" /></font>
+                        </Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <HBox spacing="5.0">
+                           <children>
+                              <Button mnemonicParsing="false" style="-fx-background-color: #FFFFFF; -fx-background-radius: 4; -fx-border-color: #4E6766; -fx-border-radius: 4;" text="&lt;" textFill="#4E6766" />
+                              <Button mnemonicParsing="false" style="-fx-background-color: black; -fx-background-radius: 4;" text="1" textFill="WHITE" />
+                              <Button mnemonicParsing="false" style="-fx-background-color: #FFFFFF; -fx-background-radius: 4; -fx-border-color: #4E6766; -fx-border-radius: 4;" text="2" textFill="#4E6766" />
+                              <Button mnemonicParsing="false" style="-fx-background-color: #FFFFFF; -fx-background-radius: 4; -fx-border-color: #4E6766; -fx-border-radius: 4;" text="&gt;" textFill="#4E6766" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
