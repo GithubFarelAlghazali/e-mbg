@@ -90,7 +90,7 @@ public class LoginPageController implements Initializable {
                     fxmlPath = "/com/mycompany/embg/app/fxml/admin/AdminDashboard.fxml";
                     break;
                 case "vendor":
-                    fxmlPath = "/com/mycompany/embg/app/fxml/admin/AdminDashboard.fxml";
+                    fxmlPath = "/com/mycompany/embg/app/fxml/vendor/VendorDashboard.fxml";
                     break;
                 default:
                     Alert.showAlert(AlertType.ERROR, "Role tidak dikenali!");

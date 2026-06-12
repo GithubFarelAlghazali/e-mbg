@@ -1,4 +1,4 @@
-package com.mycompany.mbgsystem; // SESUAIKAN dengan nama package Anda sendiri
+package com.mycompany.embg.app.controllers.vendor; // SESUAIKAN dengan nama package Anda sendiri
 
 import java.io.IOException;
 import java.net.URL;
@@ -6,18 +6,19 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import com.mycompany.embg.app.services.Redirect;
 
 public class VendorDashboardController implements Initializable {
 
@@ -25,7 +26,7 @@ public class VendorDashboardController implements Initializable {
     @FXML private Button btnNewReport;
     @FXML private Button btnUnduhLaporan;
     @FXML private Button btnDetailResep;
-    @FXML private ImageView imgMenu;
+ 
     
     // Properti Tabel
     @FXML private TableView<Distribusi> tblDistribusi;
@@ -45,13 +46,7 @@ public class VendorDashboardController implements Initializable {
         // 2. Kirim Data Dummy ke Tabel agar terisi otomatis
         tblDistribusi.setItems(getDummyData());
 
-        // 3. Ambil Gambar Secara Aman Lewat Stream Konten Input (Resource Safe)
-        try {
-            Image gambarAyam = new Image(getClass().getResourceAsStream("images/ayam_bakar.png"));
-            imgMenu.setImage(gambarAyam);
-        } catch (Exception e) {
-            System.out.println("Peringatan: Gambar 'images/ayam_bakar.png' belum dimasukkan atau tidak terbaca.");
-        }
+      
     }    
 
     private ObservableList<Distribusi> getDummyData() {
@@ -97,22 +92,22 @@ public class VendorDashboardController implements Initializable {
         public String getStatus() { return status; }
     }
     @FXML
-private void handleBukaVendors(ActionEvent event) { mengubahHalaman("MenuManagement.fxml"); }
-
-@FXML
-private void handleBukaShipments(ActionEvent event) { mengubahHalaman("ShipmentManagement.fxml"); }
-
-@FXML
-private void handleBukaInventory(ActionEvent event) { mengubahHalaman("InventoryManagement.fxml"); }
-
-private void mengubahHalaman(String fxmlFile) {
-    try {
-        Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
-        Stage stage = (Stage) btnNewReport.getScene().getWindow();
-        stage.getScene().setRoot(root);
-    } catch (IOException e) {
-        System.out.println("Gagal memuat halaman: " + fxmlFile);
-        e.printStackTrace();
-    }
+private void handleBukaVendors(ActionEvent event) {
+    Redirect.redirectPage(event,"/com/mycompany/embg/app/fxml/vendor/MenuManagement.fxml");
 }
+
+@FXML
+private void handleBukaShipments(ActionEvent event) { 
+    Redirect.redirectPage(event,"/com/mycompany/embg/app/fxml/vendor/ShipmentManagement.fxml");
+}
+
+@FXML
+private void handleBukaInventory(ActionEvent event) {
+    Redirect.redirectPage(event,"/com/mycompany/embg/app/fxml/vendor/InventoryManagement.fxml");
+}
+
+    
+
+ 
+
 }

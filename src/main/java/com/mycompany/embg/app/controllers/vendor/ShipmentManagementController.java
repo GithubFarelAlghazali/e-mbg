@@ -1,4 +1,4 @@
-package com.mycompany.mbgsystem; // Sesuaikan dengan package utama Anda
+package com.mycompany.embg.app.controllers.vendor; // Sesuaikan dengan package utama Anda
 
 import java.io.IOException;
 import java.net.URL;
@@ -15,6 +15,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import com.mycompany.embg.app.services.Redirect;
 
 public class ShipmentManagementController implements Initializable {
 
@@ -55,22 +56,18 @@ public class ShipmentManagementController implements Initializable {
 
 
     @FXML
-private void handleBukaDashboard(ActionEvent event) { mengubahHalaman("VendorDashboard.fxml"); }
-
-@FXML
-private void handleBukaVendors(ActionEvent event) { mengubahHalaman("MenuManagement.fxml"); }
-
-@FXML
-private void handleBukaInventory(ActionEvent event) { mengubahHalaman("InventoryManagement.fxml"); }
-
-private void mengubahHalaman(String fxmlFile) {
-    try {
-        Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
-        Stage stage = (Stage) btnNewReport.getScene().getWindow();
-        stage.getScene().setRoot(root);
-    } catch (IOException e) {
-        System.out.println("Gagal memuat halaman: " + fxmlFile);
-        e.printStackTrace();
-    }
+private void handleBukaDashboard(ActionEvent event) { 
+Redirect.redirectPage(event,"/com/mycompany/embg/app/fxml/vendor/VendorDashboard.fxml");
 }
+
+@FXML
+private void handleBukaVendors(ActionEvent event) { 
+    Redirect.redirectPage(event,"/com/mycompany/embg/app/fxml/vendor/MenuManagement.fxml"); 
+}
+
+@FXML
+private void handleBukaInventory(ActionEvent event) { 
+    Redirect.redirectPage(event,"/com/mycompany/embg/app/fxml/vendor/InventoryManagement.fxml"); }
+
+
 }

@@ -1,8 +1,9 @@
-package com.mycompany.mbgsystem; // Sesuaikan dengan nama package utama Anda
+package com.mycompany.embg.app.controllers.vendor; 
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import com.mycompany.embg.app.services.Redirect;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -78,22 +79,16 @@ public class InventoryManagementController implements Initializable {
         public String getActions() { return actions; }
     }
     @FXML
-private void handleBukaDashboard(ActionEvent event) { mengubahHalaman("VendorDashboard.fxml"); }
-
-@FXML
-private void handleBukaVendors(ActionEvent event) { mengubahHalaman("MenuManagement.fxml"); }
-
-@FXML
-private void handleBukaShipments(ActionEvent event) { mengubahHalaman("ShipmentManagement.fxml"); }
-
-private void mengubahHalaman(String fxmlFile) {
-    try {
-        Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
-        Stage stage = (Stage) btnNewReport.getScene().getWindow();
-        stage.getScene().setRoot(root);
-    } catch (IOException e) {
-        System.out.println("Gagal memuat halaman: " + fxmlFile);
-        e.printStackTrace();
-    }
+private void handleBukaDashboard(ActionEvent event) { 
+    Redirect.redirectPage(event,"/com/mycompany/embg/app/fxml/vendor/VendorDashboard.fxml");
 }
+
+@FXML
+private void handleBukaVendors(ActionEvent event) {
+    Redirect.redirectPage(event,"/com/mycompany/embg/app/fxml/vendor/MenuManagement.fxml"); }
+
+@FXML
+private void handleBukaShipments(ActionEvent event) { 
+    Redirect.redirectPage(event,"/com/mycompany/embg/app/fxml/vendor/ShipmentManagement.fxml"); }
+
 }

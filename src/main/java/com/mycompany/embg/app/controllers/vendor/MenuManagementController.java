@@ -1,4 +1,4 @@
-package com.mycompany.mbgsystem; // Sesuaikan dengan nama package Anda
+package com.mycompany.embg.app.controllers.vendor; // Sesuaikan dengan nama package Anda
 
 import java.io.IOException;
 import java.net.URL;
@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import com.mycompany.embg.app.services.Redirect;
 
 public class MenuManagementController implements Initializable {
 
@@ -98,22 +99,16 @@ public class MenuManagementController implements Initializable {
         public String getActions() { return actions; }
     }
     @FXML
-private void handleBukaDashboard(ActionEvent event) { mengubahHalaman("VendorDashboard.fxml"); }
+private void handleBukaDashboard(ActionEvent event) {
+    Redirect.redirectPage(event,"/com/mycompany/embg/app/fxml/vendor/VendorDashboard.fxml");}
 
 @FXML
-private void handleBukaShipments(ActionEvent event) { mengubahHalaman("ShipmentManagement.fxml"); }
+private void handleBukaShipments(ActionEvent event) { 
+Redirect.redirectPage(event,"/com/mycompany/embg/app/fxml/vendor/ShipmentManagement.fxml");}
 
 @FXML
-private void handleBukaInventory(ActionEvent event) { mengubahHalaman("InventoryManagement.fxml"); }
+private void handleBukaInventory(ActionEvent event) { 
+    Redirect.redirectPage(event,"/com/mycompany/embg/app/fxml/vendor/InventoryManagement.fxml");}
 
-private void mengubahHalaman(String fxmlFile) {
-    try {
-        Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
-        Stage stage = (Stage) btnNewReport.getScene().getWindow();
-        stage.getScene().setRoot(root);
-    } catch (IOException e) {
-        System.out.println("Gagal memuat halaman: " + fxmlFile);
-        e.printStackTrace();
-    }
-}
+
 }
