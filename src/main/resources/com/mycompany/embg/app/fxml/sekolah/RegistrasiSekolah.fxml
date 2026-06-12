@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane style="-fx-background-color: #f0f4f8; -fx-font-family: 'Segoe UI', Arial, sans-serif;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RegistrasiSekolahKontroler">
+    <children>
+        <VBox alignment="CENTER" spacing="25.0">
+            <children>
+                
+                <VBox maxWidth="420.0" spacing="20.0" style="-fx-background-color: #ffffff; -fx-background-radius: 16; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 15, 0, 0, 5); -fx-padding: 40 35;">
+                    <children>
+                        
+                        <VBox alignment="CENTER" spacing="10.0">
+                            <children>
+                                <StackPane style="-fx-background-color: #bbf7d0; -fx-background-radius: 50; -fx-min-width: 50; -fx-min-height: 50; -fx-max-width: 50; -fx-max-height: 50;">
+                                    <children>
+                                        <Label text="🎓" style="-fx-font-size: 24; -fx-text-fill: #006b3f;" />
+                                    </children>
+                                </StackPane>
+                                
+                                <Label text="Registrasi Sekolah" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #1e293b;">
+                                    <VBox.margin><Insets top="5.0" /></VBox.margin>
+                                </Label>
+                                
+                                <Label text="Bergabung dengan program MBG. Lengkapi data institusi di bawah ini." textAlignment="CENTER" wrapText="true" style="-fx-font-size: 13; -fx-text-fill: #64748b;" />
+                            </children>
+                        </VBox>
+
+                        <Region style="-fx-background-color: #e2e8f0; -fx-min-height: 1; -fx-max-height: 1;">
+                            <VBox.margin><Insets bottom="5.0" top="5.0" /></VBox.margin>
+                        </Region>
+
+                        <VBox spacing="15.0">
+                            <children>
+                                <VBox spacing="5.0">
+                                    <children>
+                                        <Label text="NPSN (Nomor Pokok Sekolah Nasional)*" style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #1e293b;" />
+                                        <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-color: #e2e8f0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-background-color: #ffffff; -fx-padding: 5 10;">
+                                            <children>
+                                                <Label text="#" style="-fx-text-fill: #94a3b8; -fx-font-size: 14;" />
+                                                <TextField fx:id="kolomNpsn" promptText="Masukkan 8 digit NPSN" style="-fx-background-color: transparent; -fx-prompt-text-fill: #94a3b8; -fx-text-fill: #1e293b; -fx-font-size: 13;" HBox.hgrow="ALWAYS" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="5.0">
+                                    <children>
+                                        <Label text="Username Administrator" style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #1e293b;" />
+                                        <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-color: #e2e8f0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-background-color: #ffffff; -fx-padding: 5 10;">
+                                            <children>
+                                                <Label text="👤" style="-fx-text-fill: #94a3b8; -fx-font-size: 14;" />
+                                                <TextField fx:id="kolomUsername" promptText="cth. admin.sman1" style="-fx-background-color: transparent; -fx-prompt-text-fill: #94a3b8; -fx-text-fill: #1e293b; -fx-font-size: 13;" HBox.hgrow="ALWAYS" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="5.0">
+                                    <children>
+                                        <Label text="Email Resmi Sekolah" style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #1e293b;" />
+                                        <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-color: #e2e8f0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-background-color: #ffffff; -fx-padding: 5 10;">
+                                            <children>
+                                                <Label text="✉" style="-fx-text-fill: #94a3b8; -fx-font-size: 14;" />
+                                                <TextField fx:id="kolomEmail" promptText="sekolah@domain.sch.id" style="-fx-background-color: transparent; -fx-prompt-text-fill: #94a3b8; -fx-text-fill: #1e293b; -fx-font-size: 13;" HBox.hgrow="ALWAYS" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="5.0">
+                                    <children>
+                                        <Label text="Kata Sandi" style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #1e293b;" />
+                                        <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-color: #e2e8f0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-background-color: #ffffff; -fx-padding: 5 10;">
+                                            <children>
+                                                <Label text="🔒" style="-fx-text-fill: #94a3b8; -fx-font-size: 14;" />
+                                                <StackPane HBox.hgrow="ALWAYS" alignment="CENTER_LEFT">
+                                                    <children>
+                                                        <PasswordField fx:id="kolomSandi" promptText="Buat kata sandi yang aman" style="-fx-background-color: transparent; -fx-prompt-text-fill: #94a3b8; -fx-text-fill: #1e293b; -fx-font-size: 13; -fx-padding: 4 0;" />
+                                                        <TextField fx:id="kolomTeksSandi" promptText="Buat kata sandi yang aman" visible="false" style="-fx-background-color: transparent; -fx-prompt-text-fill: #94a3b8; -fx-text-fill: #1e293b; -fx-font-size: 13; -fx-padding: 4 0;" />
+                                                    </children>
+                                                </StackPane>
+                                                <Button fx:id="tombolToggleSandi" text="👁" onAction="#aksiToggleSandi" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-cursor: hand; -fx-padding: 0 5;" focusTraversable="false" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="5.0">
+                                    <children>
+                                        <Label text="Alamat Lengkap" style="-fx-font-size: 12; -fx-font-weight: bold; -fx-text-fill: #1e293b;" />
+                                        <HBox alignment="TOP_LEFT" spacing="10.0" style="-fx-border-color: #e2e8f0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-background-color: #ffffff; -fx-padding: 10;">
+                                            <children>
+                                                <Label text="📍" style="-fx-text-fill: #94a3b8; -fx-font-size: 14; -fx-padding: 2 0 0 0;" />
+                                                <TextArea fx:id="kolomAlamat" promptText="Masukkan alamat lengkap sekolah termasuk kecamatan dan kota" prefRowCount="3" wrapText="true" style="-fx-background-color: transparent; -fx-control-inner-background: transparent; -fx-prompt-text-fill: #94a3b8; -fx-text-fill: #1e293b; -fx-border-color: transparent; -fx-font-size: 13; -fx-padding: 0;" HBox.hgrow="ALWAYS" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+
+                        <Button text="Daftarkan Institusi →" onAction="#aksiDaftar" maxWidth="Infinity" style="-fx-background-color: #006b3f; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 12; -fx-font-size: 14; -fx-cursor: hand;">
+                            <VBox.margin><Insets top="10.0" /></VBox.margin>
+                        </Button>
+
+                        <HBox alignment="CENTER">
+                            <children>
+                                <Label text="Sudah terdaftar? " style="-fx-text-fill: #64748b; -fx-font-size: 13;" />
+                                <Hyperlink text="Masuk ke dasbor" onAction="#aksiMasuk" style="-fx-text-fill: #006b3f; -fx-font-weight: bold; -fx-font-size: 13; -fx-padding: 0; -fx-border-width: 0;" />
+                            </children>
+                        </HBox>
+
+                    </children>
+                </VBox>
+
+                <VBox alignment="CENTER" spacing="3.0">
+                    <children>
+                        <Label text="Dilindungi enkripsi standar pemerintah." style="-fx-font-size: 12; -fx-text-fill: #94a3b8;" />
+                        <Label text="Inisiatif Makan Bergizi Gratis © 2024" style="-fx-font-size: 12; -fx-text-fill: #94a3b8;" />
+                    </children>
+                </VBox>
+
+            </children>
+        </VBox>
+    </children>
+</StackPane>

@@ -1,22 +1,21 @@
 package com.mycompany.embg.app.controllers.vendor; 
+package com.mycompany.embg.app.controllers.vendor; // Sesuaikan dengan nama package utama Anda
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import com.mycompany.embg.app.services.Redirect;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 public class InventoryManagementController implements Initializable {
 
