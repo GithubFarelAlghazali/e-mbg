@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.mycompany.embg.app.controllers.admin.SchoolController"
+      style="-fx-background-color:#F8FAFC;">
+
+    <padding>
+        <Insets top="28" right="28" bottom="28" left="28"/>
+    </padding>
+
+    <Label text="School Verification" style="-fx-font-size:26px; -fx-font-weight:bold;"/>
+    <Label text="Review and approve new educational institutions joining the MBG program." style="-fx-text-fill:#64748B;"/>
+
+    <HBox spacing="18">
+        <VBox prefWidth="230" spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:12; -fx-border-color:#BFDBFE; -fx-border-radius:12;">
+            <Label text="PENDING REVIEW"/>
+            <Label text="24" style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+            <Label text="+5 since yesterday" style="-fx-text-fill:#0284C7;"/>
+        </VBox>
+
+        <VBox prefWidth="230" spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:12; -fx-border-color:#BFDBFE; -fx-border-radius:12;">
+            <Label text="APPROVED WEEK"/>
+            <Label text="112" style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+            <Label text="+12% vs last week" style="-fx-text-fill:#0284C7;"/>
+        </VBox>
+
+        <VBox prefWidth="230" spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:12; -fx-border-color:#BFDBFE; -fx-border-radius:12;">
+            <Label text="REJECTED WEEK"/>
+            <Label text="3" style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+            <Label text="No change" style="-fx-text-fill:#0284C7;"/>
+        </VBox>
+    </HBox>
+
+    <TableView fx:id="schoolTable" prefHeight="360"/>
+</VBox>
