@@ -2,6 +2,7 @@ package com.mycompany.embg.app.controllers.sekolah;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import com.mycompany.embg.app.services.Redirect;
 
 public class DirektoriSiswaKontroler {
 
@@ -34,5 +35,25 @@ public class DirektoriSiswaKontroler {
     @FXML
     void aksiKeluar(ActionEvent event) {
         System.out.println("Tindakan: Proses keluar (Logout) dari sistem...");
+    }
+    
+        @FXML
+    private void clickDashboard(ActionEvent event){
+        Redirect.redirectPage(event, "/com/mycompany/embg/app/fxml/sekolah/Dashboard.fxml");
+    }
+    
+    @FXML
+    private void clickSiswa(ActionEvent event){
+        Redirect.redirectPage(event, "/com/mycompany/embg/app/fxml/sekolah/DirektoriSiswa.fxml");
+    }
+    
+    @FXML
+    private void clickDistribusi(ActionEvent event){
+        Redirect.redirectPage(event, "/com/mycompany/embg/app/fxml/sekolah/PelacakMakanan.fxml");
+    }
+    
+    @FXML
+    private void clickProfil(ActionEvent event){
+        Redirect.redirectPage(event, "/com/mycompany/embg/app/fxml/sekolah/ProfilSekolah.fxml");
     }
 }

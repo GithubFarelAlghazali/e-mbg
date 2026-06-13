@@ -1,6 +1,7 @@
 package com.mycompany.embg.app.controllers.sekolah;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import com.mycompany.embg.app.services.Redirect;
 
 public class PelacakMakananKontroler {
 

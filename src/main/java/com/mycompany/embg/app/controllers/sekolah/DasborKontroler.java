@@ -1,6 +1,7 @@
 package com.mycompany.embg.app.controllers.sekolah;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import com.mycompany.embg.app.services.Redirect;
 
 public class DasborKontroler {
 
@@ -19,5 +20,25 @@ public class DasborKontroler {
     @FXML
     void aksiMenuBaru(ActionEvent event) {
         System.out.println("Memproses: Jendela form pengajuan menu baru akan ditampilkan...");
+    }
+    
+    @FXML
+    private void clickDashboard(ActionEvent event){
+        Redirect.redirectPage(event, "/com/mycompany/embg/app/fxml/sekolah/Dashboard.fxml");
+    }
+    
+    @FXML
+    private void clickSiswa(ActionEvent event){
+        Redirect.redirectPage(event, "/com/mycompany/embg/app/fxml/sekolah/DirektoriSiswa.fxml");
+    }
+    
+    @FXML
+    private void clickDistribusi(ActionEvent event){
+        Redirect.redirectPage(event, "/com/mycompany/embg/app/fxml/sekolah/PelacakMakanan.fxml");
+    }
+    
+    @FXML
+    private void clickProfil(ActionEvent event){
+        Redirect.redirectPage(event, "/com/mycompany/embg/app/fxml/sekolah/ProfilSekolah.fxml");
     }
 }

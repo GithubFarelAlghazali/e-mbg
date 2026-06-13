@@ -55,7 +55,7 @@ public class SelectRoleController implements Initializable {
     @FXML
     private void handleClickSekolah(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/com/mycompany/embg/app/fxml/sekolah/RegisterSekolah.fxml")
+                getClass().getResource("/com/mycompany/embg/app/fxml/sekolah/RegistrasiSekolah.fxml")
         );
         Parent root = loader.load();
 

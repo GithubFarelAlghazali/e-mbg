@@ -1,70 +1,92 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ */
 package com.mycompany.embg.app.controllers.sekolah;
-import javafx.event.ActionEvent;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
+import com.mycompany.embg.app.models.Sekolah;
+import com.mycompany.embg.app.repository.UserRepo;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Node;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+import java.io.IOException;
+import java.sql.SQLException;
+import javafx.scene.control.Alert.AlertType;
+import com.mycompany.embg.app.services.Alert;
 
-public class RegistrasiSekolahKontroler {
 
+/**
+ * FXML Controller class
+ *
+ * @author User
+ */
+public class RegistrasiSekolahKontroler implements Initializable {
+
+    @FXML private TextField usernameField;
+    @FXML private TextField emailField;
+    @FXML private PasswordField passwordField;
+    @FXML private TextField npsnField;
+    @FXML private TextField alamatField;
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
+    
     @FXML
-    private TextField kolomNpsn;
-
-    @FXML
-    private TextField kolomUsername;
-
-    @FXML
-    private TextField kolomEmail;
-
-    @FXML
-    private PasswordField kolomSandi;
-
-    @FXML
-    private TextField kolomTeksSandi; // Digunakan untuk menampilkan kata sandi dalam bentuk teks biasa
-
-    @FXML
-    private TextArea kolomAlamat;
-
-    @FXML
-    private Button tombolToggleSandi;
-
-    private boolean sandiTerlihat = false;
-
-    @FXML
-    public void initialize() {
-        // Menyinkronkan teks yang diketik agar selalu sama, baik saat disembunyikan maupun ditampilkan
-        kolomTeksSandi.textProperty().bindBidirectional(kolomSandi.textProperty());
-    }
-
-    @FXML
-    void aksiToggleSandi(ActionEvent event) {
-        sandiTerlihat = !sandiTerlihat;
+    private void handleRegister(ActionEvent event){
+        String username = usernameField.getText().trim();
+        String email = emailField.getText().trim();
+        String password = passwordField.getText().trim();
+        String npsn = npsnField.getText().trim();
+        String alamat = alamatField.getText().trim();
         
-        if (sandiTerlihat) {
-            kolomSandi.setVisible(false);
-            kolomTeksSandi.setVisible(true);
-            tombolToggleSandi.setText("🙈"); // Ikon mata tercoret/tertutup
-        } else {
-            kolomSandi.setVisible(true);
-            kolomTeksSandi.setVisible(false);
-            tombolToggleSandi.setText("👁"); // Ikon mata terbuka
+        if(username.isEmpty() || email.isEmpty() || password.isEmpty() || npsn.isEmpty() || alamat.isEmpty()){
+            Alert.showAlert(AlertType.WARNING, "Semua input harus diisi lengkap!");
+            return;
         }
-    }
-
-    @FXML
-    void aksiDaftar(ActionEvent event) {
-        String npsn = kolomNpsn.getText();
-        String username = kolomUsername.getText();
         
-        System.out.println("Memproses pendaftaran untuk NPSN: " + npsn);
-        System.out.println("Username Administrator: " + username);
-        // Tambahkan logika penyimpanan data atau pemanggilan API di sini
-    }
+        try{
+            UserRepo repo = new UserRepo();
+            
+            if(repo.isEmailExist(email)){
+                Alert.showAlert(AlertType.WARNING, "Email sudah terdaftar!");
+                return;
+            }
+            
+            if(repo.isUsernameExist(username)){
+                Alert.showAlert(AlertType.WARNING, "Username sudah terdaftar!");
+                return;
+            }
+            
+            Sekolah sekolah = new Sekolah(null, username, email, password, npsn, alamat);
+            repo.registerSekolah(sekolah);
+            
+            Alert.showAlert(AlertType.INFORMATION, "Registrasi berhasil! Silakan login dengan akun anda");
 
-    @FXML
-    void aksiMasuk(ActionEvent event) {
-        System.out.println("Mengarahkan pengguna ke halaman Login Dasbor...");
-        // Tambahkan logika pergantian scene (navigasi layar) di sini
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/mycompany/embg/app/fxml/auth/LoginPage.fxml")
+            );
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.getScene().setRoot(root);
+            
+        } catch(SQLException e){
+            Alert.showAlert(AlertType.ERROR, "Gagal terhubung ke database: " + e.getMessage());
+        } catch (IOException e){
+            Alert.showAlert(AlertType.ERROR, "Gagal membuka halaman login: " + e.getMessage());
+        }
+
     }
+    
 }

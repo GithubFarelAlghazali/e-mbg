@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<BorderPane style="-fx-background-color: #f0f4f8; -fx-font-family: 'Segoe UI', Arial, sans-serif;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DirektoriSiswaKontroler">
+<BorderPane style="-fx-background-color: #f0f4f8; -fx-font-family: 'Segoe UI', Arial, sans-serif;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.embg.app.controllers.sekolah.DirektoriSiswaKontroler">
     
     <left>
         <VBox prefWidth="220.0" spacing="5.0" style="-fx-background-color: #ffffff; -fx-border-color: transparent #e2e8f0 transparent transparent; -fx-border-width: 1;">

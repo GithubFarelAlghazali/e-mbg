@@ -87,7 +87,7 @@ public class LoginPageController implements Initializable {
                     fxmlPath = "/com/mycompany/embg/app/fxml/admin/AdminDashboard.fxml";
                     break;
                 case "sekolah":
-                    fxmlPath = "/com/mycompany/embg/app/fxml/admin/AdminDashboard.fxml";
+                    fxmlPath = "/com/mycompany/embg/app/fxml/sekolah/Dashboard.fxml";
                     break;
                 case "vendor":
                     fxmlPath = "/com/mycompany/embg/app/fxml/vendor/VendorDashboard.fxml";
