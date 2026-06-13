@@ -8,13 +8,12 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<BorderPane style="-fx-background-color: #f0f4f8; -fx-font-family: 'Segoe UI', Arial, sans-serif;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.embg.app.controllers.sekolah.ProfilSekolahKontroler">
+<BorderPane style="-fx-background-color: #f0f4f8; -fx-font-family: 'Segoe UI', Arial, sans-serif;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.embg.app.controllers.sekolah.ProfilSekolahKontroler">
     
     <left>
         <VBox prefWidth="220.0" spacing="5.0" style="-fx-background-color: #ffffff; -fx-border-color: transparent #e2e8f0 transparent transparent; -fx-border-width: 1;">
@@ -22,27 +21,27 @@
                 <HBox alignment="CENTER_LEFT" spacing="12.0">
                     <padding><Insets bottom="25.0" left="15.0" top="15.0" /></padding>
                     <children>
-                        <Label text="MB" style="-fx-background-color: #22c55e; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 6 10; -fx-background-radius: 8; -fx-font-size: 14;" />
+                        <Label style="-fx-background-color: #22c55e; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 6 10; -fx-background-radius: 8; -fx-font-size: 14;" text="MB" />
                         <VBox alignment="CENTER_LEFT">
-                            <Label text="Sistem MBG" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #006b3f;" />
-                            <Label text="Portal Admin" style="-fx-font-size: 11; -fx-text-fill: #64748b;" />
+                            <Label style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #006b3f;" text="Sistem MBG" />
+                            <Label style="-fx-font-size: 11; -fx-text-fill: #64748b;" text="Portal Admin" />
                         </VBox>
                     </children>
                 </HBox>
 
-                <Button maxWidth="Infinity" text="■  Dasbor" alignment="BASELINE_LEFT" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-size: 13; -fx-padding: 12 15 12 20; -fx-cursor: hand;" />
-                <Button maxWidth="Infinity" text="👥  Siswa" alignment="BASELINE_LEFT" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-size: 13; -fx-padding: 12 15 12 20; -fx-cursor: hand;" />
-                <Button maxWidth="Infinity" text="🍴  Pelacak Makanan" alignment="BASELINE_LEFT" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-size: 13; -fx-padding: 12 15 12 20; -fx-cursor: hand;" />
-                <Button maxWidth="Infinity" text="🎓  Profil Sekolah" alignment="BASELINE_LEFT" style="-fx-background-color: #dcfce7; -fx-text-fill: #006b3f; -fx-font-weight: bold; -fx-font-size: 13; -fx-padding: 12 15 12 20; -fx-border-color: #22c55e; -fx-border-width: 0 0 0 4; -fx-cursor: hand;" />
+                <Button alignment="BASELINE_LEFT" maxWidth="Infinity" onAction="#clickDashboard" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-size: 13; -fx-padding: 12 15 12 20; -fx-cursor: hand;" text="■  Dasbor" />
+                <Button alignment="BASELINE_LEFT" maxWidth="Infinity" onAction="#clickSiswa" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-size: 13; -fx-padding: 12 15 12 20; -fx-cursor: hand;" text="👥  Siswa" />
+                <Button alignment="BASELINE_LEFT" maxWidth="Infinity" onAction="#clickDistribusi" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-size: 13; -fx-padding: 12 15 12 20; -fx-cursor: hand;" text="🍴  Pelacak Makanan" />
+                <Button alignment="BASELINE_LEFT" maxWidth="Infinity" onAction="#clickProfil" style="-fx-background-color: #dcfce7; -fx-text-fill: #006b3f; -fx-font-weight: bold; -fx-font-size: 13; -fx-padding: 12 15 12 20; -fx-border-color: #22c55e; -fx-border-width: 0 0 0 4; -fx-cursor: hand;" text="🎓  Profil Sekolah" />
                 
                 <Region VBox.vgrow="ALWAYS" />
                 
                 <VBox spacing="10">
-                    <padding><Insets left="15.0" right="15.0" bottom="15.0" /></padding>
+                    <padding><Insets bottom="15.0" left="15.0" right="15.0" /></padding>
                     <children>
-                        <Button maxWidth="Infinity" text="📥 Ekspor Laporan" onAction="#aksiEkspor" style="-fx-background-color: #006b3f; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10; -fx-background-radius: 6; -fx-cursor: hand;" />
-                        <Button maxWidth="Infinity" text="⚙  Pengaturan" alignment="BASELINE_LEFT" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-size: 13; -fx-padding: 10 15; -fx-cursor: hand;" />
-                        <Button maxWidth="Infinity" text="🚪  Keluar" alignment="BASELINE_LEFT" onAction="#aksiKeluar" style="-fx-background-color: transparent; -fx-text-fill: #ef4444; -fx-font-size: 13; -fx-padding: 10 15; -fx-cursor: hand;" />
+                        <Button maxWidth="Infinity" onAction="#aksiEkspor" style="-fx-background-color: #006b3f; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10; -fx-background-radius: 6; -fx-cursor: hand;" text="📥 Ekspor Laporan" />
+                        <Button alignment="BASELINE_LEFT" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-size: 13; -fx-padding: 10 15; -fx-cursor: hand;" text="⚙  Pengaturan" />
+                        <Button alignment="BASELINE_LEFT" maxWidth="Infinity" onAction="#aksiKeluar" style="-fx-background-color: transparent; -fx-text-fill: #ef4444; -fx-font-size: 13; -fx-padding: 10 15; -fx-cursor: hand;" text="🚪  Keluar" />
                     </children>
                 </VBox>
             </children>
@@ -57,12 +56,12 @@
                         <HBox alignment="CENTER_LEFT" prefWidth="300" style="-fx-background-color: #f1f5f9; -fx-background-radius: 20; -fx-padding: 6 15;">
                             <children>
                                 <Label text="🔍" textFill="#94a3b8" />
-                                <TextField promptText="Cari..." HBox.hgrow="ALWAYS" style="-fx-background-color: transparent; -fx-text-fill: #1e293b;" />
+                                <TextField promptText="Cari..." style="-fx-background-color: transparent; -fx-text-fill: #1e293b;" HBox.hgrow="ALWAYS" />
                             </children>
                         </HBox>
                         <Region HBox.hgrow="ALWAYS" />
-                        <Label text="🔔" style="-fx-font-size: 16; -fx-text-fill: #64748b; -fx-cursor: hand;" />
-                        <Label text="❓" style="-fx-font-size: 16; -fx-text-fill: #64748b; -fx-cursor: hand;" />
+                        <Label style="-fx-font-size: 16; -fx-text-fill: #64748b; -fx-cursor: hand;" text="🔔" />
+                        <Label style="-fx-font-size: 16; -fx-text-fill: #64748b; -fx-cursor: hand;" text="❓" />
                         <Circle fill="#1e293b" radius="16.0" />
                     </children>
                 </HBox>
@@ -81,14 +80,14 @@
                                     <children>
                                         <VBox spacing="2">
                                             <children>
-                                                <Label text="Pengaturan Profil Sekolah" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #1e293b;" />
-                                                <Label text="Kelola detail inti dan informasi operasional institusi Anda." style="-fx-font-size: 13; -fx-text-fill: #64748b;" />
+                                                <Label style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #1e293b;" text="Pengaturan Profil Sekolah" />
+                                                <Label style="-fx-font-size: 13; -fx-text-fill: #64748b;" text="Kelola detail inti dan informasi operasional institusi Anda." />
                                             </children>
                                         </VBox>
                                         <Region HBox.hgrow="ALWAYS" />
                                         <HBox spacing="15">
-                                            <Button text="Batalkan Perubahan" onAction="#aksiBatalkan" style="-fx-background-color: #ffffff; -fx-border-color: #006b3f; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #006b3f; -fx-font-weight: bold; -fx-padding: 8 15; -fx-cursor: hand;" />
-                                            <Button text="Simpan Profil" onAction="#aksiSimpan" style="-fx-background-color: #006b3f; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15; -fx-background-radius: 6; -fx-cursor: hand;" />
+                                            <Button onAction="#aksiBatalkan" style="-fx-background-color: #ffffff; -fx-border-color: #006b3f; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #006b3f; -fx-font-weight: bold; -fx-padding: 8 15; -fx-cursor: hand;" text="Batalkan Perubahan" />
+                                            <Button onAction="#aksiSimpan" style="-fx-background-color: #006b3f; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15; -fx-background-radius: 6; -fx-cursor: hand;" text="Simpan Profil" />
                                         </HBox>
                                     </children>
                                 </HBox>
@@ -100,36 +99,36 @@
                                             <children>
                                                 <VBox spacing="15" style="-fx-background-color: #ffffff; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 8, 0, 0, 3); -fx-padding: 25;">
                                                     <children>
-                                                        <Label text="🏢 Informasi Umum" style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #1e293b;" />
+                                                        <Label style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #1e293b;" text="🏢 Informasi Umum" />
                                                         
                                                         <HBox spacing="15">
-                                                            <VBox HBox.hgrow="ALWAYS" spacing="5">
-                                                                <HBox><Label text="Nama Sekolah" style="-fx-font-size: 12; -fx-text-fill: #64748b; -fx-font-weight: bold;"/><Label text=" *" style="-fx-font-size: 12; -fx-text-fill: #ef4444; -fx-font-weight: bold;"/></HBox>
-                                                                <TextField text="SMA Negeri 1 Purwokerto" style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8 10; -fx-text-fill: #1e293b; -fx-font-size: 13;" />
+                                                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                                                <HBox><Label style="-fx-font-size: 12; -fx-text-fill: #64748b; -fx-font-weight: bold;" text="Nama Sekolah" /><Label style="-fx-font-size: 12; -fx-text-fill: #ef4444; -fx-font-weight: bold;" text=" *" /></HBox>
+                                                                <TextField style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8 10; -fx-text-fill: #1e293b; -fx-font-size: 13;" text="SMA Negeri 1 Purwokerto" />
                                                             </VBox>
-                                                            <VBox HBox.hgrow="ALWAYS" spacing="5">
-                                                                <HBox><Label text="NPSN (Nomor Pokok Sekolah Nasional)" style="-fx-font-size: 12; -fx-text-fill: #64748b; -fx-font-weight: bold;"/><Label text=" *" style="-fx-font-size: 12; -fx-text-fill: #ef4444; -fx-font-weight: bold;"/></HBox>
-                                                                <TextField text="20302089" style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8 10; -fx-text-fill: #1e293b; -fx-font-size: 13;" />
+                                                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                                                <HBox><Label style="-fx-font-size: 12; -fx-text-fill: #64748b; -fx-font-weight: bold;" text="NPSN (Nomor Pokok Sekolah Nasional)" /><Label style="-fx-font-size: 12; -fx-text-fill: #ef4444; -fx-font-weight: bold;" text=" *" /></HBox>
+                                                                <TextField style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8 10; -fx-text-fill: #1e293b; -fx-font-size: 13;" text="20302089" />
                                                             </VBox>
                                                         </HBox>
                                                         
                                                         <VBox spacing="5">
-                                                            <HBox><Label text="Alamat Lengkap" style="-fx-font-size: 12; -fx-text-fill: #64748b; -fx-font-weight: bold;"/><Label text=" *" style="-fx-font-size: 12; -fx-text-fill: #ef4444; -fx-font-weight: bold;"/></HBox>
-                                                            <TextArea text="Jl. Jend. Gatot Subroto No.73, Purwokerto Selatan, Kab. Banyumas, Jawa Tengah" prefRowCount="2" wrapText="true" style="-fx-background-color: transparent; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-padding: 4; -fx-text-fill: #1e293b; -fx-font-size: 13;" />
+                                                            <HBox><Label style="-fx-font-size: 12; -fx-text-fill: #64748b; -fx-font-weight: bold;" text="Alamat Lengkap" /><Label style="-fx-font-size: 12; -fx-text-fill: #ef4444; -fx-font-weight: bold;" text=" *" /></HBox>
+                                                            <TextArea prefRowCount="2" style="-fx-background-color: transparent; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-padding: 4; -fx-text-fill: #1e293b; -fx-font-size: 13;" text="Jl. Jend. Gatot Subroto No.73, Purwokerto Selatan, Kab. Banyumas, Jawa Tengah" wrapText="true" />
                                                         </VBox>
                                                         
                                                         <HBox spacing="15">
-                                                            <VBox HBox.hgrow="ALWAYS" spacing="5">
-                                                                <Label text="Kota" style="-fx-font-size: 12; -fx-text-fill: #64748b; -fx-font-weight: bold;" />
-                                                                <TextField text="Purwokerto" style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8 10; -fx-text-fill: #1e293b; -fx-font-size: 13;" />
+                                                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                                                <Label style="-fx-font-size: 12; -fx-text-fill: #64748b; -fx-font-weight: bold;" text="Kota" />
+                                                                <TextField style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8 10; -fx-text-fill: #1e293b; -fx-font-size: 13;" text="Purwokerto" />
                                                             </VBox>
-                                                            <VBox HBox.hgrow="ALWAYS" spacing="5">
-                                                                <Label text="Provinsi" style="-fx-font-size: 12; -fx-text-fill: #64748b; -fx-font-weight: bold;" />
-                                                                <TextField text="Jawa Tengah" style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8 10; -fx-text-fill: #1e293b; -fx-font-size: 13;" />
+                                                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                                                <Label style="-fx-font-size: 12; -fx-text-fill: #64748b; -fx-font-weight: bold;" text="Provinsi" />
+                                                                <TextField style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8 10; -fx-text-fill: #1e293b; -fx-font-size: 13;" text="Jawa Tengah" />
                                                             </VBox>
-                                                            <VBox HBox.hgrow="ALWAYS" spacing="5">
-                                                                <Label text="Kode Pos" style="-fx-font-size: 12; -fx-text-fill: #64748b; -fx-font-weight: bold;" />
-                                                                <TextField text="53116" style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8 10; -fx-text-fill: #1e293b; -fx-font-size: 13;" />
+                                                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                                                <Label style="-fx-font-size: 12; -fx-text-fill: #64748b; -fx-font-weight: bold;" text="Kode Pos" />
+                                                                <TextField style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8 10; -fx-text-fill: #1e293b; -fx-font-size: 13;" text="53116" />
                                                             </VBox>
                                                         </HBox>
                                                     </children>
@@ -137,27 +136,27 @@
 
                                                 <VBox spacing="15" style="-fx-background-color: #ffffff; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 8, 0, 0, 3); -fx-padding: 25;">
                                                     <children>
-                                                        <Label text="👤 Kontak &amp; Administrasi" style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #1e293b;" />
+                                                        <Label style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #1e293b;" text="👤 Kontak &amp; Administrasi" />
                                                         
                                                         <HBox spacing="15">
-                                                            <VBox HBox.hgrow="ALWAYS" spacing="5">
-                                                                <Label text="Nama Kontak Utama" style="-fx-font-size: 12; -fx-text-fill: #64748b; -fx-font-weight: bold;" />
-                                                                <TextField text="Budi Santoso, S.Pd" style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8 10; -fx-text-fill: #1e293b; -fx-font-size: 13;" />
+                                                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                                                <Label style="-fx-font-size: 12; -fx-text-fill: #64748b; -fx-font-weight: bold;" text="Nama Kontak Utama" />
+                                                                <TextField style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8 10; -fx-text-fill: #1e293b; -fx-font-size: 13;" text="Budi Santoso, S.Pd" />
                                                             </VBox>
-                                                            <VBox HBox.hgrow="ALWAYS" spacing="5">
-                                                                <Label text="Jabatan" style="-fx-font-size: 12; -fx-text-fill: #64748b; -fx-font-weight: bold;" />
-                                                                <TextField text="Kepala Sekolah" style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8 10; -fx-text-fill: #1e293b; -fx-font-size: 13;" />
+                                                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                                                <Label style="-fx-font-size: 12; -fx-text-fill: #64748b; -fx-font-weight: bold;" text="Jabatan" />
+                                                                <TextField style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8 10; -fx-text-fill: #1e293b; -fx-font-size: 13;" text="Kepala Sekolah" />
                                                             </VBox>
                                                         </HBox>
                                                         
                                                         <HBox spacing="15">
-                                                            <VBox HBox.hgrow="ALWAYS" spacing="5">
-                                                                <Label text="Email Resmi" style="-fx-font-size: 12; -fx-text-fill: #64748b; -fx-font-weight: bold;" />
-                                                                <TextField text="admin@sman1purwokerto.sch.id" style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8 10; -fx-text-fill: #1e293b; -fx-font-size: 13;" />
+                                                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                                                <Label style="-fx-font-size: 12; -fx-text-fill: #64748b; -fx-font-weight: bold;" text="Email Resmi" />
+                                                                <TextField style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8 10; -fx-text-fill: #1e293b; -fx-font-size: 13;" text="admin@sman1purwokerto.sch.id" />
                                                             </VBox>
-                                                            <VBox HBox.hgrow="ALWAYS" spacing="5">
-                                                                <Label text="Nomor Telepon" style="-fx-font-size: 12; -fx-text-fill: #64748b; -fx-font-weight: bold;" />
-                                                                <TextField text="(0281) 635003" style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8 10; -fx-text-fill: #1e293b; -fx-font-size: 13;" />
+                                                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                                                <Label style="-fx-font-size: 12; -fx-text-fill: #64748b; -fx-font-weight: bold;" text="Nomor Telepon" />
+                                                                <TextField style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 8 10; -fx-text-fill: #1e293b; -fx-font-size: 13;" text="(0281) 635003" />
                                                             </VBox>
                                                         </HBox>
                                                     </children>
@@ -165,42 +164,42 @@
                                             </children>
                                         </VBox>
 
-                                        <VBox spacing="20" prefWidth="300" minWidth="300">
+                                        <VBox minWidth="300" prefWidth="300" spacing="20">
                                             <children>
-                                                <VBox spacing="15" alignment="TOP_CENTER" style="-fx-background-color: #ffffff; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 8, 0, 0, 3); -fx-padding: 25;">
+                                                <VBox alignment="TOP_CENTER" spacing="15" style="-fx-background-color: #ffffff; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 8, 0, 0, 3); -fx-padding: 25;">
                                                     <children>
-                                                        <HBox alignment="CENTER_LEFT"><Label text="🖼 Logo Sekolah" style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #1e293b;" /></HBox>
+                                                        <HBox alignment="CENTER_LEFT"><Label style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #1e293b;" text="🖼 Logo Sekolah" /></HBox>
                                                         <StackPane style="-fx-padding: 10;">
-                                                            <Circle radius="45" fill="#006b3f" />
-                                                            <Label text="MBG" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 20;" />
+                                                            <Circle fill="#006b3f" radius="45" />
+                                                            <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 20;" text="MBG" />
                                                         </StackPane>
-                                                        <Label text="Format PNG/JPG persegi, maks 2MB." textAlignment="CENTER" wrapText="true" style="-fx-font-size: 11; -fx-text-fill: #64748b;" />
-                                                        <Button text="Unggah Logo Baru" maxWidth="Infinity" onAction="#aksiUnggahLogo" style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-text-fill: #15803d; -fx-font-weight: bold; -fx-padding: 8 0; -fx-cursor: hand;" />
+                                                        <Label style="-fx-font-size: 11; -fx-text-fill: #64748b;" text="Format PNG/JPG persegi, maks 2MB." textAlignment="CENTER" wrapText="true" />
+                                                        <Button maxWidth="Infinity" onAction="#aksiUnggahLogo" style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-text-fill: #15803d; -fx-font-weight: bold; -fx-padding: 8 0; -fx-cursor: hand;" text="Unggah Logo Baru" />
                                                     </children>
                                                 </VBox>
 
                                                 <VBox spacing="15" style="-fx-background-color: #ffffff; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 8, 0, 0, 3); -fx-padding: 25;">
                                                     <children>
-                                                        <HBox alignment="CENTER_LEFT"><Label text="🕒 Jam Operasional" style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #1e293b;" /></HBox>
+                                                        <HBox alignment="CENTER_LEFT"><Label style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: #1e293b;" text="🕒 Jam Operasional" /></HBox>
                                                         
                                                         <HBox alignment="CENTER_LEFT" spacing="10">
-                                                            <Label text="Senin - Jumat" prefWidth="90" style="-fx-font-size: 12; -fx-text-fill: #1e293b;" />
-                                                            <TextField text="07:00" prefWidth="60" style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-padding: 6; -fx-alignment: center; -fx-font-size: 12;" />
-                                                            <Label text="-" style="-fx-text-fill: #64748b;" />
-                                                            <TextField text="16:00" prefWidth="60" style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-padding: 6; -fx-alignment: center; -fx-font-size: 12;" />
+                                                            <Label prefWidth="90" style="-fx-font-size: 12; -fx-text-fill: #1e293b;" text="Senin - Jumat" />
+                                                            <TextField prefWidth="60" style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-padding: 6; -fx-alignment: center; -fx-font-size: 12;" text="07:00" />
+                                                            <Label style="-fx-text-fill: #64748b;" text="-" />
+                                                            <TextField prefWidth="60" style="-fx-background-color: #ffffff; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-padding: 6; -fx-alignment: center; -fx-font-size: 12;" text="16:00" />
                                                         </HBox>
                                                         
                                                         <HBox alignment="CENTER_LEFT" spacing="10">
-                                                            <Label text="Sabtu" prefWidth="90" style="-fx-font-size: 12; -fx-text-fill: #1e293b;" />
-                                                            <Label text="Tutup" maxWidth="Infinity" HBox.hgrow="ALWAYS" style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 6; -fx-alignment: center; -fx-text-fill: #64748b; -fx-font-size: 12;" />
+                                                            <Label prefWidth="90" style="-fx-font-size: 12; -fx-text-fill: #1e293b;" text="Sabtu" />
+                                                            <Label maxWidth="Infinity" style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 6; -fx-alignment: center; -fx-text-fill: #64748b; -fx-font-size: 12;" text="Tutup" HBox.hgrow="ALWAYS" />
                                                         </HBox>
                                                         
                                                         <HBox alignment="CENTER_LEFT" spacing="10">
-                                                            <Label text="Minggu" prefWidth="90" style="-fx-font-size: 12; -fx-text-fill: #1e293b;" />
-                                                            <Label text="Tutup" maxWidth="Infinity" HBox.hgrow="ALWAYS" style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 6; -fx-alignment: center; -fx-text-fill: #64748b; -fx-font-size: 12;" />
+                                                            <Label prefWidth="90" style="-fx-font-size: 12; -fx-text-fill: #1e293b;" text="Minggu" />
+                                                            <Label maxWidth="Infinity" style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 6; -fx-alignment: center; -fx-text-fill: #64748b; -fx-font-size: 12;" text="Tutup" HBox.hgrow="ALWAYS" />
                                                         </HBox>
 
-                                                        <Button text="✎ Sesuaikan Jadwal" maxWidth="Infinity" onAction="#aksiSesuaikanJadwal" style="-fx-background-color: #dcfce7; -fx-text-fill: #15803d; -fx-font-weight: bold; -fx-padding: 8 0; -fx-background-radius: 6; -fx-cursor: hand;">
+                                                        <Button maxWidth="Infinity" onAction="#aksiSesuaikanJadwal" style="-fx-background-color: #dcfce7; -fx-text-fill: #15803d; -fx-font-weight: bold; -fx-padding: 8 0; -fx-background-radius: 6; -fx-cursor: hand;" text="✎ Sesuaikan Jadwal">
                                                             <VBox.margin><Insets top="10" /></VBox.margin>
                                                         </Button>
                                                     </children>

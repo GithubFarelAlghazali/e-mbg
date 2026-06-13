@@ -10,12 +10,12 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<BorderPane style="-fx-background-color: #f0f4f8; -fx-font-family: 'Segoe UI', Arial, sans-serif;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.embg.app.controllers.sekolah.DirektoriSiswaKontroler">
+<BorderPane style="-fx-background-color: #f0f4f8; -fx-font-family: 'Segoe UI', Arial, sans-serif;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.embg.app.controllers.sekolah.DirektoriSiswaKontroler">
     
     <left>
         <VBox prefWidth="220.0" spacing="5.0" style="-fx-background-color: #ffffff; -fx-border-color: transparent #e2e8f0 transparent transparent; -fx-border-width: 1;">
@@ -23,27 +23,27 @@
                 <HBox alignment="CENTER_LEFT" spacing="12.0">
                     <padding><Insets bottom="25.0" left="15.0" top="15.0" /></padding>
                     <children>
-                        <Label text="MB" style="-fx-background-color: #22c55e; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8; -fx-background-radius: 8; -fx-font-size: 14;" />
+                        <Label style="-fx-background-color: #22c55e; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8; -fx-background-radius: 8; -fx-font-size: 14;" text="MB" />
                         <VBox alignment="CENTER_LEFT">
-                            <Label text="Sistem MBG" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #006b3f;" />
-                            <Label text="Portal Admin" style="-fx-font-size: 11; -fx-text-fill: #64748b;" />
+                            <Label style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #006b3f;" text="Sistem MBG" />
+                            <Label style="-fx-font-size: 11; -fx-text-fill: #64748b;" text="Portal Admin" />
                         </VBox>
                     </children>
                 </HBox>
 
-                <Button maxWidth="Infinity" text="■  Dasbor" alignment="BASELINE_LEFT" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-size: 13; -fx-padding: 12 15 12 20; -fx-cursor: hand;" />
-                <Button maxWidth="Infinity" text="👥  Siswa" alignment="BASELINE_LEFT" style="-fx-background-color: #dcfce7; -fx-text-fill: #006b3f; -fx-font-weight: bold; -fx-font-size: 13; -fx-padding: 12 15 12 20; -fx-border-color: #22c55e; -fx-border-width: 0 0 0 4; -fx-cursor: hand;" />
-                <Button maxWidth="Infinity" text="🍴  Pelacak Makanan" alignment="BASELINE_LEFT" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-size: 13; -fx-padding: 12 15 12 20; -fx-cursor: hand;" />
-                <Button maxWidth="Infinity" text="🎓  Profil Sekolah" alignment="BASELINE_LEFT" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-size: 13; -fx-padding: 12 15 12 20; -fx-cursor: hand;" />
+                <Button alignment="BASELINE_LEFT" maxWidth="Infinity" onAction="#clickDashboard" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-size: 13; -fx-padding: 12 15 12 20; -fx-cursor: hand;" text="■  Dasbor" />
+                <Button alignment="BASELINE_LEFT" maxWidth="Infinity" onAction="#clickSiswa" style="-fx-background-color: #dcfce7; -fx-text-fill: #006b3f; -fx-font-weight: bold; -fx-font-size: 13; -fx-padding: 12 15 12 20; -fx-border-color: #22c55e; -fx-border-width: 0 0 0 4; -fx-cursor: hand;" text="👥  Siswa" />
+                <Button alignment="BASELINE_LEFT" maxWidth="Infinity" onAction="#clickDistribusi" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-size: 13; -fx-padding: 12 15 12 20; -fx-cursor: hand;" text="🍴  Pelacak Makanan" />
+                <Button alignment="BASELINE_LEFT" maxWidth="Infinity" onAction="#clickProfil" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-size: 13; -fx-padding: 12 15 12 20; -fx-cursor: hand;" text="🎓  Profil Sekolah" />
                 
                 <Region VBox.vgrow="ALWAYS" />
                 
                 <VBox spacing="10">
-                    <padding><Insets left="15.0" right="15.0" bottom="15.0" /></padding>
+                    <padding><Insets bottom="15.0" left="15.0" right="15.0" /></padding>
                     <children>
-                        <Button maxWidth="Infinity" text="📥 Ekspor Laporan" onAction="#aksiEkspor" style="-fx-background-color: #006b3f; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10; -fx-background-radius: 6; -fx-cursor: hand;" />
-                        <Button maxWidth="Infinity" text="⚙  Pengaturan" alignment="BASELINE_LEFT" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-size: 13; -fx-padding: 10 15; -fx-cursor: hand;" />
-                        <Button maxWidth="Infinity" text="🚪  Keluar" alignment="BASELINE_LEFT" onAction="#aksiKeluar" style="-fx-background-color: transparent; -fx-text-fill: #ef4444; -fx-font-weight: bold; -fx-font-size: 13; -fx-padding: 10 15; -fx-cursor: hand;" />
+                        <Button maxWidth="Infinity" onAction="#aksiEkspor" style="-fx-background-color: #006b3f; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10; -fx-background-radius: 6; -fx-cursor: hand;" text="📥 Ekspor Laporan" />
+                        <Button alignment="BASELINE_LEFT" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-size: 13; -fx-padding: 10 15; -fx-cursor: hand;" text="⚙  Pengaturan" />
+                        <Button alignment="BASELINE_LEFT" maxWidth="Infinity" onAction="#aksiKeluar" style="-fx-background-color: transparent; -fx-text-fill: #ef4444; -fx-font-weight: bold; -fx-font-size: 13; -fx-padding: 10 15; -fx-cursor: hand;" text="🚪  Keluar" />
                     </children>
                 </VBox>
             </children>
@@ -59,12 +59,12 @@
                         <HBox alignment="CENTER_LEFT" prefWidth="400" style="-fx-background-color: #f1f5f9; -fx-background-radius: 20; -fx-padding: 8 15;">
                             <children>
                                 <Label text="🔍" textFill="#94a3b8" />
-                                <TextField promptText="Cari siswa..." HBox.hgrow="ALWAYS" style="-fx-background-color: transparent; -fx-text-fill: #1e293b;" />
+                                <TextField promptText="Cari siswa..." style="-fx-background-color: transparent; -fx-text-fill: #1e293b;" HBox.hgrow="ALWAYS" />
                             </children>
                         </HBox>
                         <Region HBox.hgrow="ALWAYS" />
-                        <Label text="🔔" style="-fx-font-size: 18; -fx-text-fill: #475569; -fx-cursor: hand;" />
-                        <Label text="❓" style="-fx-font-size: 18; -fx-text-fill: #475569; -fx-cursor: hand;" />
+                        <Label style="-fx-font-size: 18; -fx-text-fill: #475569; -fx-cursor: hand;" text="🔔" />
+                        <Label style="-fx-font-size: 18; -fx-text-fill: #475569; -fx-cursor: hand;" text="❓" />
                         <Circle fill="#1e293b" radius="16.0" />
                     </children>
                 </HBox>
@@ -83,12 +83,12 @@
                                     <children>
                                         <VBox spacing="2">
                                             <children>
-                                                <Label text="Direktori Siswa" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #1e293b;" />
-                                                <Label text="Kelola siswa terdaftar dan lihat profil diet." style="-fx-font-size: 13; -fx-text-fill: #64748b;" />
+                                                <Label style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #1e293b;" text="Direktori Siswa" />
+                                                <Label style="-fx-font-size: 13; -fx-text-fill: #64748b;" text="Kelola siswa terdaftar dan lihat profil diet." />
                                             </children>
                                         </VBox>
                                         <Region HBox.hgrow="ALWAYS" />
-                                        <Button text="+ Tambah Siswa" onAction="#aksiTambahSiswa" style="-fx-background-color: #006b3f; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 15; -fx-background-radius: 6; -fx-cursor: hand;" />
+                                        <Button onAction="#aksiTambahSiswa" style="-fx-background-color: #006b3f; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 15; -fx-background-radius: 6; -fx-cursor: hand;" text="+ Tambah Siswa" />
                                     </children>
                                 </HBox>
 
@@ -97,12 +97,12 @@
                                         
                                         <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 15 25; -fx-border-color: transparent transparent #e2e8f0 transparent; -fx-border-width: 1;">
                                             <children>
-                                                <ComboBox fx:id="filterKelas" promptText="Semua Kelas" prefWidth="130" style="-fx-background-color: #f1f5f9; -fx-background-radius: 6; -fx-border-color: transparent;" />
-                                                <ComboBox fx:id="filterDiet" promptText="Semua Jenis Diet" prefWidth="150" style="-fx-background-color: #f1f5f9; -fx-background-radius: 6; -fx-border-color: transparent;" />
+                                                <ComboBox fx:id="filterKelas" prefWidth="130" promptText="Semua Kelas" style="-fx-background-color: #f1f5f9; -fx-background-radius: 6; -fx-border-color: transparent;" />
+                                                <ComboBox fx:id="filterDiet" prefWidth="150" promptText="Semua Jenis Diet" style="-fx-background-color: #f1f5f9; -fx-background-radius: 6; -fx-border-color: transparent;" />
                                                 <Region HBox.hgrow="ALWAYS" />
-                                                <HBox spacing="10" alignment="CENTER">
-                                                    <Label text="☰" style="-fx-text-fill: #1e293b; -fx-font-size: 16; -fx-cursor: hand;" />
-                                                    <Label text="⊞" style="-fx-text-fill: #cbd5e1; -fx-font-size: 16; -fx-cursor: hand;" />
+                                                <HBox alignment="CENTER" spacing="10">
+                                                    <Label style="-fx-text-fill: #1e293b; -fx-font-size: 16; -fx-cursor: hand;" text="☰" />
+                                                    <Label style="-fx-text-fill: #cbd5e1; -fx-font-size: 16; -fx-cursor: hand;" text="⊞" />
                                                 </HBox>
                                             </children>
                                         </HBox>
@@ -111,7 +111,7 @@
                                             <columnConstraints>
                                                 <ColumnConstraints prefWidth="250" /> <ColumnConstraints prefWidth="150" /> <ColumnConstraints prefWidth="120" /> <ColumnConstraints prefWidth="280" /> <ColumnConstraints prefWidth="80" />  </columnConstraints>
                                             <children>
-                                                <VBox GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="5" style="-fx-background-color: #fafafa; -fx-padding: 15 25; -fx-border-color: transparent transparent #e2e8f0 transparent; -fx-border-width: 1;">
+                                                <VBox style="-fx-background-color: #fafafa; -fx-padding: 15 25; -fx-border-color: transparent transparent #e2e8f0 transparent; -fx-border-width: 1;" GridPane.columnIndex="0" GridPane.columnSpan="5" GridPane.rowIndex="0">
                                                     <GridPane>
                                                         <columnConstraints>
                                                             <ColumnConstraints prefWidth="250" />
@@ -120,75 +120,97 @@
                                                             <ColumnConstraints prefWidth="280" />
                                                             <ColumnConstraints prefWidth="80" />
                                                         </columnConstraints>
-                                                        <Label text="NAMA SISWA" GridPane.columnIndex="0" style="-fx-font-size: 11; -fx-font-weight: bold; -fx-text-fill: #64748b;" />
-                                                        <Label text="NOMOR ID" GridPane.columnIndex="1" style="-fx-font-size: 11; -fx-font-weight: bold; -fx-text-fill: #64748b;" />
-                                                        <Label text="KELAS" GridPane.columnIndex="2" style="-fx-font-size: 11; -fx-font-weight: bold; -fx-text-fill: #64748b;" />
-                                                        <Label text="PANTANGAN MAKANAN" GridPane.columnIndex="3" style="-fx-font-size: 11; -fx-font-weight: bold; -fx-text-fill: #64748b;" />
-                                                        <Label text="AKSI" GridPane.columnIndex="4" style="-fx-font-size: 11; -fx-font-weight: bold; -fx-text-fill: #64748b;" />
+                                                        <Label style="-fx-font-size: 11; -fx-font-weight: bold; -fx-text-fill: #64748b;" text="NAMA SISWA" GridPane.columnIndex="0" />
+                                                        <Label style="-fx-font-size: 11; -fx-font-weight: bold; -fx-text-fill: #64748b;" text="NOMOR ID" GridPane.columnIndex="1" />
+                                                        <Label style="-fx-font-size: 11; -fx-font-weight: bold; -fx-text-fill: #64748b;" text="KELAS" GridPane.columnIndex="2" />
+                                                        <Label style="-fx-font-size: 11; -fx-font-weight: bold; -fx-text-fill: #64748b;" text="PANTANGAN MAKANAN" GridPane.columnIndex="3" />
+                                                        <Label style="-fx-font-size: 11; -fx-font-weight: bold; -fx-text-fill: #64748b;" text="AKSI" GridPane.columnIndex="4" />
+                                          <rowConstraints>
+                                             <RowConstraints />
+                                          </rowConstraints>
                                                     </GridPane>
                                                 </VBox>
 
-                                                <GridPane GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.columnSpan="5" style="-fx-padding: 12 25; -fx-border-color: transparent transparent #f1f5f9 transparent; -fx-border-width: 1;">
+                                                <GridPane style="-fx-padding: 12 25; -fx-border-color: transparent transparent #f1f5f9 transparent; -fx-border-width: 1;" GridPane.columnIndex="0" GridPane.columnSpan="5" GridPane.rowIndex="1">
                                                     <columnConstraints><ColumnConstraints prefWidth="250" /><ColumnConstraints prefWidth="150" /><ColumnConstraints prefWidth="120" /><ColumnConstraints prefWidth="280" /><ColumnConstraints prefWidth="80" /></columnConstraints>
-                                                    <HBox spacing="10" alignment="CENTER_LEFT" GridPane.columnIndex="0">
-                                                        <Label text="ES" style="-fx-background-color: #a7f3d0; -fx-text-fill: #065f46; -fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-alignment: center; -fx-font-weight: bold; -fx-font-size: 12;" />
-                                                        <Label text="Emma Smith" style="-fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #1e293b;" />
+                                                    <HBox alignment="CENTER_LEFT" spacing="10" GridPane.columnIndex="0">
+                                                        <Label style="-fx-background-color: #a7f3d0; -fx-text-fill: #065f46; -fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-alignment: center; -fx-font-weight: bold; -fx-font-size: 12;" text="ES" />
+                                                        <Label style="-fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #1e293b;" text="Emma Smith" />
                                                     </HBox>
-                                                    <Label text="STU-2023-041" GridPane.columnIndex="1" style="-fx-font-size: 13; -fx-text-fill: #64748b;" />
-                                                    <Label text="Kelas 3A" GridPane.columnIndex="2" style="-fx-background-color: #f1f5f9; -fx-text-fill: #334155; -fx-font-weight: bold; -fx-font-size: 11; -fx-padding: 4 10; -fx-background-radius: 4;" />
-                                                    <Label text="⚠ Alergi Kacang" GridPane.columnIndex="3" style="-fx-background-color: #fee2e2; -fx-text-fill: #b91c1c; -fx-font-weight: bold; -fx-font-size: 11; -fx-padding: 4 10; -fx-background-radius: 15;" />
+                                                    <Label style="-fx-font-size: 13; -fx-text-fill: #64748b;" text="STU-2023-041" GridPane.columnIndex="1" />
+                                                    <Label style="-fx-background-color: #f1f5f9; -fx-text-fill: #334155; -fx-font-weight: bold; -fx-font-size: 11; -fx-padding: 4 10; -fx-background-radius: 4;" text="Kelas 3A" GridPane.columnIndex="2" />
+                                                    <Label style="-fx-background-color: #fee2e2; -fx-text-fill: #b91c1c; -fx-font-weight: bold; -fx-font-size: 11; -fx-padding: 4 10; -fx-background-radius: 15;" text="⚠ Alergi Kacang" GridPane.columnIndex="3" />
+                                       <rowConstraints>
+                                          <RowConstraints />
+                                       </rowConstraints>
                                                 </GridPane>
 
-                                                <GridPane GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="5" style="-fx-padding: 12 25; -fx-border-color: transparent transparent #f1f5f9 transparent; -fx-border-width: 1;">
+                                                <GridPane style="-fx-padding: 12 25; -fx-border-color: transparent transparent #f1f5f9 transparent; -fx-border-width: 1;" GridPane.columnIndex="0" GridPane.columnSpan="5" GridPane.rowIndex="2">
                                                     <columnConstraints><ColumnConstraints prefWidth="250" /><ColumnConstraints prefWidth="150" /><ColumnConstraints prefWidth="120" /><ColumnConstraints prefWidth="280" /><ColumnConstraints prefWidth="80" /></columnConstraints>
-                                                    <HBox spacing="10" alignment="CENTER_LEFT" GridPane.columnIndex="0">
-                                                        <Label text="JJ" style="-fx-background-color: #e0f2fe; -fx-text-fill: #0369a1; -fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-alignment: center; -fx-font-weight: bold; -fx-font-size: 12;" />
-                                                        <Label text="James Johnson" style="-fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #1e293b;" />
+                                                    <HBox alignment="CENTER_LEFT" spacing="10" GridPane.columnIndex="0">
+                                                        <Label style="-fx-background-color: #e0f2fe; -fx-text-fill: #0369a1; -fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-alignment: center; -fx-font-weight: bold; -fx-font-size: 12;" text="JJ" />
+                                                        <Label style="-fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #1e293b;" text="James Johnson" />
                                                     </HBox>
-                                                    <Label text="STU-2023-089" GridPane.columnIndex="1" style="-fx-font-size: 13; -fx-text-fill: #64748b;" />
-                                                    <Label text="Kelas 1B" GridPane.columnIndex="2" style="-fx-background-color: #f1f5f9; -fx-text-fill: #334155; -fx-font-weight: bold; -fx-font-size: 11; -fx-padding: 4 10; -fx-background-radius: 4;" />
-                                                    <Label text="Tidak Ada" GridPane.columnIndex="3" style="-fx-background-color: #f1f5f9; -fx-text-fill: #475569; -fx-font-weight: bold; -fx-font-size: 11; -fx-padding: 4 10; -fx-background-radius: 15;" />
+                                                    <Label style="-fx-font-size: 13; -fx-text-fill: #64748b;" text="STU-2023-089" GridPane.columnIndex="1" />
+                                                    <Label style="-fx-background-color: #f1f5f9; -fx-text-fill: #334155; -fx-font-weight: bold; -fx-font-size: 11; -fx-padding: 4 10; -fx-background-radius: 4;" text="Kelas 1B" GridPane.columnIndex="2" />
+                                                    <Label style="-fx-background-color: #f1f5f9; -fx-text-fill: #475569; -fx-font-weight: bold; -fx-font-size: 11; -fx-padding: 4 10; -fx-background-radius: 15;" text="Tidak Ada" GridPane.columnIndex="3" />
+                                       <rowConstraints>
+                                          <RowConstraints />
+                                       </rowConstraints>
                                                 </GridPane>
 
-                                                <GridPane GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.columnSpan="5" style="-fx-padding: 12 25; -fx-border-color: transparent transparent #f1f5f9 transparent; -fx-border-width: 1;">
+                                                <GridPane style="-fx-padding: 12 25; -fx-border-color: transparent transparent #f1f5f9 transparent; -fx-border-width: 1;" GridPane.columnIndex="0" GridPane.columnSpan="5" GridPane.rowIndex="3">
                                                     <columnConstraints><ColumnConstraints prefWidth="250" /><ColumnConstraints prefWidth="150" /><ColumnConstraints prefWidth="120" /><ColumnConstraints prefWidth="280" /><ColumnConstraints prefWidth="80" /></columnConstraints>
-                                                    <HBox spacing="10" alignment="CENTER_LEFT" GridPane.columnIndex="0">
-                                                        <Label text="MW" style="-fx-background-color: #fce7f3; -fx-text-fill: #be185d; -fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-alignment: center; -fx-font-weight: bold; -fx-font-size: 12;" />
-                                                        <Label text="Mia Williams" style="-fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #1e293b;" />
+                                                    <HBox alignment="CENTER_LEFT" spacing="10" GridPane.columnIndex="0">
+                                                        <Label style="-fx-background-color: #fce7f3; -fx-text-fill: #be185d; -fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-alignment: center; -fx-font-weight: bold; -fx-font-size: 12;" text="MW" />
+                                                        <Label style="-fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #1e293b;" text="Mia Williams" />
                                                     </HBox>
-                                                    <Label text="STU-2023-112" GridPane.columnIndex="1" style="-fx-font-size: 13; -fx-text-fill: #64748b;" />
-                                                    <Label text="Kelas 2A" GridPane.columnIndex="2" style="-fx-background-color: #f1f5f9; -fx-text-fill: #334155; -fx-font-weight: bold; -fx-font-size: 11; -fx-padding: 4 10; -fx-background-radius: 4;" />
-                                                    <HBox spacing="8" alignment="CENTER_LEFT" GridPane.columnIndex="3">
-                                                        <Label text="♡ Vegan" style="-fx-background-color: #dcfce7; -fx-text-fill: #15803d; -fx-font-weight: bold; -fx-font-size: 11; -fx-padding: 4 10; -fx-background-radius: 15;" />
-                                                        <Label text="ⓘ Bebas Gluten" style="-fx-background-color: #ffedd5; -fx-text-fill: #c2410c; -fx-font-weight: bold; -fx-font-size: 11; -fx-padding: 4 10; -fx-background-radius: 15;" />
+                                                    <Label style="-fx-font-size: 13; -fx-text-fill: #64748b;" text="STU-2023-112" GridPane.columnIndex="1" />
+                                                    <Label style="-fx-background-color: #f1f5f9; -fx-text-fill: #334155; -fx-font-weight: bold; -fx-font-size: 11; -fx-padding: 4 10; -fx-background-radius: 4;" text="Kelas 2A" GridPane.columnIndex="2" />
+                                                    <HBox alignment="CENTER_LEFT" spacing="8" GridPane.columnIndex="3">
+                                                        <Label style="-fx-background-color: #dcfce7; -fx-text-fill: #15803d; -fx-font-weight: bold; -fx-font-size: 11; -fx-padding: 4 10; -fx-background-radius: 15;" text="♡ Vegan" />
+                                                        <Label style="-fx-background-color: #ffedd5; -fx-text-fill: #c2410c; -fx-font-weight: bold; -fx-font-size: 11; -fx-padding: 4 10; -fx-background-radius: 15;" text="ⓘ Bebas Gluten" />
                                                     </HBox>
+                                       <rowConstraints>
+                                          <RowConstraints />
+                                       </rowConstraints>
                                                 </GridPane>
 
-                                                <GridPane GridPane.rowIndex="4" GridPane.columnIndex="0" GridPane.columnSpan="5" style="-fx-padding: 12 25; -fx-border-color: transparent transparent #f1f5f9 transparent; -fx-border-width: 1;">
+                                                <GridPane style="-fx-padding: 12 25; -fx-border-color: transparent transparent #f1f5f9 transparent; -fx-border-width: 1;" GridPane.columnIndex="0" GridPane.columnSpan="5" GridPane.rowIndex="4">
                                                     <columnConstraints><ColumnConstraints prefWidth="250" /><ColumnConstraints prefWidth="150" /><ColumnConstraints prefWidth="120" /><ColumnConstraints prefWidth="280" /><ColumnConstraints prefWidth="80" /></columnConstraints>
-                                                    <HBox spacing="10" alignment="CENTER_LEFT" GridPane.columnIndex="0">
-                                                        <Label text="LB" style="-fx-background-color: #22c55e; -fx-text-fill: white; -fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-alignment: center; -fx-font-weight: bold; -fx-font-size: 12;" />
-                                                        <Label text="Lucas Brown" style="-fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #1e293b;" />
+                                                    <HBox alignment="CENTER_LEFT" spacing="10" GridPane.columnIndex="0">
+                                                        <Label style="-fx-background-color: #22c55e; -fx-text-fill: white; -fx-background-radius: 15; -fx-min-width: 30; -fx-min-height: 30; -fx-alignment: center; -fx-font-weight: bold; -fx-font-size: 12;" text="LB" />
+                                                        <Label style="-fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #1e293b;" text="Lucas Brown" />
                                                     </HBox>
-                                                    <Label text="STU-2023-055" GridPane.columnIndex="1" style="-fx-font-size: 13; -fx-text-fill: #64748b;" />
-                                                    <Label text="Kelas 1A" GridPane.columnIndex="2" style="-fx-background-color: #f1f5f9; -fx-text-fill: #334155; -fx-font-weight: bold; -fx-font-size: 11; -fx-padding: 4 10; -fx-background-radius: 4;" />
-                                                    <Label text="💧 Bebas Susu" GridPane.columnIndex="3" style="-fx-background-color: #dcfce7; -fx-text-fill: #15803d; -fx-font-weight: bold; -fx-font-size: 11; -fx-padding: 4 10; -fx-background-radius: 15;" />
+                                                    <Label style="-fx-font-size: 13; -fx-text-fill: #64748b;" text="STU-2023-055" GridPane.columnIndex="1" />
+                                                    <Label style="-fx-background-color: #f1f5f9; -fx-text-fill: #334155; -fx-font-weight: bold; -fx-font-size: 11; -fx-padding: 4 10; -fx-background-radius: 4;" text="Kelas 1A" GridPane.columnIndex="2" />
+                                                    <Label style="-fx-background-color: #dcfce7; -fx-text-fill: #15803d; -fx-font-weight: bold; -fx-font-size: 11; -fx-padding: 4 10; -fx-background-radius: 15;" text="💧 Bebas Susu" GridPane.columnIndex="3" />
+                                       <rowConstraints>
+                                          <RowConstraints />
+                                       </rowConstraints>
                                                 </GridPane>
 
                                             </children>
+                                 <rowConstraints>
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                 </rowConstraints>
                                         </GridPane>
 
                                         <HBox alignment="CENTER_LEFT" style="-fx-padding: 15 25; -fx-background-color: #ffffff; -fx-background-radius: 0 0 12 12;">
                                             <children>
-                                                <Label text="Menampilkan 1 hingga 4 dari 124 data" style="-fx-font-size: 13; -fx-text-fill: #64748b;" />
+                                                <Label style="-fx-font-size: 13; -fx-text-fill: #64748b;" text="Menampilkan 1 hingga 4 dari 124 data" />
                                                 <Region HBox.hgrow="ALWAYS" />
-                                                <HBox spacing="5" alignment="CENTER">
-                                                    <Button text="&lt;" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 5 10;" />
-                                                    <Button text="1" style="-fx-background-color: #006b3f; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 5 10; -fx-background-radius: 4;" />
-                                                    <Button text="2" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 5 10;" />
-                                                    <Button text="3" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 5 10;" />
-                                                    <Label text="..." style="-fx-text-fill: #64748b;" />
-                                                    <Button text="&gt;" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 5 10;" />
+                                                <HBox alignment="CENTER" spacing="5">
+                                                    <Button style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 5 10;" text="&lt;" />
+                                                    <Button style="-fx-background-color: #006b3f; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 5 10; -fx-background-radius: 4;" text="1" />
+                                                    <Button style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 5 10;" text="2" />
+                                                    <Button style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 5 10;" text="3" />
+                                                    <Label style="-fx-text-fill: #64748b;" text="..." />
+                                                    <Button style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 5 10;" text="&gt;" />
                                                 </HBox>
                                             </children>
                                         </HBox>

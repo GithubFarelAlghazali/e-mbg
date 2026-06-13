@@ -46,4 +46,24 @@ public class PelacakMakananKontroler {
     void aksiKeluar(ActionEvent event) {
         System.out.println("Tindakan: Proses keluar dari portal admin MBG...");
     }
+    
+        @FXML
+    private void clickDashboard(ActionEvent event){
+        Redirect.redirectPage(event, "/com/mycompany/embg/app/fxml/sekolah/Dashboard.fxml");
+    }
+    
+    @FXML
+    private void clickSiswa(ActionEvent event){
+        Redirect.redirectPage(event, "/com/mycompany/embg/app/fxml/sekolah/DirektoriSiswa.fxml");
+    }
+    
+    @FXML
+    private void clickDistribusi(ActionEvent event){
+        Redirect.redirectPage(event, "/com/mycompany/embg/app/fxml/sekolah/PelacakMakanan.fxml");
+    }
+    
+    @FXML
+    private void clickProfil(ActionEvent event){
+        Redirect.redirectPage(event, "/com/mycompany/embg/app/fxml/sekolah/ProfilSekolah.fxml");
+    }
 }
