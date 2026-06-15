@@ -12,7 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
-import com.mycompany.embg.app.services.Alert;
+import com.mycompany.embg.app.services.AlertPopup;
 import javafx.scene.control.Alert.AlertType;
 /**
  *
@@ -23,7 +23,7 @@ public class Redirect {
         try {
             URL fxmlLocation = Redirect.class.getResource(fxmlPath);
             if (fxmlLocation == null) {
-                Alert.showAlert(AlertType.ERROR, "File fxml tidak ditemukan pada path : "+fxmlPath);              
+                AlertPopup.showAlert(AlertType.ERROR, "File fxml tidak ditemukan pada path : "+fxmlPath);              
                 return;
             }
             
@@ -31,7 +31,7 @@ public class Redirect {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.getScene().setRoot(root);
         } catch (IOException e) {
-            Alert.showAlert(AlertType.ERROR, "Gagal memuat halaman : " + fxmlPath + " error: " + e);
+            AlertPopup.showAlert(AlertType.ERROR, "Gagal memuat halaman : " + fxmlPath + " error: " + e);
             e.printStackTrace();
         }
     }

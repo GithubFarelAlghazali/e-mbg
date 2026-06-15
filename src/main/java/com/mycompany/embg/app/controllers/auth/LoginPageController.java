@@ -15,7 +15,7 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.IOException;
-import com.mycompany.embg.app.services.Alert;
+import com.mycompany.embg.app.services.AlertPopup;
 import javafx.scene.control.Alert.AlertType;
 import com.mycompany.embg.app.repository.UserRepo;
 import com.mycompany.embg.app.models.User;
@@ -62,7 +62,7 @@ public class LoginPageController implements Initializable {
         String password = passwordField.getText().trim();
         
         if(email.isEmpty() || password.isEmpty()){
-            Alert.showAlert(AlertType.WARNING, "Email & Password harus diisi!" );
+            AlertPopup.showAlert(AlertType.WARNING, "Email & Password harus diisi!" );
             return;
         }
         
@@ -71,12 +71,12 @@ public class LoginPageController implements Initializable {
             User user = repo.findByEmail(email);
             
             if(user == null){
-                Alert.showAlert(AlertType.ERROR, "Email tidak terdaftar!");
+                AlertPopup.showAlert(AlertType.ERROR, "Email tidak terdaftar!");
                 return;
             }
             
             if(!repo.checkPassword(password, user.getPassword())){
-                Alert.showAlert(AlertType.ERROR, "Password salah!");
+                AlertPopup.showAlert(AlertType.ERROR, "Password salah!");
                 return;
             }
             
@@ -93,7 +93,7 @@ public class LoginPageController implements Initializable {
                     fxmlPath = "/com/mycompany/embg/app/fxml/vendor/VendorDashboard.fxml";
                     break;
                 default:
-                    Alert.showAlert(AlertType.ERROR, "Role tidak dikenali!");
+                    AlertPopup.showAlert(AlertType.ERROR, "Role tidak dikenali!");
                     return;
             }
             
@@ -103,9 +103,9 @@ public class LoginPageController implements Initializable {
             stage.getScene().setRoot(root);
             
         } catch(SQLException e){
-            Alert.showAlert(AlertType.ERROR, "Gagal terhubung ke database: " + e);
+            AlertPopup.showAlert(AlertType.ERROR, "Gagal terhubung ke database: " + e);
         } catch (IOException e){
-            Alert.showAlert(AlertType.ERROR, "Gagal membuka halaman dashbaord: " + e);
+            AlertPopup.showAlert(AlertType.ERROR, "Gagal membuka halaman dashbaord: " + e);
         }
         
     }

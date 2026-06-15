@@ -16,32 +16,11 @@
     <Label text="Real-time metrics for current operations." style="-fx-text-fill: #64748B;"/>
 
     <HBox spacing="18">
-        <VBox prefWidth="210" spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:12; -fx-border-color:#BFDBFE; -fx-border-radius:12;">
-            <Label text="TOTAL VENDOR"/>
-            <Label text="1,245" style="-fx-font-size:24px; -fx-font-weight:bold;"/>
-            <Label text="+12% from last month" style="-fx-text-fill:#0284C7;"/>
-        </VBox>
-
-        <VBox prefWidth="210" spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:12; -fx-border-color:#BFDBFE; -fx-border-radius:12;">
-            <Label text="TOTAL SEKOLAH"/>
-            <Label text="3,892" style="-fx-font-size:24px; -fx-font-weight:bold;"/>
-            <Label text="Aktif terdaftar" style="-fx-text-fill:#0284C7;"/>
-        </VBox>
-
-        <VBox prefWidth="210" spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:12; -fx-border-color:#BFDBFE; -fx-border-radius:12;">
-            <Label text="PENGIRIMAN HARI INI"/>
-            <Label text="45,210" style="-fx-font-size:24px; -fx-font-weight:bold;"/>
-            <Label text="Paket makanan" style="-fx-text-fill:#0284C7;"/>
-        </VBox>
-
-        <VBox prefWidth="210" spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:12; -fx-border-color:#BFDBFE; -fx-border-radius:12;">
-            <Label text="PENGIRIMAN SELESAI"/>
-            <Label text="94%" style="-fx-font-size:24px; -fx-font-weight:bold;"/>
-            <Label text="Berhasil dikirim" style="-fx-text-fill:#0284C7;"/>
-        </VBox>
-    </HBox>
+        </HBox>
 
     <Label text="Recent Deliveries" style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+    <TableView fx:id="dashboardTable" prefHeight="200"/>
 
-    <TableView fx:id="dashboardTable" prefHeight="330"/>
+    <Label text="Status Approval Vendor Terdaftar" style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+    <TableView fx:id="vendorStatusTable" prefHeight="200"/>
 </VBox>

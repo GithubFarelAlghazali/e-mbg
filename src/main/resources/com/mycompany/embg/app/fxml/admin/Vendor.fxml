@@ -16,24 +16,26 @@
     <Label text="Review and manage food supplier registrations for the MBG program." style="-fx-text-fill:#64748B;"/>
 
     <HBox spacing="18">
-        <VBox prefWidth="250" spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:12; -fx-border-color:#BFDBFE; -fx-border-radius:12;">
-            <Label text="PENDING REVIEW"/>
-            <Label text="24" style="-fx-font-size:24px; -fx-font-weight:bold;"/>
-            <Label text="+12 since yesterday" style="-fx-text-fill:#0284C7;"/>
-        </VBox>
+        </HBox>
 
-        <VBox prefWidth="250" spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:12; -fx-border-color:#BFDBFE; -fx-border-radius:12;">
-            <Label text="APPROVED VENDORS"/>
-            <Label text="1,204" style="-fx-font-size:24px; -fx-font-weight:bold;"/>
-            <Label text="+3 verified today" style="-fx-text-fill:#0284C7;"/>
-        </VBox>
+    <TableView fx:id="vendorTable" prefHeight="250"/>
 
-        <VBox prefWidth="250" spacing="8" style="-fx-background-color:white; -fx-padding:18; -fx-background-radius:12; -fx-border-color:#BFDBFE; -fx-border-radius:12;">
-            <Label text="REJECTION RATE"/>
-            <Label text="4.2%" style="-fx-font-size:24px; -fx-font-weight:bold;"/>
-            <Label text="This month" style="-fx-text-fill:#0284C7;"/>
-        </VBox>
-    </HBox>
+    <VBox fx:id="detailPanel" visible="false" spacing="10" style="-fx-background-color: white; -fx-padding: 18; -fx-border-color: #BFDBFE; -fx-border-radius: 12;">
+        <Label text="Detail Vendor Terpilih" style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+        <GridPane hgap="15" vgap="10">
+            <Label text="Nama Vendor:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <Label fx:id="detailNama" style="-fx-font-weight:bold;" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            
+            <Label text="Alamat:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <Label fx:id="detailAlamat" style="-fx-font-weight:bold;" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            
+            <Label text="Status Saat Ini:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <Label fx:id="detailStatus" style="-fx-font-weight:bold;" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        </GridPane>
+        
+        <HBox spacing="10" style="-fx-padding: 10 0 0 0;">
+            <Button text="Verifikasi Dokumen" onAction="#handleVerifikasi" style="-fx-background-color: #0284C7; -fx-text-fill: white; -fx-padding: 8 16; -fx-font-weight: bold;"/>
+        </HBox>
+    </VBox>
 
-    <TableView fx:id="vendorTable" prefHeight="360"/>
 </VBox>

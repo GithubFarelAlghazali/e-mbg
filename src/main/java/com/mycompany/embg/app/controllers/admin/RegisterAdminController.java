@@ -20,7 +20,7 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 import javafx.scene.control.Alert.AlertType;
-import com.mycompany.embg.app.services.Alert;
+import com.mycompany.embg.app.services.AlertPopup;
 /**
  * FXML Controller class
  *
@@ -54,7 +54,7 @@ public class RegisterAdminController implements Initializable {
         String wilayah = wilayahField.getText().trim();
         
         if(username.isEmpty() || email.isEmpty() || password.isEmpty() || nip.isEmpty() || wilayah.isEmpty()){
-            Alert.showAlert(AlertType.WARNING, "Semua input harus diisi lengkap!");
+            AlertPopup.showAlert(AlertType.WARNING, "Semua input harus diisi lengkap!");
             return;
         }
         
@@ -62,19 +62,19 @@ public class RegisterAdminController implements Initializable {
             UserRepo repo = new UserRepo();
             
             if(repo.isEmailExist(email)){
-                Alert.showAlert(AlertType.WARNING, "Email sudah terdaftar!");
+                AlertPopup.showAlert(AlertType.WARNING, "Email sudah terdaftar!");
                 return;
             }
             
             if(repo.isUsernameExist(username)){
-                Alert.showAlert(AlertType.WARNING, "Username sudah terdaftar!");
+                AlertPopup.showAlert(AlertType.WARNING, "Username sudah terdaftar!");
                 return;
             }
             
             AdminDinas admin = new AdminDinas(null, username, email, password, nip, wilayah);
             repo.registerAdmin(admin);
             
-            Alert.showAlert(AlertType.INFORMATION, "Registrasi berhasil! Silakan login dengan akun anda");
+            AlertPopup.showAlert(AlertType.INFORMATION, "Registrasi berhasil! Silakan login dengan akun anda");
 
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/mycompany/embg/app/fxml/auth/LoginPage.fxml")
@@ -84,9 +84,9 @@ public class RegisterAdminController implements Initializable {
             stage.getScene().setRoot(root);
             
         } catch(SQLException e){
-            Alert.showAlert(AlertType.ERROR, "Gagal terhubung ke database: " + e.getMessage());
+            AlertPopup.showAlert(AlertType.ERROR, "Gagal terhubung ke database: " + e.getMessage());
         } catch (IOException e){
-            Alert.showAlert(AlertType.ERROR, "Gagal membuka halaman login: " + e.getMessage());
+            AlertPopup.showAlert(AlertType.ERROR, "Gagal membuka halaman login: " + e.getMessage());
         }
     }
     
