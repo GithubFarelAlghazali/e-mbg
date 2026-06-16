@@ -23,7 +23,6 @@ public class SiswaRepo {
             stmt.setString(1, idSekolah);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                // Sesuaikan urutan dengan constructor: id, alergi, nama, idSekolah, kelas
                 listSiswa.add(new SiswaKebutuhanKhusus(
                         rs.getString("id"),
                         rs.getString("alergi"),
@@ -38,7 +37,6 @@ public class SiswaRepo {
 
     // Menyimpan data siswa alergi baru
     public void tambahSiswaKhusus(SiswaKebutuhanKhusus siswa) throws SQLException {
-        // Karena idSekolah sudah ada di dalam model, kita ambil lewat siswa.getIdSekolah()
         String sql = "INSERT INTO siswa_khusus (alergi, nama, id_sekolah, kelas) VALUES (?, ?, ?::uuid, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, siswa.getAlergi());
@@ -48,17 +46,47 @@ public class SiswaRepo {
             stmt.executeUpdate();
         }
     }
-    
+
     // Memperbarui Total Siswa (Porsi Harian) untuk Sekolah
     public void updateTotalPorsi(String idSekolah, int totalPorsi) throws SQLException {
-        // Catatan: Pastikan kolom di database kamu bernama 'jumlah_siswa' atau sesuaikan dengan nama kolom yang ada.
-        // Saya menambahkan ::uuid karena sebelumnya kita tahu bahwa ID menggunakan tipe data UUID di PostgreSQL.
         String sql = "UPDATE users SET jumlah_siswa = ? WHERE id = ?::uuid AND role = 'sekolah'";
-
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, totalPorsi);
             stmt.setString(2, idSekolah);
             stmt.executeUpdate();
         }
+    }
+
+//    /**
+//     * [BARU] Mengambil jumlah_siswa dari tabel users untuk sekolah tertentu.
+//     * Mengembalikan 0 jika kolom null (belum diisi).
+//     */
+    public int getJumlahSiswa(String idSekolah) throws SQLException {
+        String sql = "SELECT jumlah_siswa FROM users WHERE id = ?::uuid AND role = 'sekolah'";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, idSekolah);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                // getInt mengembalikan 0 jika nilai kolom NULL
+                return rs.getInt("jumlah_siswa");
+            }
+        }
+        return 0;
+    }
+
+//    /**
+//     * [BARU] Menghitung total baris siswa_khusus milik sekolah ini. Dipakai
+//     * untuk kartu "Siswa Kebutuhan Khusus" di dasbor.
+//     */
+    public int getJumlahSiswaKhusus(String idSekolah) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM siswa_khusus WHERE id_sekolah = ?::uuid";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, idSekolah);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        }
+        return 0;
     }
 }
