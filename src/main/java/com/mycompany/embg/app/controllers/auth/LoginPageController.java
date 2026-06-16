@@ -82,6 +82,13 @@ public class LoginPageController implements Initializable {
             
             String fxmlPath;
             
+
+            if (user != null && repo.checkPassword(password, user.getPassword())) {
+
+                // SIMPAN ID KE SESSION DI SINI
+                com.mycompany.embg.app.services.UserSession.setCurrentUserId(user.getId());
+
+                // ... kode pindah ke halaman Dashboard / Direktori Siswa ...
             switch(user.getRole()){
                 case "admin":
                     fxmlPath = "/com/mycompany/embg/app/fxml/admin/AdminDashboard.fxml";
@@ -101,6 +108,7 @@ public class LoginPageController implements Initializable {
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.getScene().setRoot(root);
+            }
             
         } catch(SQLException e){
             AlertPopup.showAlert(AlertType.ERROR, "Gagal terhubung ke database: " + e);

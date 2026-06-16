@@ -25,6 +25,7 @@ public class Sekolah extends User {
         this.npsn = npsn;
         this.alamat = alamat;
 //        this.jumlahSiswa = jumlahSiswa;
+        this.siswaKhusus = new ArrayList<>();
     }
     
     public String getNpsn(){
