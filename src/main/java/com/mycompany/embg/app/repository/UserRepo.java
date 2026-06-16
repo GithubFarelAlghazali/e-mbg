@@ -7,6 +7,8 @@ import com.mycompany.embg.app.config.DbConfig;
 import com.mycompany.embg.app.models.*;
 import org.mindrot.jbcrypt.BCrypt;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -103,5 +105,39 @@ public class UserRepo {
     
     public boolean checkPassword(String inputPassword, String hashedPassword){
         return BCrypt.checkpw(inputPassword, hashedPassword);
+    }
+    
+    // verifikasi vendoor
+    
+    public List<Vendor> getAllVendors() throws SQLException {
+        List<Vendor> vendors = new ArrayList<>();
+        // Mengambil data spesifik user dengan role 'vendor'
+        String sql = "SELECT * FROM users WHERE role = 'vendor'";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Vendor v = new Vendor(
+                        rs.getString("id"),
+                        rs.getString("username"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("alamat"),
+                        rs.getBoolean("approval") // Pastikan di database kamu ada kolom 'approval' (tipe boolean/tinyint)
+                );
+                vendors.add(v);
+            }
+        }
+        return vendors;
+    }
+    
+    public void updateVendorApproval(String idVendor, boolean getApproved) throws SQLException {
+        // Asumsi tabel users memiliki kolom 'approval' ber-tipe boolean/tinyint
+        String sql = "UPDATE users SET approval = ? WHERE id = ?::uuid AND role = 'vendor'";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setBoolean(1, getApproved);
+            stmt.setString(2, idVendor);
+            stmt.executeUpdate();
+        }
     }
 }

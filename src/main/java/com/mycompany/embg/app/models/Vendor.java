@@ -11,19 +11,30 @@ package com.mycompany.embg.app.models;
 public class Vendor extends User {
     private String alamat;
     private InventarisDapur inventaris;
+    private boolean approval;
     
     public Vendor(
     String id,
     String username,
     String email,
     String password,
-    String alamat){
+    String alamat,
+    boolean approve){
         super(id, username, email, password, "vendor");
         this.alamat = alamat;
+        this.approval = approve;
     }
     
     public String getAlamat(){
         return this.alamat;
+    }
+    
+    public boolean isApproved(){
+        return this.approval;
+    }
+    
+    public void setApproval(boolean approve){
+        this.approval =  approve;
     }
     
     public void tambahMenu(){
