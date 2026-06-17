@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxWidth="440.0" minWidth="440.0" spacing="0.0"
+      style="-fx-background-color: white; -fx-background-radius: 16; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 20, 0, 0, 4);"
+      xmlns="http://javafx.com/javafx/26"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.mycompany.embg.app.controllers.vendor.TambahMenuController">
+
+    <!-- HEADER -->
+    <HBox alignment="CENTER_LEFT"
+          style="-fx-background-color: #2DACF0; -fx-background-radius: 16 16 0 0; -fx-padding: 18 20 18 20;">
+        <children>
+            <VBox HBox.hgrow="ALWAYS">
+                <children>
+                    <Label text="🍽️ Tambah Menu Makanan" textFill="WHITE">
+                        <font><Font name="System Bold" size="15.0" /></font>
+                    </Label>
+                    <Label text="Tambah menu baru beserta informasi nilai gizinya" textFill="WHITE">
+                        <font><Font size="11.0" /></font>
+                    </Label>
+                </children>
+            </VBox>
+            <Button fx:id="btnTutup" mnemonicParsing="false" onAction="#handleTutup"
+                    style="-fx-background-color: rgba(255,255,255,0.25); -fx-background-radius: 20; -fx-text-fill: white; -fx-cursor: hand;"
+                    text="✕">
+                <font><Font name="System Bold" size="13.0" /></font>
+            </Button>
+        </children>
+    </HBox>
+
+    <!-- BODY -->
+    <VBox spacing="16.0" style="-fx-padding: 24 20 20 20;">
+        <children>
+
+            <!-- Nama Produk -->
+            <VBox spacing="5.0">
+                <children>
+                    <Label text="Nama Menu *" style="-fx-text-fill: #4E6766;">
+                        <font><Font name="System Bold" size="11.0" /></font>
+                    </Label>
+                    <TextField fx:id="txtNamaProduk"
+                               promptText="cth: Nasi Ayam Bakar Spesial"
+                               style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #ddd; -fx-border-radius: 8; -fx-border-width: 1.5; -fx-padding: 8 12;" />
+                </children>
+            </VBox>
+
+            <!-- Harga -->
+            <VBox spacing="5.0">
+                <children>
+                    <Label text="Harga (Rp) *" style="-fx-text-fill: #4E6766;">
+                        <font><Font name="System Bold" size="11.0" /></font>
+                    </Label>
+                    <Spinner fx:id="spinnerHarga" min="0" max="999999" initialValue="15000"
+                             maxWidth="1.7976931348623157E308" editable="true"
+                             style="-fx-background-color: white; -fx-border-color: #ddd; -fx-border-radius: 8; -fx-border-width: 1.5;" />
+                </children>
+            </VBox>
+
+            <Separator />
+
+            <!-- Seksi Nilai Gizi -->
+            <Label text="📊 Nilai Gizi (per porsi)" style="-fx-text-fill: #1E152A;">
+                <font><Font name="System Bold" size="13.0" /></font>
+            </Label>
+
+            <GridPane hgap="15.0" vgap="12.0">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="ALWAYS" />
+                    <ColumnConstraints hgrow="ALWAYS" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints />
+                    <RowConstraints />
+                </rowConstraints>
+                <children>
+
+                    <!-- Kalori -->
+                    <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <children>
+                            <Label text="Kalori (kkal)" style="-fx-text-fill: #4E6766;">
+                                <font><Font name="System Bold" size="11.0" /></font>
+                            </Label>
+                            <Spinner fx:id="spinnerKalori" min="0" max="9999" initialValue="0"
+                                     maxWidth="1.7976931348623157E308" editable="true"
+                                     style="-fx-border-color: #ddd; -fx-border-radius: 8; -fx-border-width: 1.5;" />
+                        </children>
+                    </VBox>
+
+                    <!-- Protein -->
+                    <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <children>
+                            <Label text="Protein (g)" style="-fx-text-fill: #4E6766;">
+                                <font><Font name="System Bold" size="11.0" /></font>
+                            </Label>
+                            <Spinner fx:id="spinnerProtein" min="0" max="9999" initialValue="0"
+                                     maxWidth="1.7976931348623157E308" editable="true"
+                                     style="-fx-border-color: #ddd; -fx-border-radius: 8; -fx-border-width: 1.5;" />
+                        </children>
+                    </VBox>
+
+                    <!-- Lemak -->
+                    <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <children>
+                            <Label text="Lemak (g)" style="-fx-text-fill: #4E6766;">
+                                <font><Font name="System Bold" size="11.0" /></font>
+                            </Label>
+                            <Spinner fx:id="spinnerLemak" min="0" max="9999" initialValue="0"
+                                     maxWidth="1.7976931348623157E308" editable="true"
+                                     style="-fx-border-color: #ddd; -fx-border-radius: 8; -fx-border-width: 1.5;" />
+                        </children>
+                    </VBox>
+
+                    <!-- Karbohidrat -->
+                    <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <children>
+                            <Label text="Karbohidrat (g)" style="-fx-text-fill: #4E6766;">
+                                <font><Font name="System Bold" size="11.0" /></font>
+                            </Label>
+                            <Spinner fx:id="spinnerKarbo" min="0" max="9999" initialValue="0"
+                                     maxWidth="1.7976931348623157E308" editable="true"
+                                     style="-fx-border-color: #ddd; -fx-border-radius: 8; -fx-border-width: 1.5;" />
+                        </children>
+                    </VBox>
+
+                </children>
+            </GridPane>
+
+            <!-- Error label -->
+            <Label fx:id="lblError" text="" wrapText="true"
+                   style="-fx-text-fill: #e74c3c; -fx-font-size: 11;" />
+
+            <Separator />
+
+            <!-- Tombol -->
+            <HBox spacing="10.0" alignment="CENTER_RIGHT">
+                <children>
+                    <Button mnemonicParsing="false" onAction="#handleTutup"
+                            style="-fx-background-color: #f0f0f0; -fx-background-radius: 8; -fx-cursor: hand;"
+                            text="Batal">
+                        <font><Font size="13.0" /></font>
+                        <padding><Insets bottom="9.0" left="20.0" right="20.0" top="9.0" /></padding>
+                    </Button>
+                    <Button fx:id="btnSimpan" mnemonicParsing="false" onAction="#handleSimpan"
+                            style="-fx-background-color: #2DACF0; -fx-background-radius: 8; -fx-cursor: hand;"
+                            text="Simpan Menu" textFill="WHITE">
+                        <font><Font name="System Bold" size="13.0" /></font>
+                        <padding><Insets bottom="9.0" left="20.0" right="20.0" top="9.0" /></padding>
+                    </Button>
+                </children>
+            </HBox>
+
+        </children>
+    </VBox>
+
+</VBox>
