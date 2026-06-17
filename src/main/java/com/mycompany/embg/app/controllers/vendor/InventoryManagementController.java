@@ -1,92 +1,216 @@
-package com.mycompany.embg.app.controllers.vendor; 
+package com.mycompany.embg.app.controllers.vendor;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.mycompany.embg.app.models.InventoryItem;
+import com.mycompany.embg.app.repository.InventoryRepo;
 import com.mycompany.embg.app.services.Redirect;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class InventoryManagementController implements Initializable {
 
-    @FXML private TextField txtSearchGlobal;
-    @FXML private Button btnAddItem;
-    @FXML private Button btnNewReport;
+    @FXML
+    private TextField txtSearchGlobal;
+
+    @FXML
+    private Button btnAddItem;
+
+    @FXML
+    private Button btnNewReport;
+
+    @FXML
+    private TableView<InventoryItem> tblInventory;
+
+    @FXML
+    private TableColumn<InventoryItem, String> colNamaBarang;
     
-    // Properti TableView Inventory
-    @FXML private TableView<InventoryItem> tblInventory;
-    @FXML private TableColumn<InventoryItem, String> colNamaBarang;
-    @FXML private TableColumn<InventoryItem, String> colStok;
-    @FXML private TableColumn<InventoryItem, String> colSatuan;
-    @FXML private TableColumn<InventoryItem, String> colActions;
+
+    @FXML
+    private TableColumn<InventoryItem, Integer> colStok;
+
+    @FXML
+    private TableColumn<InventoryItem, String> colSatuan;
+
+    @FXML
+    private TableColumn<InventoryItem, Integer> colHarga;
+
+    @FXML
+    private TableColumn<InventoryItem, Void> colActions;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // 1. Hubungkan Kolom Tabel ke Variabel Kelas Model
-        colNamaBarang.setCellValueFactory(new PropertyValueFactory<>("namaBarang"));
-        colStok.setCellValueFactory(new PropertyValueFactory<>("stok"));
-        colSatuan.setCellValueFactory(new PropertyValueFactory<>("satuan"));
-        colActions.setCellValueFactory(new PropertyValueFactory<>("actions"));
 
-        // 2. Set Baris Data Dummy Sesuai Gambar Mockup
-        tblInventory.setItems(getDummyInventoryData());
-    }    
+        colNamaBarang.setCellValueFactory(
+                new PropertyValueFactory<>("namaBarang")
+        );
 
-    private ObservableList<InventoryItem> getDummyInventoryData() {
-        ObservableList<InventoryItem> data = FXCollections.observableArrayList();
-        data.add(new InventoryItem("Beras Putih Premium", "1,250", "Kg"));
-        data.add(new InventoryItem("Telur Ayam Ras", "45", "Papan (30)"));
-        data.add(new InventoryItem("Minyak Goreng Sawit", "320", "Liter"));
-        data.add(new InventoryItem("Daging Ayam Potong", "150", "Kg"));
-        return data;
+        colStok.setCellValueFactory(
+                new PropertyValueFactory<>("stok")
+        );
+
+        colSatuan.setCellValueFactory(
+                new PropertyValueFactory<>("satuan")
+        );
+        
+        colHarga.setCellValueFactory(
+        new PropertyValueFactory<>("harga")
+        );
+
+        loadInventory();
+        addActionButtons();
+    }
+
+    private void loadInventory() {
+
+        InventoryRepo repo = new InventoryRepo();
+
+        ObservableList<InventoryItem> data =
+                FXCollections.observableArrayList(
+                        repo.getAllItems()
+                );
+
+        tblInventory.setItems(data);
+    }
+
+    private void addActionButtons() {
+
+        colActions.setCellFactory(param -> new TableCell<>() {
+
+            private final Button btnEdit = new Button("Edit");
+            private final Button btnDelete = new Button("Delete");
+
+            private final HBox pane =
+                    new HBox(5, btnEdit, btnDelete);
+
+            {
+
+                btnDelete.setOnAction(event -> {
+
+                    InventoryItem item =
+                            getTableView()
+                                    .getItems()
+                                    .get(getIndex());
+
+                    InventoryRepo repo =
+                            new InventoryRepo();
+
+                    repo.deleteItem(item.getId());
+
+                    loadInventory();
+                });
+
+                btnEdit.setOnAction(event -> {
+
+                    InventoryItem item =
+                            getTableView()
+                                    .getItems()
+                                    .get(getIndex());
+
+                    System.out.println(
+                            "Edit Item: "
+                                    + item.getNamaBarang()
+                    );
+
+                    // nanti buka EditInventory.fxml
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item,
+                                      boolean empty) {
+
+                super.updateItem(item, empty);
+
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(pane);
+                }
+            }
+        });
     }
 
     @FXML
     private void handleAddItem(ActionEvent event) {
-        System.out.println("Membuka formulir pop-up Add Item Baru...");
-    }
-    // --- NAVIGASI MULTI-PAGE KE VENDORS (MANAJEMEN MENU) ---
-    // --- NAVIGASI MULTI-PAGE KE DASHBOARD ---
 
-    // --- KELAS MODEL POJO STRUKTUR DATA INVENTORY ---
-    public static class InventoryItem {
-        private final String namaBarang;
-        private final String stok;
-        private final String satuan;
-        private final String actions;
+        try {
 
-        public InventoryItem(String namaBarang, String stok, String satuan) {
-            this.namaBarang = namaBarang;
-            this.stok = stok;
-            this.satuan = satuan;
-            this.actions = ""; // Tempat penempatan tombol aksi edit/delete nanti
+            FXMLLoader loader =
+                    new FXMLLoader(
+                            getClass().getResource(
+                                    "/com/mycompany/embg/app/fxml/vendor/AddInventory.fxml"
+                            )
+                    );
+
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+
+            stage.initModality(
+                    Modality.APPLICATION_MODAL
+            );
+
+            stage.setTitle(
+                    "Tambah Inventaris"
+            );
+
+            stage.setScene(
+                    new Scene(root)
+            );
+
+            stage.showAndWait();
+
+            loadInventory();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
         }
-
-        public String getNamaBarang() { return namaBarang; }
-        public String getStok() { return stok; }
-        public String getSatuan() { return satuan; }
-        public String getActions() { return actions; }
     }
+
     @FXML
-private void handleBukaDashboard(ActionEvent event) { 
-    Redirect.redirectPage(event,"/com/mycompany/embg/app/fxml/vendor/VendorDashboard.fxml");
-}
+    private void handleBukaDashboard(ActionEvent event) {
 
-@FXML
-private void handleBukaVendors(ActionEvent event) {
-    Redirect.redirectPage(event,"/com/mycompany/embg/app/fxml/vendor/MenuManagement.fxml"); }
+        Redirect.redirectPage(
+                event,
+                "/com/mycompany/embg/app/fxml/vendor/VendorDashboard.fxml"
+        );
+    }
 
-@FXML
-private void handleBukaShipments(ActionEvent event) { 
-    Redirect.redirectPage(event,"/com/mycompany/embg/app/fxml/vendor/ShipmentManagement.fxml"); }
+    @FXML
+    private void handleBukaVendors(ActionEvent event) {
 
+        Redirect.redirectPage(
+                event,
+                "/com/mycompany/embg/app/fxml/vendor/MenuManagement.fxml"
+        );
+    }
+
+    @FXML
+    private void handleBukaShipments(ActionEvent event) {
+
+        Redirect.redirectPage(
+                event,
+                "/com/mycompany/embg/app/fxml/vendor/ShipmentManagement.fxml"
+        );
+    }
 }

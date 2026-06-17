@@ -154,6 +154,9 @@
                     <columns>
                       <TableColumn fx:id="colNamaBarang" prefWidth="280.0" text="NAMA BARANG" />
                       <TableColumn fx:id="colStok" prefWidth="150.0" text="STOK" />
+                       <TableColumn fx:id="colHarga"
+                     prefWidth="150.0"
+                     text="HARGA" />
                       <TableColumn fx:id="colSatuan" prefWidth="180.0" text="SATUAN" />
                       <TableColumn fx:id="colActions" prefWidth="120.0" text="ACTIONS" />
                     </columns>
