@@ -9,11 +9,23 @@ package com.mycompany.embg.app.controllers.sekolah;
  * @author HP
  */
 import com.mycompany.embg.app.repository.ShipmentRepo;
+import java.sql.SQLException;
+import javafx.fxml.FXML;
 
 public class ShipmentTrackingController {
 
-    private ShipmentRepo repo =
-            new ShipmentRepo();
+    private ShipmentRepo repo;
+    
+    @FXML
+    public void initialize(){
+        
+    try{
+    
+            repo = new ShipmentRepo();
+    } catch (SQLException e){
+        e.printStackTrace();
+    }
+    }
 
     public void terimaMakanan(
             String shipmentId

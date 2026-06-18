@@ -1,7 +1,8 @@
 package com.mycompany.embg.app.controllers.admin;
 
-import com.mycompany.embg.app.models.Shipment;
+import com.mycompany.embg.app.models.JadwalPengiriman;
 import com.mycompany.embg.app.repository.ShipmentRepo;
+import java.sql.SQLException;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -14,7 +15,7 @@ import javafx.scene.control.TableView;
 public class ShipmentController {
 
     @FXML
-    private TableView<Shipment> shipmentTable;
+    private TableView<JadwalPengiriman> shipmentTable;
 
     @FXML
     private ComboBox<String> vendorCombo;
@@ -25,16 +26,17 @@ public class ShipmentController {
     @FXML
     public void initialize() {
 
-        TableColumn<Shipment, String> colSekolah =
+        TableColumn<JadwalPengiriman, String> colSekolah =
                 new TableColumn<>("Sekolah");
 
         colSekolah.setCellValueFactory(data ->
                 new SimpleStringProperty(
-                        data.getValue().getNamaSekolah()
+                        data.getValue().getSekolahId()
+                        
                 )
         );
 
-        TableColumn<Shipment, String> colMenu =
+        TableColumn<JadwalPengiriman, String> colMenu =
                 new TableColumn<>("Menu");
 
         colMenu.setCellValueFactory(data ->
@@ -43,7 +45,7 @@ public class ShipmentController {
                 )
         );
 
-        TableColumn<Shipment, Number> colPorsi =
+        TableColumn<JadwalPengiriman, Number> colPorsi =
                 new TableColumn<>("Porsi");
 
         colPorsi.setCellValueFactory(data ->
@@ -52,7 +54,7 @@ public class ShipmentController {
                 )
         );
 
-        TableColumn<Shipment, String> colStatus =
+        TableColumn<JadwalPengiriman, String> colStatus =
                 new TableColumn<>("Status");
 
         colStatus.setCellValueFactory(data ->
@@ -68,13 +70,22 @@ public class ShipmentController {
                 colStatus
         );
 
-        ShipmentRepo repo = new ShipmentRepo();
+        ShipmentRepo repo;
+        
+        try {
 
-        shipmentTable.setItems(
-                FXCollections.observableArrayList(
-                        repo.getAllShipments()
-                )
-        );
+            repo = new ShipmentRepo();
+            shipmentTable.setItems(
+                    FXCollections.observableArrayList(
+                            repo.getJadwal()
+                    )
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    
+
+        
 
         vendorCombo.getItems().addAll(
                 "All Vendors",

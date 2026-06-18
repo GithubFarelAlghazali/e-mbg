@@ -91,7 +91,7 @@ public class ShipmentManagementController implements Initializable {
 
         try {
             // 2. Ambil data asli dari Database via Repo
-            List<JadwalPengiriman> listJadwal = shipmentRepo.getJadwal(currentVendorId);
+            List<JadwalPengiriman> listJadwal = shipmentRepo.getJadwalbyVendor(currentVendorId);
             ObservableList<String> statusOptions = FXCollections.observableArrayList("Dimasak", "Dikirim", "Diterima");
 
             // 3. Looping data dan buat UI Card-nya satu per satu
