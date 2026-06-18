@@ -11,7 +11,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
+import com.mycompany.embg.app.services.UserSession;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -121,14 +121,15 @@ public class TambahMenuController implements Initializable {
 
             // STEP 2: Insert ke tabel products dengan nilai_gizi_id dari step 1
             String sqlProduk
-                    = "INSERT INTO products (nama_produk, harga, tipe_produk, nilai_gizi_id) "
-                    + "VALUES (?, ?, ?, ?)";
+                    = "INSERT INTO products (nama_produk, harga, tipe_produk, nilai_gizi_id, vendor_id) "
+                    + "VALUES (?, ?, ?, ?, ?)";
 
             try (PreparedStatement ps = conn.prepareStatement(sqlProduk)) {
                 ps.setString(1, nama);
                 ps.setInt(2, harga);
                 ps.setString(3, tipeProduk);           // "menu" atau "bahan"
                 ps.setObject(4, java.util.UUID.fromString(nilaiGiziId));
+                ps.setObject(5, java.util.UUID.fromString(UserSession.getCurrentUserId()));
 
                 ps.executeUpdate();
             }
