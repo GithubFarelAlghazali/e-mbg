@@ -2,12 +2,14 @@ package com.mycompany.embg.app.controllers.vendor;
 
 import java.io.IOException;
 import java.net.URL;
+
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import com.mycompany.embg.app.models.JadwalPengiriman;
 import com.mycompany.embg.app.repository.ShipmentRepo;
+import com.mycompany.embg.app.services.AlertPopup;
 import com.mycompany.embg.app.services.Redirect;
 import com.mycompany.embg.app.services.UserSession;
 
@@ -17,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -55,6 +58,10 @@ public class ShipmentManagementController implements Initializable {
     private VBox btnAssignRouteBox;
 
     private ShipmentRepo shipmentRepo;
+
+    // Opsi yang boleh dipilih vendor (Diterima tidak termasuk)
+    private static final ObservableList<String> VENDOR_STATUS_OPTIONS =
+            FXCollections.observableArrayList("Dimasak", "Dikirim");
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -103,7 +110,7 @@ public class ShipmentManagementController implements Initializable {
         }
     }
 
-    // Method pembantu untuk menggambar desain card menggunakan Java (mirip seperti di FXML)
+    // Method pembantu untuk menggambar desain card menggunakan Java
     private VBox buatCardShipment(JadwalPengiriman jadwal, ObservableList<String> statusOptions) {
         VBox card = new VBox(10);
         card.setPrefSize(233.0, 231.0);
@@ -117,7 +124,6 @@ public class ShipmentManagementController implements Initializable {
 
         VBox titleBox = new VBox();
         HBox.setHgrow(titleBox, Priority.ALWAYS);
-        // Menampilkan ID Sekolah (Jika di DB kamu ini merujuk ke ID, pertimbangkan untuk di-JOIN dengan tabel sekolah agar tampil nama)
         Label title = new Label(jadwal.getSekolahId());
         title.setFont(Font.font("System", FontWeight.BOLD, 13));
         title.setStyle("-fx-text-fill: #1E152A;");
@@ -169,15 +175,35 @@ public class ShipmentManagementController implements Initializable {
         comboStatus.setMaxWidth(Double.MAX_VALUE);
         comboStatus.setStyle("-fx-background-color: white; -fx-background-radius: 6;");
 
-        // Set nilai awal dari DB
+        // --- MENGGABUNGKAN LOGIKA VALIDASI DARI CRUD-vendor ---
         if (jadwal.getStatus() != null) {
             comboStatus.setValue(jadwal.getStatus());
+            
+            // Kunci jika status sudah "Diterima"
+            if ("Diterima".equalsIgnoreCase(jadwal.getStatus())) {
+                comboStatus.setItems(FXCollections.observableArrayList("Diterima"));
+                comboStatus.setValue("Diterima");
+                comboStatus.setDisable(true);
+                comboStatus.setStyle("-fx-opacity: 0.6; -fx-background-color: #d1fae5; -fx-background-radius: 6;");
+            }
         }
 
         // Listener saat status diganti oleh user
         comboStatus.setOnAction(e -> {
-            shipmentRepo.updateStatus(jadwal.getId(), comboStatus.getValue());
-            System.out.println("Status diperbarui untuk ID: " + jadwal.getId() + " menjadi " + comboStatus.getValue());
+            String statusBaru = comboStatus.getValue();
+            String statusLama = jadwal.getStatus();
+
+            // Validasi: dari Dimasak hanya boleh ke Dikirim (tidak boleh mundur)
+            if ("Dikirim".equalsIgnoreCase(statusLama) && "Dimasak".equalsIgnoreCase(statusBaru)) {
+                AlertPopup.showAlert(AlertType.WARNING, "Status tidak dapat mundur dari 'Dikirim' ke 'Dimasak'.");
+                comboStatus.setValue(statusLama); // kembalikan ke nilai lama
+                return;
+            }
+
+            // Lanjut update jika validasi lolos
+            shipmentRepo.updateStatus(jadwal.getId(), statusBaru);
+            jadwal.setStatus(statusBaru); // Update data lokal di RAM
+            System.out.println("Status diperbarui untuk ID: " + jadwal.getId() + " menjadi " + statusBaru);
         });
 
         statusBox.getChildren().addAll(lblStatusTitle, comboStatus);

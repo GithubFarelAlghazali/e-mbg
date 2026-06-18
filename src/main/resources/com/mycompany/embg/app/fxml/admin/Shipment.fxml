@@ -3,24 +3,109 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 
-<VBox spacing="20" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.mycompany.embg.app.controllers.admin.ShipmentController"
-      style="-fx-background-color:#F8FAFC;">
+<!--
+    Halaman Monitoring Pengiriman - ADMIN
+    READ-ONLY: Admin hanya memantau status, tidak bisa mengubah apapun.
+    Perubahan status hanya bisa dilakukan oleh:
+      - Vendor : dimasak → dikirim
+      - Sekolah: dikirim → diterima
+-->
+<VBox spacing="0"
+      style="-fx-background-color: #f0f4f8; -fx-font-family: 'Segoe UI', Arial, sans-serif;"
+      xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.mycompany.embg.app.controllers.admin.AdminShipmentController">
 
-    <padding>
-        <Insets top="28" right="28" bottom="28" left="28"/>
-    </padding>
-
-    <Label text="Distribution Monitoring" style="-fx-font-size:26px; -fx-font-weight:bold;"/>
-    <Label text="Track daily meal deliveries from vendors to schools in real-time." style="-fx-text-fill:#64748B;"/>
-
-    <HBox spacing="12" style="-fx-background-color:#EFF6FF; -fx-padding:16; -fx-background-radius:12; -fx-border-color:#BFDBFE; -fx-border-radius:12;">
-        <TextField text="10/27/2023" prefWidth="180"/>
-        <ComboBox fx:id="vendorCombo" prefWidth="220"/>
-        <ComboBox fx:id="schoolCombo" prefWidth="220"/>
-        <Button text="Filter" style="-fx-background-color:#7DD3FC; -fx-text-fill:#075985; -fx-font-weight:bold;"/>
+    <!-- ===== HEADER ===== -->
+    <HBox alignment="CENTER_LEFT" spacing="16"
+          style="-fx-background-color: #ffffff; -fx-padding: 20 30; -fx-border-color: transparent transparent #e2e8f0 transparent; -fx-border-width: 1;">
+        <VBox HBox.hgrow="ALWAYS">
+            <Label text="📋  Monitoring Pengiriman"
+                   style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+            <Label text="Pantau seluruh status pengiriman. Admin tidak dapat mengubah status."
+                   style="-fx-font-size: 12; -fx-text-fill: #64748b;"/>
+        </VBox>
+        <Button onAction="#handleRefresh"
+                style="-fx-background-color: #f1f5f9; -fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #475569; -fx-font-size: 13; -fx-cursor: hand;"
+                text="🔄  Segarkan">
+            <padding><Insets bottom="8" left="16" right="16" top="8"/></padding>
+        </Button>
     </HBox>
 
-    <TableView fx:id="shipmentTable" prefHeight="390"/>
+    <VBox spacing="20" VBox.vgrow="ALWAYS">
+        <padding><Insets bottom="30" left="30" right="30" top="24"/></padding>
+
+        <!-- ===== BANNER INFO READ-ONLY ===== -->
+        <HBox alignment="CENTER_LEFT" spacing="10"
+              style="-fx-background-color: #eff6ff; -fx-border-color: #bfdbfe; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12 16;">
+            <Label text="ℹ️" style="-fx-font-size: 16;"/>
+            <Label text="Halaman ini hanya untuk memantau. Perubahan status dilakukan oleh Vendor (Dimasak → Dikirim) dan Sekolah (Dikirim → Diterima)."
+                   style="-fx-font-size: 12; -fx-text-fill: #1d4ed8;" wrapText="true" HBox.hgrow="ALWAYS"/>
+        </HBox>
+
+        <!-- ===== KARTU RINGKASAN STATUS ===== -->
+        <HBox spacing="16">
+
+            <VBox style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-padding: 18; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 6, 0, 0, 2);"
+                  HBox.hgrow="ALWAYS">
+                <Label text="Total Pengiriman" style="-fx-font-size: 12; -fx-text-fill: #64748b;"/>
+                <Label fx:id="lblTotalPengiriman" text="-"
+                       style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+            </VBox>
+
+            <VBox style="-fx-background-color: #fffbeb; -fx-background-radius: 10; -fx-padding: 18; -fx-border-color: #fde68a; -fx-border-radius: 10; -fx-border-width: 1;"
+                  HBox.hgrow="ALWAYS">
+                <Label text="🍳  Sedang Dimasak" style="-fx-font-size: 12; -fx-text-fill: #92400e;"/>
+                <Label fx:id="lblDimasak" text="-"
+                       style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #b45309;"/>
+            </VBox>
+
+            <VBox style="-fx-background-color: #eff6ff; -fx-background-radius: 10; -fx-padding: 18; -fx-border-color: #bfdbfe; -fx-border-radius: 10; -fx-border-width: 1;"
+                  HBox.hgrow="ALWAYS">
+                <Label text="🚚  Sedang Dikirim" style="-fx-font-size: 12; -fx-text-fill: #1e40af;"/>
+                <Label fx:id="lblDikirim" text="-"
+                       style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #1d4ed8;"/>
+            </VBox>
+
+            <VBox style="-fx-background-color: #f0fdf4; -fx-background-radius: 10; -fx-padding: 18; -fx-border-color: #bbf7d0; -fx-border-radius: 10; -fx-border-width: 1;"
+                  HBox.hgrow="ALWAYS">
+                <Label text="✅  Sudah Diterima" style="-fx-font-size: 12; -fx-text-fill: #14532d;"/>
+                <Label fx:id="lblDiterima" text="-"
+                       style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #15803d;"/>
+            </VBox>
+
+        </HBox>
+
+        <!-- ===== TABEL PENGIRIMAN ===== -->
+        <VBox spacing="12"
+              style="-fx-background-color: #ffffff; -fx-background-radius: 12; -fx-border-color: #e2e8f0; -fx-border-radius: 12; -fx-padding: 24; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 8, 0, 0, 3);"
+              VBox.vgrow="ALWAYS">
+
+            <Label text="Daftar Seluruh Pengiriman"
+                   style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #1e293b;"/>
+
+            <TableView fx:id="tblShipment" VBox.vgrow="ALWAYS"
+                       style="-fx-border-color: #e2e8f0; -fx-border-radius: 6; -fx-background-color: transparent; -fx-font-size: 13;"
+                       editable="false">
+                <columns>
+                    <TableColumn fx:id="colVendor"  text="VENDOR"        prefWidth="170"/>
+                    <TableColumn fx:id="colSekolah" text="SEKOLAH"       prefWidth="180"/>
+                    <TableColumn fx:id="colMenu"    text="MENU"          prefWidth="200"/>
+                    <TableColumn fx:id="colPorsi"   text="PORSI"         prefWidth="80"/>
+                    <TableColumn fx:id="colTanggal" text="TANGGAL"       prefWidth="110"/>
+                    <TableColumn fx:id="colStatus"  text="STATUS"        prefWidth="110"/>
+                </columns>
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                </columnResizePolicy>
+                <placeholder>
+                    <Label text="Belum ada data pengiriman." style="-fx-text-fill: #94a3b8;"/>
+                </placeholder>
+            </TableView>
+
+        </VBox>
+
+    </VBox>
 </VBox>
