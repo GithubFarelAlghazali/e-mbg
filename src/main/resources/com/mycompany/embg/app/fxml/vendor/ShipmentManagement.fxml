@@ -229,6 +229,7 @@
                               <VBox spacing="4.0">
                                  <children>
                                     <Label text="Update Status" textFill="#4E6766"><font><Font size="10.0" /></font></Label>
+                                    <!-- ComboBox dikunci dari controller karena sudah Diterima -->
                                     <ComboBox fx:id="comboStatus3" maxWidth="1.7976931348623157E308" style="-fx-background-color: white; -fx-background-radius: 6;" />
                                  </children>
                               </VBox>
