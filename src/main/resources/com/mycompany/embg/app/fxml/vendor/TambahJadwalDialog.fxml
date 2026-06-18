@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxWidth="420.0" minWidth="420.0" spacing="0.0" style="-fx-background-color: white; -fx-background-radius: 16; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 20, 0, 0, 4);" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.embg.app.controllers.vendor.TambahJadwalController">
+
+    <!-- HEADER -->
+    <HBox alignment="CENTER_LEFT" style="-fx-background-color: #2DACF0; -fx-background-radius: 16 16 0 0; -fx-padding: 18 20 18 20;">
+        <children>
+            <VBox HBox.hgrow="ALWAYS">
+                <children>
+                    <Label text="📅 Tambah Jadwal Pengiriman" textFill="WHITE">
+                        <font><Font name="System Bold" size="15.0" /></font>
+                    </Label>
+                    <Label text="Buat jadwal distribusi baru ke sekolah tujuan" textFill="WHITE">
+                        <font><Font size="11.0" /></font>
+                    </Label>
+                </children>
+            </VBox>
+            <Button fx:id="btnTutup" mnemonicParsing="false" onAction="#handleTutup" style="-fx-background-color: rgba(255,255,255,0.25); -fx-background-radius: 20; -fx-text-fill: white; -fx-cursor: hand;" text="✕">
+                <font><Font name="System Bold" size="13.0" /></font>
+            </Button>
+        </children>
+    </HBox>
+
+    <!-- BODY FORM -->
+    <VBox spacing="16.0" style="-fx-padding: 24 20 20 20;">
+        <children>
+
+            <!-- Vendor (read-only, dari session) -->
+            <VBox spacing="5.0">
+                <children>
+                    <Label style="-fx-text-fill: #4E6766;" text="Vendor (Anda)">
+                        <font><Font name="System Bold" size="11.0" /></font>
+                    </Label>
+                    <Label fx:id="lblVendorId" maxWidth="1.7976931348623157E308" style="-fx-background-color: #f0f0f0; -fx-background-radius: 8; -fx-padding: 10 12 10 12; -fx-text-fill: #888; -fx-font-size: 12;" text="Memuat...">
+                    </Label>
+                </children>
+            </VBox>
+
+            <!-- Sekolah Tujuan -->
+            <VBox spacing="5.0">
+                <children>
+                    <Label style="-fx-text-fill: #4E6766;" text="Sekolah Tujuan *">
+                        <font><Font name="System Bold" size="11.0" /></font>
+                    </Label>
+                    <ComboBox fx:id="comboSekolah" maxWidth="1.7976931348623157E308" promptText="Pilih sekolah tujuan..." style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #ddd; -fx-border-radius: 8; -fx-border-width: 1.5;" />
+                </children>
+            </VBox>
+
+            <!-- Menu Makanan -->
+            <VBox spacing="5.0">
+                <children>
+                    <Label style="-fx-text-fill: #4E6766;" text="Menu Makanan *">
+                        <font><Font name="System Bold" size="11.0" /></font>
+                    </Label>
+                    <ComboBox fx:id="comboMenu" maxWidth="1.7976931348623157E308" promptText="Pilih menu hari ini..." style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #ddd; -fx-border-radius: 8; -fx-border-width: 1.5;" />
+                </children>
+            </VBox>
+
+            <!-- Jumlah Porsi & Tanggal -->
+            <HBox spacing="15.0">
+                <children>
+                    <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                        <children>
+                            <Label style="-fx-text-fill: #4E6766;" text="Jumlah Porsi *">
+                                <font><Font name="System Bold" size="11.0" /></font>
+                            </Label>
+                            <Spinner fx:id="spinnerPorsi" editable="true" initialValue="100" max="9999" maxWidth="1.7976931348623157E308" min="1" style="-fx-background-color: white; -fx-border-color: #ddd; -fx-border-radius: 8; -fx-border-width: 1.5;" />
+                        </children>
+                    </VBox>
+                    <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                        <children>
+                            <Label style="-fx-text-fill: #4E6766;" text="Tanggal Pengiriman *">
+                                <font><Font name="System Bold" size="11.0" /></font>
+                            </Label>
+                            <DatePicker fx:id="datePicker" maxWidth="1.7976931348623157E308" style="-fx-background-color: white; -fx-border-color: #ddd; -fx-border-radius: 8;" />
+                        </children>
+                    </VBox>
+                </children>
+            </HBox>
+
+            <!-- Error label -->
+            <Label fx:id="lblError" style="-fx-text-fill: #e74c3c; -fx-font-size: 11;" text="" wrapText="true" />
+
+            <Separator />
+
+            <!-- Tombol -->
+            <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                <children>
+                    <Button mnemonicParsing="false" onAction="#handleTutup" style="-fx-background-color: #f0f0f0; -fx-background-radius: 8; -fx-cursor: hand;" text="Batal">
+                        <font><Font size="13.0" /></font>
+                        <padding><Insets bottom="9.0" left="20.0" right="20.0" top="9.0" /></padding>
+                    </Button>
+                    <Button fx:id="btnSimpan" mnemonicParsing="false" onAction="#handleSimpan" style="-fx-background-color: #2DACF0; -fx-background-radius: 8; -fx-cursor: hand;" text="Simpan Jadwal" textFill="WHITE">
+                        <font><Font name="System Bold" size="13.0" /></font>
+                        <padding><Insets bottom="9.0" left="20.0" right="20.0" top="9.0" /></padding>
+                    </Button>
+                </children>
+            </HBox>
+
+        </children>
+    </VBox>
+
+</VBox>

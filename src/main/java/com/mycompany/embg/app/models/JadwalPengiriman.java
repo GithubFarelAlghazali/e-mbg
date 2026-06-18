@@ -15,6 +15,7 @@ public class JadwalPengiriman {
     private String sekolahId;
     private String menu;
     private int jumlahPorsi;
+    private String tanggal;
     private String status;
 
     public JadwalPengiriman(
@@ -23,7 +24,8 @@ public class JadwalPengiriman {
             String sekolahId,
             String menu,
             int jumlahPorsi,
-            String status
+            String status,
+            String tanggal
     ) {
         this.id = id;
         this.vendorId = vendorId;
@@ -31,14 +33,16 @@ public class JadwalPengiriman {
         this.menu = menu;
         this.jumlahPorsi = jumlahPorsi;
         this.status = status;
+        this.tanggal = tanggal;
     }
 
     public String getId() { return id; }
-    public String getVendorId() { return vendorId; }
-    public String getSekolahId() { return sekolahId; }
-    public String getMenu() { return menu; }
-    public int getJumlahPorsi() { return jumlahPorsi; }
-    public String getStatus() { return status; }
+    public String getVendorId() { return this.vendorId; }
+    public String getSekolahId() { return this.sekolahId; }
+    public String getMenu() { return this.menu; }
+    public int getJumlahPorsi() { return this.jumlahPorsi; }
+    public String getStatus() { return this.status; }
+    public String getTanggal() { return this.tanggal; }
 
     public void setStatus(String status) {
         this.status = status;
