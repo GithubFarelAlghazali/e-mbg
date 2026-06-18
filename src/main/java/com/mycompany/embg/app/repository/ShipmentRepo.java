@@ -24,7 +24,23 @@ public class ShipmentRepo {
     
     public List<JadwalPengiriman> getJadwal(String idVendor) throws SQLException {
         List<JadwalPengiriman> listJadwal = new ArrayList<>();
-        String sql = "SELECT * FROM jadwal WHERE vendor_id = ?::uuid";
+
+        // Menggunakan JOIN untuk mengambil nama sekolah dan nama menu
+        // Asumsi: 
+        // 1. Nama tabel sekolah adalah 'sekolah' dan kolom namanya adalah 'nama'
+        // 2. Nama tabel menu adalah 'menu' dan kolom namanya adalah 'nama'
+        String sql = "SELECT "
+                + "  j.id, "
+                + "  j.vendor_id, "
+                + "  s.username AS nama_sekolah, "
+                + "  m.nama_produk AS nama_menu, "
+                + "  j.jumlah_porsi, "
+                + "  j.status, "
+                + "  j.tanggal "
+                + "FROM jadwal j "
+                + "JOIN users s ON j.sekolah_id = s.id::uuid "
+                + "JOIN menu m ON j.menu_id = m.id::uuid "
+                + "WHERE j.vendor_id = ?::uuid";
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, idVendor);
@@ -33,11 +49,11 @@ public class ShipmentRepo {
                 listJadwal.add(new JadwalPengiriman(
                         rs.getString("id"),
                         rs.getString("vendor_id"),
-                        rs.getString("sekolah_id"),
-                        rs.getString("menu_id"),
+                        rs.getString("nama_sekolah"), // Masuk ke field sekolahId di model
+                        rs.getString("nama_menu"), // Masuk ke field menu di model
                         rs.getInt("jumlah_porsi"),
                         rs.getString("status"),
-                        rs.getString("tanggal")        
+                        rs.getString("tanggal")
                 ));
             }
         } catch (SQLException e) {
@@ -45,8 +61,8 @@ public class ShipmentRepo {
         }
         return listJadwal;
     }
-    
-    public void updateStatus(String jadwalId, String status){
+
+        public void updateStatus(String jadwalId, String status){
         String sql = "UPDATE jadwal SET status = ? WHERE id = ?::uuid";
         
         try(PreparedStatement stmt = conn.prepareStatement(sql)){
@@ -59,58 +75,4 @@ public class ShipmentRepo {
         }
     }
     
-//    private static final List<Shipment> shipmentList =
-//            new ArrayList<>();
-//
-//    static {
-//
-//        shipmentList.add(
-//                new Shipment(
-//                        "1",
-//                        "SD Negeri 01 Menteng",
-//                        "Nasi Ayam",
-//                        150,
-//                        "Dimasak"
-//                )
-//        );
-//
-//        shipmentList.add(
-//                new Shipment(
-//                        "2",
-//                        "SMP Bina Bangsa",
-//                        "Nasi Ikan",
-//                        220,
-//                        "Dikirim"
-//                )
-//        );
-//
-//        shipmentList.add(
-//                new Shipment(
-//                        "3",
-//                        "SMA 4 Jakarta",
-//                        "Nasi Daging",
-//                        350,
-//                        "Diterima"
-//                )
-//        );
-//    }
-//
-//    public List<Shipment> getAllShipments() {
-//        return shipmentList;
-//    }
-//
-//    public void updateStatus(
-//            String shipmentId,
-//            String status
-//    ) {
-//
-//        for (Shipment s : shipmentList) {
-//
-//            if (s.getId().equals(shipmentId)) {
-//
-//                s.setStatus(status);
-//                break;
-//            }
-//        }
-//    }
 }
