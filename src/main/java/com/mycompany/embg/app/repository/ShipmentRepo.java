@@ -1,7 +1,6 @@
 package com.mycompany.embg.app.repository;
 
 import com.mycompany.embg.app.models.JadwalPengiriman;
-import com.mycompany.embg.app.models.Shipment;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

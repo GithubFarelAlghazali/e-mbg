@@ -15,8 +15,10 @@ public class MenuMakanan extends Produk {
     public MenuMakanan(
         String namaMenu,
         int harga,
+        String id,
+        String vendorId,
         BahanMakanan[] daftarBahan){
-        super(namaMenu, harga);
+        super(namaMenu, harga, id, vendorId);
     }
     
     public String getNamaMenu(){
