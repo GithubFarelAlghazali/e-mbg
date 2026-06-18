@@ -39,7 +39,7 @@ public class ShipmentRepo {
                 + "  j.tanggal "
                 + "FROM jadwal j "
                 + "JOIN users s ON j.sekolah_id = s.id::uuid "
-                + "JOIN menu m ON j.menu_id = m.id::uuid "
+                + "JOIN products m ON j.menu_id = m.id::uuid "
                 + "WHERE j.vendor_id = ?::uuid";
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -77,7 +77,7 @@ public class ShipmentRepo {
                 + "  j.tanggal "
                 + "FROM jadwal j "
                 + "JOIN users s ON j.sekolah_id = s.id::uuid "
-                + "JOIN menu m ON j.menu_id = m.id::uuid "
+                + "JOIN products m ON j.menu_id = m.id::uuid "
                 + "JOIN users v ON j.vendor_id = v.id::uuid"; // Menghubungkan vendor_id ke tabel users
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
