@@ -39,7 +39,8 @@ public class ProfilSekolahKontroler {
 
     @FXML
     void aksiKeluar(ActionEvent event) {
-        System.out.println("Tindakan: Keluar (Logout) dari sistem portal admin...");
+        com.mycompany.embg.app.services.UserSession.clearSession();
+        Redirect.redirectPage(event, "/com/mycompany/embg/app/fxml/auth/LoginPage.fxml");
     }
     
         @FXML

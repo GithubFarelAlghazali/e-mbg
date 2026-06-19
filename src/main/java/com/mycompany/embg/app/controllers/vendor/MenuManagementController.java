@@ -117,4 +117,10 @@ private void handleBukaInventory(ActionEvent event) {
     Redirect.redirectPage(event,"/com/mycompany/embg/app/fxml/vendor/InventoryManagement.fxml");}
 
 
+
+    @FXML
+    private void handleLogout(ActionEvent event) {
+        com.mycompany.embg.app.services.UserSession.clearSession();
+        Redirect.redirectPage(event, "/com/mycompany/embg/app/fxml/auth/LoginPage.fxml");
+    }
 }

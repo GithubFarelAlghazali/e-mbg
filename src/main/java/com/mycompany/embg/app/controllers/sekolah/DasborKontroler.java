@@ -154,4 +154,10 @@ public class DasborKontroler {
     private void clickProfil(ActionEvent event) {
         Redirect.redirectPage(event, "/com/mycompany/embg/app/fxml/sekolah/ProfilSekolah.fxml");
     }
+
+    @FXML
+    private void aksiKeluar(ActionEvent event) {
+        UserSession.clearSession();
+        Redirect.redirectPage(event, "/com/mycompany/embg/app/fxml/auth/LoginPage.fxml");
+    }
 }

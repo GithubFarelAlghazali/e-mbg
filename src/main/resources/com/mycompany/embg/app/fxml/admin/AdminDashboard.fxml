@@ -30,7 +30,7 @@
             <Button text="+ New Report" maxWidth="Infinity"
                     style="-fx-background-color:#7DD3FC; -fx-text-fill:#075985; -fx-font-weight:bold;"/>
 
-            <Button text="Logout" maxWidth="Infinity"/>
+            <Button text="Logout" maxWidth="Infinity" onAction="#handleLogout" style="-fx-text-fill: #ef4444; -fx-font-weight: bold;"/>
         </VBox>
     </left>
 
