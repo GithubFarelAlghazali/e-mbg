@@ -1,50 +1,79 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.embg.app.models;
 
-/**
- *
- * @author User
- */
 public class JadwalPengiriman {
 
     private String id;
-    private String vendorId;
-    private String sekolahId;
-    private String menu;
+    private String namaVendor;   // ← ganti vendorId
+    private String namaSekolah;  // ← ganti sekolahId
+    private String namaMenu;     // ← ganti menu
     private int jumlahPorsi;
     private String tanggal;
     private String status;
 
     public JadwalPengiriman(
             String id,
-            String vendorId,
-            String sekolahId,
-            String menu,
+            String namaVendor,
+            String namaSekolah,
+            String namaMenu,
             int jumlahPorsi,
-            String status,
-            String tanggal
+            String tanggal,
+            String status
     ) {
         this.id = id;
-        this.vendorId = vendorId;
-        this.sekolahId = sekolahId;
-        this.menu = menu;
+        this.namaVendor = namaVendor;
+        this.namaSekolah = namaSekolah;
+        this.namaMenu = namaMenu;
         this.jumlahPorsi = jumlahPorsi;
-        this.status = status;
         this.tanggal = tanggal;
+        this.status = status;
     }
 
-    public String getId() { return id; }
-    public String getVendorId() { return this.vendorId; }
-    public String getSekolahId() { return this.sekolahId; }
-    public String getMenu() { return this.menu; }
-    public int getJumlahPorsi() { return this.jumlahPorsi; }
-    public String getStatus() { return this.status; }
-    public String getTanggal() { return this.tanggal; }
+    public String getId() {
+        return id;
+    }
+
+    public String getNamaVendor() {
+        return namaVendor;
+    }
+
+    public String getNamaSekolah() {
+        return namaSekolah;
+    }
+
+    public String getNamaMenu() {
+        return namaMenu;
+    }
+
+    public int getJumlahPorsi() {
+        return jumlahPorsi;
+    }
+
+    public String getTanggal() {
+        return tanggal;
+    }
+
+    public String getStatus() {
+        return status;
+    }
 
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public void setMenu(String menu) {
+        this.namaMenu = menu;
+    }
+
+    public void setSekolah(String sekolah) {
+        this.namaSekolah = sekolah;
+    }
+
+    public void setPorsi(int porsi) {
+        this.jumlahPorsi = porsi;
+    }
+
+    public void setTanggal(String tanggal) {
+        this.tanggal = tanggal;
+    }
+
 }

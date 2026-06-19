@@ -1,6 +1,6 @@
 package com.mycompany.embg.app.controllers.admin;
 
-import com.mycompany.embg.app.models.JadwalItem;
+import com.mycompany.embg.app.models.JadwalPengiriman;
 import com.mycompany.embg.app.repository.JadwalRepo;
 import com.mycompany.embg.app.services.AlertPopup;
 
@@ -25,13 +25,13 @@ import java.util.List;
  */
 public class AdminShipmentController {
 
-    @FXML private TableView<JadwalItem> tblShipment;
-    @FXML private TableColumn<JadwalItem, String> colVendor;
-    @FXML private TableColumn<JadwalItem, String> colSekolah;
-    @FXML private TableColumn<JadwalItem, String> colMenu;
-    @FXML private TableColumn<JadwalItem, String> colPorsi;
-    @FXML private TableColumn<JadwalItem, String> colTanggal;
-    @FXML private TableColumn<JadwalItem, String> colStatus;
+    @FXML private TableView<JadwalPengiriman> tblShipment;
+    @FXML private TableColumn<JadwalPengiriman, String> colVendor;
+    @FXML private TableColumn<JadwalPengiriman, String> colSekolah;
+    @FXML private TableColumn<JadwalPengiriman, String> colMenu;
+    @FXML private TableColumn<JadwalPengiriman, String> colPorsi;
+    @FXML private TableColumn<JadwalPengiriman, String> colTanggal;
+    @FXML private TableColumn<JadwalPengiriman, String> colStatus;
 
     @FXML private Label lblTotalPengiriman;
     @FXML private Label lblDimasak;
@@ -56,7 +56,7 @@ public class AdminShipmentController {
 
         // Kolom status dengan pewarnaan — admin hanya melihat, tidak ada aksi
         colStatus.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getStatus()));
-        colStatus.setCellFactory(column -> new TableCell<JadwalItem, String>() {
+        colStatus.setCellFactory(column -> new TableCell<JadwalPengiriman, String>() {
             @Override
             protected void updateItem(String status, boolean empty) {
                 super.updateItem(status, empty);
@@ -85,8 +85,8 @@ public class AdminShipmentController {
 
     private void loadAllShipments() {
         try {
-            List<JadwalItem> data = jadwalRepo.getAllJadwal();
-            ObservableList<JadwalItem> list = FXCollections.observableArrayList(data);
+            List<JadwalPengiriman> data = jadwalRepo.getAllJadwal();
+            ObservableList<JadwalPengiriman> list = FXCollections.observableArrayList(data);
             tblShipment.setItems(list);
             updateSummaryLabels(data);
         } catch (SQLException e) {
@@ -95,8 +95,7 @@ public class AdminShipmentController {
         }
     }
 
-    /** Hitung ringkasan per status dan tampilkan di label summary */
-    private void updateSummaryLabels(List<JadwalItem> data) {
+    private void updateSummaryLabels(List<JadwalPengiriman> data) {
         long dimasak  = data.stream().filter(j -> "dimasak".equalsIgnoreCase(j.getStatus())).count();
         long dikirim  = data.stream().filter(j -> "dikirim".equalsIgnoreCase(j.getStatus())).count();
         long diterima = data.stream().filter(j -> "diterima".equalsIgnoreCase(j.getStatus())).count();

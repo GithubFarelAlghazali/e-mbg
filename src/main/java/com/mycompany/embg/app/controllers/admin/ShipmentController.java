@@ -1,7 +1,7 @@
 package com.mycompany.embg.app.controllers.admin;
 
 import com.mycompany.embg.app.models.JadwalPengiriman;
-import com.mycompany.embg.app.repository.ShipmentRepo;
+import com.mycompany.embg.app.repository.JadwalRepo;
 import java.sql.SQLException;
 
 import javafx.beans.property.SimpleIntegerProperty;
@@ -31,7 +31,7 @@ public class ShipmentController {
 
         colSekolah.setCellValueFactory(data ->
                 new SimpleStringProperty(
-                        data.getValue().getSekolahId()
+                        data.getValue().getNamaSekolah()
                         
                 )
         );
@@ -41,7 +41,7 @@ public class ShipmentController {
 
         colMenu.setCellValueFactory(data ->
                 new SimpleStringProperty(
-                        data.getValue().getMenu()
+                        data.getValue().getNamaMenu()
                 )
         );
 
@@ -70,14 +70,14 @@ public class ShipmentController {
                 colStatus
         );
 
-        ShipmentRepo repo;
+        JadwalRepo repo;
         
         try {
 
-            repo = new ShipmentRepo();
+            repo = new JadwalRepo();
             shipmentTable.setItems(
                     FXCollections.observableArrayList(
-                            repo.getJadwal()
+                            repo.getAllJadwal()
                     )
             );
         } catch (SQLException e) {

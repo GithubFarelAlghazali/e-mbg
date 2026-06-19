@@ -1,6 +1,6 @@
 package com.mycompany.embg.app.controllers.sekolah;
 
-import com.mycompany.embg.app.models.JadwalItem;
+import com.mycompany.embg.app.models.JadwalPengiriman;
 import com.mycompany.embg.app.repository.JadwalRepo;
 import com.mycompany.embg.app.services.AlertPopup;
 import com.mycompany.embg.app.services.Redirect;
@@ -20,15 +20,15 @@ import java.util.List;
 
 public class PelacakMakananKontroler {
 
-    @FXML private TableView<JadwalItem> tblPelacakMakan;
-    @FXML private TableColumn<JadwalItem, String> colVendor;
-    @FXML private TableColumn<JadwalItem, String> colMenu;
-    @FXML private TableColumn<JadwalItem, String> colPorsi;
-    @FXML private TableColumn<JadwalItem, String> colTanggal;
-    @FXML private TableColumn<JadwalItem, String> colStatus;
+    @FXML private TableView<JadwalPengiriman> tblPelacakMakan;
+    @FXML private TableColumn<JadwalPengiriman, String> colVendor;
+    @FXML private TableColumn<JadwalPengiriman, String> colMenu;
+    @FXML private TableColumn<JadwalPengiriman, String> colPorsi;
+    @FXML private TableColumn<JadwalPengiriman, String> colTanggal;
+    @FXML private TableColumn<JadwalPengiriman, String> colStatus;
 
     private JadwalRepo jadwalRepo;
-    private ObservableList<JadwalItem> listJadwal;
+    private ObservableList<JadwalPengiriman> listJadwal;
 
     @FXML
     public void initialize() {
@@ -51,7 +51,7 @@ public class PelacakMakananKontroler {
         
         // Setup cell factory agar status tampil dengan pewarnaan
         colStatus.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getStatus()));
-        colStatus.setCellFactory(column -> new TableCell<JadwalItem, String>() {
+        colStatus.setCellFactory(column -> new TableCell<JadwalPengiriman, String>() {
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
@@ -75,7 +75,7 @@ public class PelacakMakananKontroler {
             tblPelacakMakan.getItems().clear();
             String idSekolahAktif = UserSession.getCurrentUserId(); 
             
-            List<JadwalItem> data = jadwalRepo.getJadwalBySekolah(idSekolahAktif);
+            List<JadwalPengiriman> data = jadwalRepo.getJadwalBySekolah(idSekolahAktif);
             if (data != null) {
                 listJadwal.setAll(data);
                 tblPelacakMakan.setItems(listJadwal);
@@ -88,7 +88,7 @@ public class PelacakMakananKontroler {
 
     @FXML
     void handleKonfirmasiPenerimaan(ActionEvent event) {
-        JadwalItem selected = tblPelacakMakan.getSelectionModel().getSelectedItem();
+        JadwalPengiriman selected = tblPelacakMakan.getSelectionModel().getSelectedItem();
         
         if (selected == null) {
             AlertPopup.showAlert(AlertType.WARNING, "Pilih pengiriman yang ingin dikonfirmasi!");

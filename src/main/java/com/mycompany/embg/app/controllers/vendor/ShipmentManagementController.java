@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.mycompany.embg.app.models.JadwalPengiriman;
-import com.mycompany.embg.app.repository.ShipmentRepo;
+import com.mycompany.embg.app.repository.JadwalRepo;
 import com.mycompany.embg.app.services.AlertPopup;
 import com.mycompany.embg.app.services.Redirect;
 import com.mycompany.embg.app.services.UserSession;
@@ -57,7 +57,7 @@ public class ShipmentManagementController implements Initializable {
     @FXML
     private VBox btnAssignRouteBox;
 
-    private ShipmentRepo shipmentRepo;
+    private JadwalRepo JadwalRepo;
 
     // Opsi yang boleh dipilih vendor (Diterima tidak termasuk)
     private static final ObservableList<String> VENDOR_STATUS_OPTIONS =
@@ -65,17 +65,14 @@ public class ShipmentManagementController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
+    
             // Inisialisasi repo (akan melempar SQLException jika koneksi DB gagal)
-            shipmentRepo = new ShipmentRepo();
+            JadwalRepo = new JadwalRepo();
 
             // Panggil method untuk me-render card dari database
             muatDataShipment();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-            AlertPopup.showAlert(AlertType.ERROR, "Koneksi Database Gagal: " + e.getMessage());
-        }
+      
     }
 
     private void muatDataShipment() {
@@ -91,7 +88,7 @@ public class ShipmentManagementController implements Initializable {
 
         try {
             // 2. Ambil data asli dari Database via Repo
-            List<JadwalPengiriman> listJadwal = shipmentRepo.getJadwalbyVendor(currentVendorId);
+            List<JadwalPengiriman> listJadwal = JadwalRepo.getJadwalByVendor(currentVendorId);
             ObservableList<String> statusOptions = FXCollections.observableArrayList("Dimasak", "Dikirim", "Diterima");
 
             // 3. Looping data dan buat UI Card-nya satu per satu
@@ -124,7 +121,7 @@ public class ShipmentManagementController implements Initializable {
 
         VBox titleBox = new VBox();
         HBox.setHgrow(titleBox, Priority.ALWAYS);
-        Label title = new Label(jadwal.getSekolahId());
+        Label title = new Label(jadwal.getNamaSekolah());
         title.setFont(Font.font("System", FontWeight.BOLD, 13));
         title.setStyle("-fx-text-fill: #1E152A;");
         title.setWrapText(true);
@@ -159,7 +156,7 @@ public class ShipmentManagementController implements Initializable {
         lblMenuTitle.setFont(Font.font("System", 10));
         lblMenuTitle.setStyle("-fx-text-fill: #4E6766;");
 
-        Label lblMenuValue = new Label(jadwal.getMenu());
+        Label lblMenuValue = new Label(jadwal.getNamaMenu());
         lblMenuValue.setFont(Font.font("System", 11));
         lblMenuValue.setStyle("-fx-text-fill: #1E152A;");
         lblMenuValue.setWrapText(true);
@@ -201,9 +198,19 @@ public class ShipmentManagementController implements Initializable {
             }
 
             // Lanjut update jika validasi lolos
-            shipmentRepo.updateStatus(jadwal.getId(), statusBaru);
-            jadwal.setStatus(statusBaru); // Update data lokal di RAM
-            System.out.println("Status diperbarui untuk ID: " + jadwal.getId() + " menjadi " + statusBaru);
+            // Sesudah
+            try {
+                JadwalRepo.updateStatusVendor(jadwal.getId(), statusBaru);
+                jadwal.setStatus(statusBaru); // Update data lokal di RAM
+                System.out.println("Status diperbarui untuk ID: " + jadwal.getId() + " menjadi " + statusBaru);
+            } catch (SQLException err) {
+                err.printStackTrace();
+                AlertPopup.showAlert(AlertType.ERROR, "Gagal update status: " + err.getMessage());
+            } catch (IllegalStateException err) {
+                AlertPopup.showAlert(AlertType.WARNING, err.getMessage());
+            }            
+//            JadwalRepo.updateStatusVendor(jadwal.getId(), statusBaru);
+            
         });
 
         statusBox.getChildren().addAll(lblStatusTitle, comboStatus);
