@@ -126,4 +126,10 @@ public class PelacakMakananKontroler {
     @FXML private void clickSiswa(ActionEvent event) { Redirect.redirectPage(event, "/com/mycompany/embg/app/fxml/sekolah/DirektoriSiswa.fxml"); }
     @FXML private void clickDistribusi(ActionEvent event) { Redirect.redirectPage(event, "/com/mycompany/embg/app/fxml/sekolah/PelacakMakanan.fxml"); }
     @FXML private void clickProfil(ActionEvent event) { Redirect.redirectPage(event, "/com/mycompany/embg/app/fxml/sekolah/ProfilSekolah.fxml"); }
+
+    @FXML
+    private void aksiKeluar(ActionEvent event) {
+        UserSession.clearSession();
+        Redirect.redirectPage(event, "/com/mycompany/embg/app/fxml/auth/LoginPage.fxml");
+    }
 }

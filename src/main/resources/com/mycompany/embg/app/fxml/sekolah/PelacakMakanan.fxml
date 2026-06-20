@@ -42,7 +42,7 @@
                     <children>
                         <Button maxWidth="Infinity" style="-fx-background-color: #006b3f; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10; -fx-background-radius: 6; -fx-cursor: hand;" text="📥 Ekspor Laporan" />
                         <Button alignment="BASELINE_LEFT" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-size: 13; -fx-padding: 10 15; -fx-cursor: hand;" text="⚙  Pengaturan" />
-                        <Button alignment="BASELINE_LEFT" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-text-fill: #475569; -fx-font-size: 13; -fx-padding: 10 15; -fx-cursor: hand;" text="🚪  Keluar" />
+                        <Button alignment="BASELINE_LEFT" maxWidth="Infinity" onAction="#aksiKeluar" style="-fx-background-color: transparent; -fx-text-fill: #ef4444; -fx-font-weight: bold; -fx-font-size: 13; -fx-padding: 10 15; -fx-cursor: hand;" text="🚪  Keluar" />
                     </children>
                 </VBox>
             </children>

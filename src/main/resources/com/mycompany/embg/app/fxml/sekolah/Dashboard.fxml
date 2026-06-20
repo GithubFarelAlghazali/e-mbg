@@ -59,6 +59,9 @@
                 <Button alignment="BASELINE_LEFT" maxWidth="Infinity"
                         style="-fx-background-color: transparent; -fx-text-fill: #64748b; -fx-font-size: 13; -fx-padding: 12 15 12 20; -fx-cursor: hand;"
                         text="❓  Dukungan" />
+                <Button alignment="BASELINE_LEFT" maxWidth="Infinity" onAction="#aksiKeluar"
+                        style="-fx-background-color: transparent; -fx-text-fill: #ef4444; -fx-font-weight: bold; -fx-font-size: 13; -fx-padding: 12 15 12 20; -fx-cursor: hand;"
+                        text="🚪  Keluar" />
             </children>
         </VBox>
     </left>
