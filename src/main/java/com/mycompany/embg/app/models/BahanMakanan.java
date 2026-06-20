@@ -18,8 +18,10 @@ public class BahanMakanan extends Produk {
             int harga,
             int jumlah,
             String satuan,
-            NilaiGizi gizi){
-        super(namaProduk, harga);
+            NilaiGizi gizi,
+            String id,
+            String vendorId){
+        super(namaProduk, harga, id, vendorId);
         this.jumlah = jumlah;
         this.satuan = satuan;
         this.infoGizi = gizi;

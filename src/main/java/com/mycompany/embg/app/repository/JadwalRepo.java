@@ -1,27 +1,19 @@
 package com.mycompany.embg.app.repository;
 
 import com.mycompany.embg.app.config.DbConfig;
-import com.mycompany.embg.app.models.JadwalItem;
+import com.mycompany.embg.app.models.JadwalPengiriman;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Repository untuk tabel 'jadwal'.
- *
- * Alur status yang diizinkan:
- * VENDOR  : dimasak → dikirim
- * SEKOLAH : dikirim → diterima   (satu-satunya transisi yang boleh)
- * ADMIN/DINAS : read-only (pantau semua status)
- */
 public class JadwalRepo {
 
     // ─────────────────────────────────────────────
     // READ – ambil semua jadwal (untuk admin/dinas)
     // ─────────────────────────────────────────────
-    public List<JadwalItem> getAllJadwal() throws SQLException {
-        List<JadwalItem> list = new ArrayList<>();
+    public List<JadwalPengiriman> getAllJadwal() throws SQLException {
+        List<JadwalPengiriman> list = new ArrayList<>();
         String sql = """
                 SELECT
                     j.id,
@@ -96,8 +88,8 @@ public class JadwalRepo {
     // ─────────────────────────────────────────────
     // READ – jadwal milik vendor tertentu
     // ─────────────────────────────────────────────
-    public List<JadwalItem> getJadwalByVendor(String vendorId) throws SQLException {
-        List<JadwalItem> list = new ArrayList<>();
+    public List<JadwalPengiriman> getJadwalByVendor(String vendorId) throws SQLException {
+        List<JadwalPengiriman> list = new ArrayList<>();
         String sql = """
                 SELECT
                     j.id,
@@ -129,8 +121,8 @@ public class JadwalRepo {
     // ─────────────────────────────────────────────
     // READ – jadwal milik sekolah tertentu
     // ─────────────────────────────────────────────
-    public List<JadwalItem> getJadwalBySekolah(String sekolahId) throws SQLException {
-        List<JadwalItem> list = new ArrayList<>();
+    public List<JadwalPengiriman> getJadwalBySekolah(String sekolahId) throws SQLException {
+        List<JadwalPengiriman> list = new ArrayList<>();
         String sql = """
                 SELECT
                     j.id,
@@ -213,7 +205,7 @@ public class JadwalRepo {
     // ─────────────────────────────────────────────
     // CREATE – Vendor membuat jadwal/pengiriman baru (Diselaraskan dengan DbConfig)
     // ─────────────────────────────────────────────
-    public void tambahJadwal(JadwalItem item, String idVendor) throws SQLException {
+    public void tambahJadwal(JadwalPengiriman item, String idVendor) throws SQLException {
         // Query disesuaikan dengan skema UUID dan penamaan kolom database yang konsisten
         String query = """
             INSERT INTO jadwal (vendor_id, sekolah_id, menu_id, jumlah_porsi, tanggal, status) 
@@ -261,13 +253,13 @@ public class JadwalRepo {
     }
 
     // ─────────────────────────────────────────────
-    // HELPER – mapping ResultSet → JadwalItem
+    // HELPER – mapping ResultSet → JadwalPengiriman
     // ─────────────────────────────────────────────
-    private JadwalItem mapRow(ResultSet rs) throws SQLException {
-        return new JadwalItem(
+    private JadwalPengiriman mapRow(ResultSet rs) throws SQLException {
+        return new JadwalPengiriman(
                 rs.getString("id"),
-                rs.getString("nama_sekolah"),
                 rs.getString("nama_vendor"),
+                rs.getString("nama_sekolah"),
                 rs.getString("nama_menu"),
                 rs.getInt("jumlah_porsi"),
                 rs.getString("tanggal"),

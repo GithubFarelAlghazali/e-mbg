@@ -11,10 +11,14 @@ package com.mycompany.embg.app.models;
 public class Produk {
     private String namaProduk;
     private int harga;
+    private String id;
+    private String vendorId;
     
-    public Produk(String namaProduk, int harga){
+    public Produk(String namaProduk, int harga, String id, String vendorId){
         this.namaProduk = namaProduk;
         this.harga = harga;
+        this.id = id;
+        this.vendorId = vendorId;
     }
     
     public String getNama(){
@@ -23,6 +27,14 @@ public class Produk {
     
     public int getHarga(){
         return this.harga;
+    }
+  
+    public String getId(){
+        return this.id;
+    }
+    
+    public String getVendorId(){
+        return this.vendorId;
     }
     
     public void setNama(String namaProduk){

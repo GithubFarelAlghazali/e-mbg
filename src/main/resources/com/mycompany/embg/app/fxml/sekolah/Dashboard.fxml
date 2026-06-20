@@ -17,17 +17,18 @@
 <?import javafx.scene.shape.Circle?>
 
 <BorderPane style="-fx-background-color: #f8fafc; -fx-font-family: 'Segoe UI', Arial, sans-serif;"
-            xmlns="http://javafx.com/javafx/26"
+            xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.mycompany.embg.app.controllers.sekolah.DasborKontroler">
 
-    <!-- ===== SIDEBAR KIRI ===== -->
     <left>
         <VBox prefWidth="220.0" spacing="5.0"
               style="-fx-background-color: #ffffff; -fx-border-color: transparent #e2e8f0 transparent transparent; -fx-border-width: 1;">
             <children>
                 <HBox alignment="CENTER_LEFT" spacing="12.0">
-                    <padding><Insets bottom="25.0" left="15.0" top="15.0" /></padding>
+                    <padding>
+                        <Insets bottom="25.0" left="15.0" top="15.0" />
+                    </padding>
                     <children>
                         <Label style="-fx-background-color: #22c55e; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8; -fx-background-radius: 8; -fx-font-size: 14;" text="MB" />
                         <VBox alignment="CENTER_LEFT">
@@ -65,10 +66,8 @@
         </VBox>
     </left>
 
-    <!-- ===== KONTEN UTAMA ===== -->
     <center>
         <BorderPane>
-            <!-- Topbar -->
             <top>
                 <HBox alignment="CENTER_LEFT" spacing="20.0"
                       style="-fx-background-color: #ffffff; -fx-padding: 15 30; -fx-border-color: transparent transparent #e2e8f0 transparent; -fx-border-width: 1;">
@@ -96,14 +95,11 @@
                             style="-fx-background-color: transparent; -fx-control-inner-background: #f8fafc; -fx-border-color: transparent; -fx-padding: 0;">
                     <content>
                         <VBox>
-                            <!-- ============================================================ -->
-                            <!-- PANEL 1: EMPTY STATE (jumlah_siswa = 0 atau null)            -->
-                            <!-- Ditampilkan/disembunyikan oleh DasborKontroler.java          -->
-                            <!-- ============================================================ -->
                             <VBox fx:id="emptyStatePanel" alignment="CENTER" spacing="20.0" visible="false" managed="false">
-                                <padding><Insets bottom="60.0" left="60.0" right="60.0" top="60.0" /></padding>
+                                <padding>
+                                    <Insets bottom="60.0" left="60.0" right="60.0" top="60.0" />
+                                </padding>
                                 <children>
-                                    <!-- Header sambutan -->
                                     <HBox alignment="CENTER_LEFT">
                                         <children>
                                             <VBox spacing="2">
@@ -118,7 +114,6 @@
                                         </children>
                                     </HBox>
 
-                                    <!-- Kartu setup awal -->
                                     <VBox alignment="CENTER" spacing="20.0"
                                           style="-fx-background-color: #ffffff; -fx-background-radius: 16; -fx-padding: 40; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.07), 12, 0, 0, 4); -fx-border-color: #e2e8f0; -fx-border-radius: 16; -fx-border-width: 1;">
                                         <children>
@@ -128,7 +123,6 @@
                                             <Label style="-fx-font-size: 13; -fx-text-fill: #64748b; -fx-wrap-text: true; -fx-text-alignment: center; -fx-max-width: 420;"
                                                    text="Untuk menggunakan fitur distribusi makanan dan direktori siswa, Anda perlu mengisi total jumlah siswa di sekolah Anda terlebih dahulu." />
 
-                                            <!-- Form input jumlah siswa -->
                                             <VBox spacing="10" maxWidth="360">
                                                 <Label style="-fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #334155;"
                                                        text="Total Jumlah Siswa (seluruh sekolah)" />
@@ -149,15 +143,12 @@
                                 </children>
                             </VBox>
 
-                            <!-- ============================================================ -->
-                            <!-- PANEL 2: MAIN DASHBOARD (jumlah_siswa sudah terisi)         -->
-                            <!-- Ditampilkan/disembunyikan oleh DasborKontroler.java          -->
-                            <!-- ============================================================ -->
                             <VBox fx:id="mainPanel" spacing="20.0" visible="false" managed="false">
-                                <padding><Insets bottom="30.0" left="30.0" right="30.0" top="25.0" /></padding>
+                                <padding>
+                                    <Insets bottom="30.0" left="30.0" right="30.0" top="25.0" />
+                                </padding>
                                 <children>
 
-                                    <!-- Sambutan -->
                                     <HBox alignment="CENTER_LEFT">
                                         <children>
                                             <VBox spacing="2">
@@ -175,11 +166,9 @@
                                         </children>
                                     </HBox>
 
-                                    <!-- ===== KARTU STATISTIK (3 kotak) ===== -->
                                     <HBox spacing="15.0">
                                         <children>
 
-                                            <!-- Kartu 1: Total Siswa -->
                                             <VBox style="-fx-background-color: #ffffff; -fx-background-radius: 12; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 8, 0, 0, 3);"
                                                   HBox.hgrow="ALWAYS">
                                                 <children>
@@ -197,7 +186,6 @@
                                                 </children>
                                             </VBox>
 
-                                            <!-- Kartu 2: Siswa Alergi (klik → direktori) -->
                                             <VBox style="-fx-background-color: #ffffff; -fx-background-radius: 12; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 8, 0, 0, 3);"
                                                   HBox.hgrow="ALWAYS">
                                                 <children>
@@ -218,7 +206,6 @@
                                                 </children>
                                             </VBox>
 
-                                            <!-- Kartu 3: Status Pengiriman (dummy) -->
                                             <VBox prefWidth="250"
                                                   style="-fx-background-color: #ffffff; -fx-background-radius: 12; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 8, 0, 0, 3);"
                                                   HBox.hgrow="ALWAYS">
@@ -231,17 +218,14 @@
                                                     </HBox>
                                                     <Label style="-fx-font-size: 13; -fx-text-fill: #64748b; -fx-padding: 15 0 5 0;"
                                                            text="Status Pengiriman" />
-                                                    <Label style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #15803d;"
-                                                           text="● Sedang Dikirim" />
-                                                    <Label style="-fx-font-size: 11; -fx-text-fill: #94a3b8; -fx-padding: 4 0 0 0;"
-                                                           text="ETA: 09:15 WIB" />
+                                                    <Label fx:id="labelStatusCard" style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #15803d;" text="-" />
+                                                    <Label fx:id="labelWaktuCard" style="-fx-font-size: 11; -fx-text-fill: #94a3b8; -fx-padding: 4 0 0 0;" text="-" />
                                                 </children>
                                             </VBox>
 
                                         </children>
                                     </HBox>
 
-                                    <!-- ===== KOTAK PENGIRIMAN AKTIF ===== -->
                                     <HBox spacing="15.0">
                                         <children>
                                             <VBox spacing="15.0"
@@ -275,55 +259,23 @@
                                                             <Label style="-fx-text-fill: #64748b; -fx-font-size: 12; -fx-font-weight: bold;" text="Porsi" GridPane.columnIndex="2" GridPane.rowIndex="0" />
                                                             <Label style="-fx-text-fill: #64748b; -fx-font-size: 12; -fx-font-weight: bold;" text="Status" GridPane.columnIndex="3" GridPane.rowIndex="0" />
                                                             <Region style="-fx-background-color: #e2e8f0; -fx-min-height: 1; -fx-max-height: 1;" GridPane.columnSpan="4" GridPane.rowIndex="1" />
-                                                            <Label style="-fx-text-fill: #334155; -fx-font-size: 13;" text="Dapur Ibu Siti" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                                                            <Label style="-fx-text-fill: #334155; -fx-font-size: 13;" text="Nasi Ayam Teriyaki" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                            
+                                                            <Label fx:id="labelVendorPengiriman" style="-fx-text-fill: #334155; -fx-font-size: 13;" text="-" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                                            <Label fx:id="labelMenuPengiriman" style="-fx-text-fill: #334155; -fx-font-size: 13;" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                             <Label fx:id="labelPorsiPengiriman" style="-fx-text-fill: #334155; -fx-font-size: 13;" text="-" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                                             <VBox spacing="2" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                                                                <Label style="-fx-text-fill: #15803d; -fx-font-weight: bold; -fx-font-size: 13;" text="● Sedang Dikirim" />
-                                                                <Label style="-fx-text-fill: #94a3b8; -fx-font-size: 11;" text="ETA 09:15 WIB" />
+                                                                <Label fx:id="labelStatusPengiriman" style="-fx-text-fill: #15803d; -fx-font-weight: bold; -fx-font-size: 13;" text="-" />
+                                                                <Label fx:id="labelWaktuPengiriman" style="-fx-text-fill: #94a3b8; -fx-font-size: 11;" text="-" />
                                                             </VBox>
+
                                                             <Region style="-fx-background-color: #e2e8f0; -fx-min-height: 1; -fx-max-height: 1;" GridPane.columnSpan="4" GridPane.rowIndex="3" />
                                                         </children>
                                                     </GridPane>
-
-                                                    <VBox spacing="8">
-                                                        <HBox spacing="15">
-                                                            <VBox alignment="TOP_CENTER" minWidth="20">
-                                                                <Circle fill="#15803d" radius="7" />
-                                                            </VBox>
-                                                            <VBox spacing="2">
-                                                                <Label style="-fx-text-fill: #334155; -fx-font-size: 13;" text="Persiapan" />
-                                                                <Label style="-fx-text-fill: #94a3b8; -fx-font-size: 11;" text="06:00 WIB" />
-                                                            </VBox>
-                                                        </HBox>
-                                                        <HBox spacing="15">
-                                                            <VBox alignment="TOP_CENTER" minWidth="20">
-                                                                <Circle fill="#15803d" radius="7" />
-                                                            </VBox>
-                                                            <VBox spacing="2">
-                                                                <Label style="-fx-text-fill: #334155; -fx-font-size: 13;" text="Memasak" />
-                                                                <Label style="-fx-text-fill: #94a3b8; -fx-font-size: 11;" text="07:30 WIB" />
-                                                            </VBox>
-                                                        </HBox>
-                                                        <HBox spacing="15">
-                                                            <VBox alignment="TOP_CENTER" minWidth="20">
-                                                                <StackPane>
-                                                                    <Circle fill="white" radius="7" stroke="#15803d" strokeWidth="2" />
-                                                                    <Circle fill="#15803d" radius="3" />
-                                                                </StackPane>
-                                                            </VBox>
-                                                            <VBox spacing="2">
-                                                                <Label style="-fx-text-fill: #15803d; -fx-font-weight: bold; -fx-font-size: 13;" text="Pengiriman" />
-                                                                <Label style="-fx-text-fill: #15803d; -fx-font-weight: bold; -fx-font-size: 13;" text="Sedang Berlangsung" />
-                                                            </VBox>
-                                                        </HBox>
-                                                    </VBox>
-                                                </children>
+ </children>
                                             </VBox>
                                         </children>
                                     </HBox>
 
-                                    <!-- Tombol Aksi -->
                                     <HBox alignment="CENTER_RIGHT" spacing="15.0">
                                         <children>
                                             <Button onAction="#aksiLaporMasalah"
