@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 
 import com.mycompany.embg.app.config.DbConfig;
 import com.mycompany.embg.app.services.Redirect;
+import com.mycompany.embg.app.services.UserSession;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -89,53 +90,60 @@ public class MenuManagementController implements Initializable {
     }
 
     // -------------------------------------------------------
-    // Query products JOIN nilai_gizi WHERE tipe_produk = 'menu'
+    // Query menu JOIN nilai_gizi WHERE vendor_id = user_login
     // -------------------------------------------------------
     private void loadMenuDariDB() {
         ObservableList<MenuHarian> data = FXCollections.observableArrayList();
 
+        // 1. Tambahkan "p." sebelum vendor_id agar jelas
         String sql = """
-                SELECT p.nama_produk, p.harga,
+                SELECT p.nama_menu, p.budget,
                        n.kalori, n.protein, n.lemak, n.karbohidrat
-                FROM products p
+                FROM menu p
                 LEFT JOIN nilai_gizi n ON p.nilai_gizi_id = n.id
-                WHERE p.tipe_produk = 'menu'
-                ORDER BY p.nama_produk
+                WHERE p.vendor_id = ?::uuid
+                ORDER BY p.nama_menu
                 """;
 
-        try (Connection conn = DbConfig.getConnection(); PreparedStatement ps = conn.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+        // 2. Deklarasi rs dipisah, agar bisa set parameter
+        try (Connection conn = DbConfig.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            while (rs.next()) {
-                String nama = rs.getString("nama_produk");
-                int harga = rs.getInt("harga");
-                float kalori = rs.getFloat("kalori");
-                float protein = rs.getFloat("protein");
-                float lemak = rs.getFloat("lemak");
-                float karbo = rs.getFloat("karbohidrat");
+            // 3. Set parameter id vendor yang sedang login
+            ps.setString(1, UserSession.getCurrentUserId());
 
-                // Susun detail gizi sebagai subtitle
-                String detailGizi = String.format(
-                        "Protein %.0fg  •  Lemak %.0fg  •  Karbo %.0fg",
-                        protein, lemak, karbo
-                );
+            // 4. Baru eksekusi query-nya
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    String nama = rs.getString("nama_menu");
+                    int harga = rs.getInt("budget");
+                    float kalori = rs.getFloat("kalori");
+                    float protein = rs.getFloat("protein");
+                    float lemak = rs.getFloat("lemak");
+                    float karbo = rs.getFloat("karbohidrat");
 
-                // colTanggal → tampilkan harga
-                String hargaStr = "Rp " + String.format("%,d", harga).replace(',', '.');
+                    // Susun detail gizi sebagai subtitle
+                    String detailGizi = String.format(
+                            "Protein %.0fg  •  Lemak %.0fg  •  Karbo %.0fg",
+                            protein, lemak, karbo
+                    );
 
-                // colKalori → tampilkan kalori
-                String kaloriStr = String.format("%.0f kcal", kalori);
+                    // colTanggal → tampilkan harga
+                    String hargaStr = "Rp " + String.format("%,d", harga).replace(',', '.');
 
-                data.add(new MenuHarian(hargaStr, nama, detailGizi, kaloriStr));
+                    // colKalori → tampilkan kalori
+                    String kaloriStr = String.format("%.0f kcal", kalori);
+
+                    data.add(new MenuHarian(hargaStr, nama, detailGizi, kaloriStr));
+                }
+
+                tblMenu.setItems(data);
             }
-
-            tblMenu.setItems(data);
 
         } catch (SQLException e) {
             e.printStackTrace();
             System.err.println("Gagal memuat menu: " + e.getMessage());
         }
     }
-
     // -------------------------------------------------------
     // Model POJO (struktur tetap sama agar FXML tidak perlu diubah)
     // -------------------------------------------------------
