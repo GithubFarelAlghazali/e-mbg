@@ -9,10 +9,11 @@ package com.mycompany.embg.app.models;
  * @author User
  */
 public class BahanMakanan extends Produk {
+
     private int jumlah;
     private String satuan;
     private NilaiGizi infoGizi;
-    
+
     public BahanMakanan(
             String namaProduk,
             int harga,
@@ -20,22 +21,49 @@ public class BahanMakanan extends Produk {
             String satuan,
             NilaiGizi gizi,
             String id,
-            String vendorId){
+            String vendorId) {
         super(namaProduk, harga, id, vendorId);
         this.jumlah = jumlah;
         this.satuan = satuan;
         this.infoGizi = gizi;
     }
     
-    public void setJumlah(int jumlah){
+    public BahanMakanan(
+            String namaProduk,
+            int harga,
+            int jumlah,
+            String satuan,
+            String id,
+            String vendorId) {
+        super(namaProduk, harga, id, vendorId);
         this.jumlah = jumlah;
+        this.satuan = satuan;
     }
-    
-    public int getJumlah(){
+
+    // ==========================================
+    // GETTER & SETTER
+    // ==========================================
+    public int getJumlah() {
         return this.jumlah;
     }
-    
-    public String getSatuan(){
+
+    public void setJumlah(int jumlah) {
+        this.jumlah = jumlah;
+    }
+
+    public String getSatuan() {
         return this.satuan;
+    }
+
+    public void setSatuan(String satuan) {
+        this.satuan = satuan;
+    }
+
+    public NilaiGizi getInfoGizi() {
+        return this.infoGizi;
+    }
+
+    public void setInfoGizi(NilaiGizi infoGizi) {
+        this.infoGizi = infoGizi;
     }
 }

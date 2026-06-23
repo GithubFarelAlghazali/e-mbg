@@ -3,9 +3,12 @@ package com.mycompany.embg.app.controllers.vendor;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.mycompany.embg.app.models.InventoryItem;
+import com.mycompany.embg.app.models.BahanMakanan;
 import com.mycompany.embg.app.repository.InventoryRepo;
+import com.mycompany.embg.app.services.AlertPopup;
 import com.mycompany.embg.app.services.Redirect;
+import com.mycompany.embg.app.services.UserSession;
+import java.sql.SQLException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -37,33 +41,33 @@ public class InventoryManagementController implements Initializable {
     private Button btnNewReport;
 
     @FXML
-    private TableView<InventoryItem> tblInventory;
+    private TableView<BahanMakanan> tblInventory;
 
     @FXML
-    private TableColumn<InventoryItem, String> colNamaBarang;
+    private TableColumn<BahanMakanan, String> colNamaBarang;
     
 
     @FXML
-    private TableColumn<InventoryItem, Integer> colStok;
+    private TableColumn<BahanMakanan, Integer> colStok;
 
     @FXML
-    private TableColumn<InventoryItem, String> colSatuan;
+    private TableColumn<BahanMakanan, String> colSatuan;
 
     @FXML
-    private TableColumn<InventoryItem, Integer> colHarga;
+    private TableColumn<BahanMakanan, Integer> colHarga;
 
     @FXML
-    private TableColumn<InventoryItem, Void> colActions;
+    private TableColumn<BahanMakanan, Void> colActions;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         colNamaBarang.setCellValueFactory(
-                new PropertyValueFactory<>("namaBarang")
+                new PropertyValueFactory<>("nama")
         );
 
         colStok.setCellValueFactory(
-                new PropertyValueFactory<>("stok")
+                new PropertyValueFactory<>("jumlah")
         );
 
         colSatuan.setCellValueFactory(
@@ -80,14 +84,21 @@ public class InventoryManagementController implements Initializable {
 
     private void loadInventory() {
 
-        InventoryRepo repo = new InventoryRepo();
-
-        ObservableList<InventoryItem> data =
-                FXCollections.observableArrayList(
-                        repo.getAllItems()
-                );
-
+        InventoryRepo repo;
+        ObservableList<BahanMakanan> data;
+        
+        try{
+            repo = new InventoryRepo();
+                    data = FXCollections.observableArrayList(
+                            repo.getAllItems(UserSession.getCurrentUserId())
+            );
         tblInventory.setItems(data);
+        } catch(SQLException err){
+            AlertPopup.showAlert(Alert.AlertType.ERROR, "Gagal memuat inventaris : " + err);
+        }
+
+        
+
     }
 
     private void addActionButtons() {
@@ -104,29 +115,34 @@ public class InventoryManagementController implements Initializable {
 
                 btnDelete.setOnAction(event -> {
 
-                    InventoryItem item =
+                    BahanMakanan item =
                             getTableView()
                                     .getItems()
                                     .get(getIndex());
 
-                    InventoryRepo repo =
-                            new InventoryRepo();
+                    InventoryRepo repo;
+                    try{
+                        
+                        repo = new InventoryRepo();
+                        repo.deleteItem(item.getId());
+                    } catch(SQLException err){
+                        AlertPopup.showAlert(Alert.AlertType.ERROR, "Gagal mengedit data inventaris : " + err);
+                    }
 
-                    repo.deleteItem(item.getId());
 
                     loadInventory();
                 });
 
                 btnEdit.setOnAction(event -> {
 
-                    InventoryItem item =
+                    BahanMakanan item =
                             getTableView()
                                     .getItems()
                                     .get(getIndex());
 
                     System.out.println(
                             "Edit Item: "
-                                    + item.getNamaBarang()
+                                    + item.getNama()
                     );
 
                     // nanti buka EditInventory.fxml

@@ -23,7 +23,6 @@
             <Button text="Vendors" onAction="#showVendors" maxWidth="Infinity"/>
             <Button text="Schools" onAction="#showSchools" maxWidth="Infinity"/>
             <Button text="Shipments" onAction="#showShipments" maxWidth="Infinity"/>
-            <Button text="Inventory" onAction="#showInventory" maxWidth="Infinity"/>
 
             <Region VBox.vgrow="ALWAYS"/>
 

@@ -1,6 +1,8 @@
 package com.mycompany.embg.app.controllers.admin;
 
+import com.mycompany.embg.app.models.JadwalPengiriman;
 import com.mycompany.embg.app.models.Vendor;
+import com.mycompany.embg.app.repository.JadwalRepo;
 import java.util.List;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
@@ -25,15 +27,11 @@ public class DashboardController {
         addColumnToDashboard("Vendor", 0);
         addColumnToDashboard("Sekolah", 1);
         addColumnToDashboard("Menu", 2);
-        addColumnToDashboard("Status", 3);
-        addColumnToDashboard("Estimasi", 4);
+        addColumnToDashboard("Porsi", 3);
+        addColumnToDashboard("Tanggal", 4);
+        addColumnToDashboard("Status", 5);
 
-        dashboardTable.getItems().addAll(
-                new String[]{"CV. Dapur Nusantara", "SDN 01 Pagi Jakarta", "Nasi Ayam Bakar", "Dimasak", "10:30 AM"},
-                new String[]{"PT. Rasa Indonesia", "SMPN 12 Bandung", "Nasi Ikan Goreng", "Diantar", "11:15 AM"},
-                new String[]{"Katering Mapan", "SMAN 3 Surabaya", "Nasi Telur Balado", "Sampai", "09:45 AM"},
-                new String[]{"CV. Berkah Jaya", "SDN 05 Petang", "Nasi Sayur Lodeh", "Diantar", "11:30 AM"}
-        );
+        loadJadwalData();
 
         // 2. Inisialisasi Tabel Status Approval Vendor (Tambahan Baru)
         setupVendorStatusTable();
@@ -46,6 +44,36 @@ public class DashboardController {
         dashboardTable.getColumns().add(column);
     }
 
+    
+    private void loadJadwalData() {
+        try {
+            JadwalRepo repoJadwal = new JadwalRepo();
+            List<JadwalPengiriman> listJadwal = repoJadwal.getAllJadwal();
+
+            if (listJadwal.isEmpty()) {
+                Label emptyLabel = new Label("Belum ada riwayat pengiriman.");
+                emptyLabel.setStyle("-fx-text-fill: #94A3B8; -fx-font-size: 14px;");
+                dashboardTable.setPlaceholder(emptyLabel);
+            } else {
+                for (JadwalPengiriman j : listJadwal) {
+                    // Petakan properti objek ke dalam susunan array String[]
+                    String[] rowData = new String[]{
+                        j.getNamaVendor(),
+                        j.getNamaSekolah(),
+                        j.getNamaMenu(),
+                        String.valueOf(j.getJumlahPorsi()),
+                        j.getTanggal(),
+                        j.getStatus()
+                    };
+                    dashboardTable.getItems().add(rowData);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            dashboardTable.setPlaceholder(new Label("Gagal mengambil data jadwal dari database."));
+        }
+    }
+    
     
     private void setupVendorStatusTable() {
       

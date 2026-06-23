@@ -19,14 +19,14 @@ public class JadwalRepo {
                     j.id,
                     sekolah.username  AS nama_sekolah,
                     vendor.username   AS nama_vendor,
-                    p.nama_produk     AS nama_menu,
+                    p.nama_menu,     
                     j.jumlah_porsi,
                     j.tanggal::text,
                     j.status
                 FROM jadwal j
                 JOIN users sekolah ON sekolah.id = j.sekolah_id
                 JOIN users vendor  ON vendor.id  = j.vendor_id
-                JOIN products p    ON p.id        = j.menu_id
+                JOIN menu p    ON p.id        = j.menu_id
                 ORDER BY j.tanggal DESC, j.created_at DESC
                 """;
         try (Connection conn = DbConfig.getConnection();
@@ -67,7 +67,7 @@ public class JadwalRepo {
                 ?::uuid,
                 ?,
                 ?,
-                'dimasak'
+                'Dimasak'
             )
             """;
 
@@ -95,14 +95,14 @@ public class JadwalRepo {
                     j.id,
                     sekolah.username  AS nama_sekolah,
                     vendor.username   AS nama_vendor,
-                    p.nama_produk     AS nama_menu,
+                    p.nama_menu,
                     j.jumlah_porsi,
                     j.tanggal::text,
                     j.status
                 FROM jadwal j
                 JOIN users sekolah ON sekolah.id = j.sekolah_id
                 JOIN users vendor  ON vendor.id  = j.vendor_id
-                JOIN products p    ON p.id        = j.menu_id
+                JOIN menu p    ON p.id        = j.menu_id
                 WHERE j.vendor_id = ?::uuid
                 ORDER BY j.tanggal DESC
                 """;
@@ -128,14 +128,14 @@ public class JadwalRepo {
                     j.id,
                     sekolah.username  AS nama_sekolah,
                     vendor.username   AS nama_vendor,
-                    p.nama_produk     AS nama_menu,
+                    p.nama_menu,
                     j.jumlah_porsi,
                     j.tanggal::text,
                     j.status
                 FROM jadwal j
                 JOIN users sekolah ON sekolah.id = j.sekolah_id
                 JOIN users vendor  ON vendor.id  = j.vendor_id
-                JOIN products p    ON p.id        = j.menu_id
+                JOIN menu p    ON p.id        = j.menu_id
                 WHERE j.sekolah_id = ?::uuid
                 ORDER BY j.tanggal DESC
                 """;

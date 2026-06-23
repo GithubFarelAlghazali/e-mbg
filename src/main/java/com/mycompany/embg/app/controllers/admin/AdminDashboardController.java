@@ -40,11 +40,6 @@ public class AdminDashboardController {
     }
 
     @FXML
-    public void showInventory() {
-        loadPage("/com/mycompany/embg/app/fxml/admin/Inventory.fxml");
-    }
-
-    @FXML
     public void handleLogout(ActionEvent event) {
         try {
             com.mycompany.embg.app.services.UserSession.clearSession();

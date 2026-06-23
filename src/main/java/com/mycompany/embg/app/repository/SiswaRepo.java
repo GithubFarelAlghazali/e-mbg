@@ -1,6 +1,7 @@
 package com.mycompany.embg.app.repository;
 
 import com.mycompany.embg.app.config.DbConfig;
+import com.mycompany.embg.app.models.Sekolah;
 import com.mycompany.embg.app.models.SiswaKebutuhanKhusus;
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,11 +10,33 @@ import java.util.List;
 public class SiswaRepo {
 
     private Connection conn;
-
+    
     public SiswaRepo() throws SQLException {
         this.conn = DbConfig.getConnection();
     }
 
+    // mengambil semua sekolah terdaftar
+    public List<Sekolah> getSekolah() throws SQLException {
+        List<Sekolah> listSekolah = new ArrayList<>();
+        String sql = "SELECT * FROM users WHERE role = 'sekolah'";
+        
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                listSekolah.add(new Sekolah(
+                        rs.getString("id"),
+                        rs.getString("username"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("npsn"),
+                        rs.getString("alamat")
+                ));
+            }
+        }
+        return listSekolah;
+
+    }
+    
     // Mengambil data siswa khusus berdasarkan ID Sekolah
     public List<SiswaKebutuhanKhusus> getSiswaKhususBySekolah(String idSekolah) throws SQLException {
         List<SiswaKebutuhanKhusus> listSiswa = new ArrayList<>();

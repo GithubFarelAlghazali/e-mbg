@@ -1,8 +1,8 @@
 package com.mycompany.embg.app.controllers.vendor;
 
-import com.mycompany.embg.app.models.InventoryItem;
+import com.mycompany.embg.app.models.BahanMakanan;
 import com.mycompany.embg.app.repository.InventoryRepo;
-
+import com.mycompany.embg.app.services.UserSession;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -30,13 +30,14 @@ public class AddInventoryController {
 
             InventoryRepo repo = new InventoryRepo();
 
-            InventoryItem item =
-                    new InventoryItem(
-                            UUID.randomUUID().toString(),
+            BahanMakanan item =
+                    new BahanMakanan(
                             txtNamaBarang.getText(),
+                            Integer.parseInt(txtHarga.getText()),
                             Integer.parseInt(txtStok.getText()),
                             txtSatuan.getText(),
-                            Integer.parseInt(txtHarga.getText())
+                            UUID.randomUUID().toString(),
+                            UserSession.getCurrentUserId()
                     );
 
             repo.addItem(item);
