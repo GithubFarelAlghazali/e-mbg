@@ -95,12 +95,12 @@ public class TambahJadwalController implements Initializable {
     // -------------------------------------------------------
     private void loadMenu() {
         try (Connection conn = DbConfig.getConnection(); PreparedStatement ps = conn.prepareStatement(
-                "SELECT id, nama_produk FROM products ORDER BY nama_produk")) {
+                "SELECT id, nama_menu FROM menu ORDER BY nama_menu")) {
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 String id = rs.getString("id");
-                String nama = rs.getString("nama_produk");
+                String nama = rs.getString("nama_menu");
                 menuMap.put(nama, id);
             }
             comboMenu.setItems(
