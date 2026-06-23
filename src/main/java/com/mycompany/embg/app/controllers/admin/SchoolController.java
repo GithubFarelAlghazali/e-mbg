@@ -9,32 +9,67 @@ package com.mycompany.embg.app.controllers.admin;
  * @author HP
  */
 
+import com.mycompany.embg.app.models.Sekolah;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import com.mycompany.embg.app.repository.SiswaRepo;import java.sql.SQLException;
+import java.util.List;
+;
 
 public class SchoolController {
 
     @FXML
     private TableView<String[]> schoolTable;
 
+    private SiswaRepo sekolahRepo;
+    public SchoolController(){
+        try {
+            this.sekolahRepo = new SiswaRepo();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    
     @FXML
     public void initialize() {
-        addColumn("Nama Sekolah", 0);
-        addColumn("NPSN", 1);
-        addColumn("Tanggal Daftar", 2);
-        addColumn("Status", 3);
-        addColumn("Actions", 4);
+        addColumn("No", 0);
+        addColumn("Nama Sekolah", 1);
+        addColumn("Email", 2);
+        addColumn("NPSN", 3);
 
-        schoolTable.getItems().addAll(
-                new String[]{"SDN 01 Menteng Pagi", "20101234", "24 Oct 2023", "Menunggu Verifikasi", "Review"},
-                new String[]{"SMPN 255 Jakarta", "20105678", "23 Oct 2023", "Menunggu Verifikasi", "Review"},
-                new String[]{"SMAN 8 Jakarta", "20109012", "22 Oct 2023", "Menunggu Verifikasi", "Review"},
-                new String[]{"SDN 15 Klender", "20103456", "21 Oct 2023", "Terverifikasi", "Processed"}
-        );
+        loadSchoolData();
     }
 
+    private void loadSchoolData() {
+        if (sekolahRepo == null) {
+            return;
+        }
+
+        try {
+            List<Sekolah> listSekolah = sekolahRepo.getSekolah();
+
+            int no = 1;
+            for (Sekolah sekolah : listSekolah) {
+                // Buat array String sesuai urutan kolom: {No, Nama, Email, NPSN}
+                String[] rowData = new String[]{
+                    String.valueOf(no++),
+                    sekolah.getUsername(), // Menggunakan getUsername() karena SQL mengambil dari kolom 'username'
+                    sekolah.getEmail(),
+                    sekolah.getNpsn()
+                };
+
+                schoolTable.getItems().add(rowData);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
     private void addColumn(String title, int index) {
         TableColumn<String[], String> column = new TableColumn<>(title);
         column.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[index]));
